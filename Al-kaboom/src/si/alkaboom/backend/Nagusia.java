@@ -6,6 +6,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class Nagusia {
 	public static final float BERTSIOA = 0.0F;
 
+
 	public static void main(String[] args) {
 		if (!System.getProperty("os.name").contains("OS X"))
 			try {
@@ -15,6 +16,6 @@ public class Nagusia {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	}
 
+	}
 }

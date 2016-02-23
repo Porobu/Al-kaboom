@@ -7,14 +7,19 @@ public class Nagusia {
 	public static final float BERTSIOA = 0.0F;
 
 	public static void main(String[] args) {
-		if (!System.getProperty("os.name").contains("OS X"))
+		if (!System.getProperty("os.name").toLowerCase().contains("mac os x")) {
 			try {
 				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
 					| UnsupportedLookAndFeelException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	}
 
+			}
+			if (UIManager.getLookAndFeel().getName().toLowerCase().contains("metal"))
+				try {
+					UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+						| UnsupportedLookAndFeelException e) {
+				}
+		}
+	}
 }

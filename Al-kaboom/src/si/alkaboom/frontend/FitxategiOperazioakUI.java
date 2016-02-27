@@ -7,8 +7,9 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import si.alkaboom.backend.AlKaboom;
+import si.alkaboom.backend.AlKaboomConstants;
 import si.alkaboom.backend.FitxategiOperazioak;
-import si.alkaboom.backend.Nagusia;
+
 import si.alkaboom.salbuespenak.AlKaboomSalbuespena;
 
 public class FitxategiOperazioakUI {
@@ -23,7 +24,7 @@ public class FitxategiOperazioakUI {
 		File fitxategia = new File(path);
 		if (fitxategia.exists())
 			aukera = JOptionPane.showConfirmDialog(null,
-					"Datu basea existitzen da izen horrekin, jarraitzen baduzu ezabatu egingo da.", AlKaboom.IZENBURUA,
+					"Datu basea existitzen da izen horrekin, jarraitzen baduzu ezabatu egingo da.", AlKaboomConstants.IZENBURUA,
 					JOptionPane.YES_NO_OPTION);
 		if (aukera == JOptionPane.NO_OPTION || aukera == JOptionPane.CLOSED_OPTION)
 			System.exit(1);
@@ -34,7 +35,7 @@ public class FitxategiOperazioakUI {
 		} catch (Exception e) {
 			new AlKaboomSalbuespena("Ezin da fitxategia esportatu", e);
 		}
-		JOptionPane.showMessageDialog(null, "Datu basea " + path + " karpetan gorde da.", AlKaboom.IZENBURUA,
+		JOptionPane.showMessageDialog(null, "Datu basea " + path + " karpetan gorde da.", AlKaboomConstants.IZENBURUA,
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 
@@ -42,7 +43,7 @@ public class FitxategiOperazioakUI {
 		String path;
 		JFileChooser gureFileChooser = new JFileChooser(new File(System.getProperty("user.home")));
 		gureFileChooser.setAcceptAllFileFilterUsed(false);
-		gureFileChooser.setDialogTitle(AlKaboom.IZENBURUA);
+		gureFileChooser.setDialogTitle(AlKaboomConstants.IZENBURUA);
 		gureFileChooser.setFileFilter(new FileNameExtensionFilter("WinterTwitter Datu Baseak", "db"));
 		gureFileChooser.setSelectedFile(new File("WinterTwitter"));
 		int gureZenbakia = gureFileChooser.showSaveDialog(null);
@@ -63,7 +64,7 @@ public class FitxategiOperazioakUI {
 		String path;
 		JFileChooser gureFileChooser = new JFileChooser(new File(System.getProperty("user.home")));
 		gureFileChooser.setAcceptAllFileFilterUsed(false);
-		gureFileChooser.setDialogTitle(AlKaboom.IZENBURUA);
+		gureFileChooser.setDialogTitle(AlKaboomConstants.IZENBURUA);
 		gureFileChooser.setFileFilter(new FileNameExtensionFilter("WinterTwitter Datu Baseak", "db"));
 		int gureZenbakia = gureFileChooser.showOpenDialog(null);
 		if (gureZenbakia == JFileChooser.CANCEL_OPTION)
@@ -79,10 +80,10 @@ public class FitxategiOperazioakUI {
 	public void kopiaEgin() {
 		JOptionPane.showMessageDialog(null,
 				"Hautatu non egin nahi duzun datu basearen kopia.\nTwitter-etik deskargatu duzun informazio guztia kopiatuko da.",
-				AlKaboom.IZENBURUA, JOptionPane.INFORMATION_MESSAGE);
+				AlKaboomConstants.IZENBURUA, JOptionPane.INFORMATION_MESSAGE);
 		String path = AlKaboom.getAlKaboom().getDatubasePath();
 		JFileChooser gureFileChooser = new JFileChooser(new File(System.getProperty("user.home")));
-		gureFileChooser.setDialogTitle(AlKaboom.IZENBURUA);
+		gureFileChooser.setDialogTitle(AlKaboomConstants.IZENBURUA);
 		gureFileChooser.setAcceptAllFileFilterUsed(false);
 		gureFileChooser.setFileFilter(new FileNameExtensionFilter("WinterTwitter Datu Baseak", "db"));
 		while (AlKaboom.getAlKaboom().getDatubasePath().equals(path)) {
@@ -100,10 +101,10 @@ public class FitxategiOperazioakUI {
 			if (AlKaboom.getAlKaboom().getDatubasePath().equals(path))
 				JOptionPane.showMessageDialog(gureFileChooser,
 						"Hautatu duzun fitxategia kargatu duzunaren berdina da.\nMesedez, aukeratu beste bat",
-						AlKaboom.IZENBURUA, JOptionPane.WARNING_MESSAGE);
+						AlKaboomConstants.IZENBURUA, JOptionPane.WARNING_MESSAGE);
 		}
 		nireFO.kopiatu(path);
-		JOptionPane.showMessageDialog(null, "Datu basearen kopia " + path + " karpetan gorde da.", AlKaboom.IZENBURUA,
+		JOptionPane.showMessageDialog(null, "Datu basearen kopia " + path + " karpetan gorde da.", AlKaboomConstants.IZENBURUA,
 				JOptionPane.INFORMATION_MESSAGE);
 
 	}

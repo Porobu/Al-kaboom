@@ -3,8 +3,11 @@ package si.alkaboom.backend;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import si.alkaboom.frontend.Login;
+
 public class Nagusia {
-	public static final float BERTSIOA = 0.0F;
+	public static final float BERTSIOA = 0.05F;
+	public static final String IZENBURUA = "Al-Kaboom " + BERTSIOA;
 
 	public static void main(String[] args) {
 		if (!System.getProperty("os.name").toLowerCase().contains("mac os x")) {
@@ -21,5 +24,6 @@ public class Nagusia {
 						| UnsupportedLookAndFeelException e) {
 				}
 		}
+		new Login();
 	}
 }

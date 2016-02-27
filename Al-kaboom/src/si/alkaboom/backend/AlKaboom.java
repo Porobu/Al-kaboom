@@ -2,7 +2,7 @@ package si.alkaboom.backend;
 
 import si.alkaboom.frontend.Kautotu;
 
-public class AlKaboom {
+public class AlKaboom implements AlKaboomConstants {
 
 	private static AlKaboom gureAlKaboom;
 

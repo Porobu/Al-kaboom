@@ -65,7 +65,7 @@ public class KautotuPanela extends JPanel implements KeyListener {
 		this.add(aukerak);
 		this.add(this.sartu);
 		this.add(aukerazkoa);
-		SpringUtilities.makeCompactGrid(this, 3, 2, 1, 1, 3, 3);
+		SpringUtilities.makeCompactGrid(this, 3, 2, 3, 3, 3, 3);
 	}
 
 	@Override

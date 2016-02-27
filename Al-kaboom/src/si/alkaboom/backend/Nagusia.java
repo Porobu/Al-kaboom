@@ -4,8 +4,6 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 public class Nagusia {
-	public static final float BERTSIOA = 0.05F;
-	public static final String IZENBURUA = "Al-Kaboom " + BERTSIOA;
 
 	public static void main(String[] args) {
 		if (!System.getProperty("os.name").toLowerCase().contains("mac os x")) {

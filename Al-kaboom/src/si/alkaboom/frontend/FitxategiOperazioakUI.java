@@ -6,6 +6,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import si.alkaboom.backend.AlKaboom;
 import si.alkaboom.backend.FitxategiOperazioak;
 import si.alkaboom.backend.Nagusia;
 import si.alkaboom.salbuespenak.AlKaboomSalbuespena;
@@ -22,7 +23,7 @@ public class FitxategiOperazioakUI {
 		File fitxategia = new File(path);
 		if (fitxategia.exists())
 			aukera = JOptionPane.showConfirmDialog(null,
-					"Datu basea existitzen da izen horrekin, jarraitzen baduzu ezabatu egingo da.", Nagusia.IZENBURUA,
+					"Datu basea existitzen da izen horrekin, jarraitzen baduzu ezabatu egingo da.", AlKaboom.IZENBURUA,
 					JOptionPane.YES_NO_OPTION);
 		if (aukera == JOptionPane.NO_OPTION || aukera == JOptionPane.CLOSED_OPTION)
 			System.exit(1);
@@ -33,7 +34,7 @@ public class FitxategiOperazioakUI {
 		} catch (Exception e) {
 			new AlKaboomSalbuespena("Ezin da fitxategia esportatu", e);
 		}
-		JOptionPane.showMessageDialog(null, "Datu basea " + path + " karpetan gorde da.", Nagusia.IZENBURUA,
+		JOptionPane.showMessageDialog(null, "Datu basea " + path + " karpetan gorde da.", AlKaboom.IZENBURUA,
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 
@@ -41,7 +42,7 @@ public class FitxategiOperazioakUI {
 		String path;
 		JFileChooser gureFileChooser = new JFileChooser(new File(System.getProperty("user.home")));
 		gureFileChooser.setAcceptAllFileFilterUsed(false);
-		gureFileChooser.setDialogTitle(Nagusia.IZENBURUA);
+		gureFileChooser.setDialogTitle(AlKaboom.IZENBURUA);
 		gureFileChooser.setFileFilter(new FileNameExtensionFilter("WinterTwitter Datu Baseak", "db"));
 		gureFileChooser.setSelectedFile(new File("WinterTwitter"));
 		int gureZenbakia = gureFileChooser.showSaveDialog(null);
@@ -62,7 +63,7 @@ public class FitxategiOperazioakUI {
 		String path;
 		JFileChooser gureFileChooser = new JFileChooser(new File(System.getProperty("user.home")));
 		gureFileChooser.setAcceptAllFileFilterUsed(false);
-		gureFileChooser.setDialogTitle(Nagusia.IZENBURUA);
+		gureFileChooser.setDialogTitle(AlKaboom.IZENBURUA);
 		gureFileChooser.setFileFilter(new FileNameExtensionFilter("WinterTwitter Datu Baseak", "db"));
 		int gureZenbakia = gureFileChooser.showOpenDialog(null);
 		if (gureZenbakia == JFileChooser.CANCEL_OPTION)
@@ -78,13 +79,13 @@ public class FitxategiOperazioakUI {
 	public void kopiaEgin() {
 		JOptionPane.showMessageDialog(null,
 				"Hautatu non egin nahi duzun datu basearen kopia.\nTwitter-etik deskargatu duzun informazio guztia kopiatuko da.",
-				Nagusia.IZENBURUA, JOptionPane.INFORMATION_MESSAGE);
-		String path = Nagusia.getPath();
+				AlKaboom.IZENBURUA, JOptionPane.INFORMATION_MESSAGE);
+		String path = AlKaboom.getAlKaboom().getDatubasePath();
 		JFileChooser gureFileChooser = new JFileChooser(new File(System.getProperty("user.home")));
-		gureFileChooser.setDialogTitle(Nagusia.IZENBURUA);
+		gureFileChooser.setDialogTitle(AlKaboom.IZENBURUA);
 		gureFileChooser.setAcceptAllFileFilterUsed(false);
 		gureFileChooser.setFileFilter(new FileNameExtensionFilter("WinterTwitter Datu Baseak", "db"));
-		while (Nagusia.getPath().equals(path)) {
+		while (AlKaboom.getAlKaboom().getDatubasePath().equals(path)) {
 			int gureZenbakia = gureFileChooser.showSaveDialog(null);
 			if (gureZenbakia == JFileChooser.CANCEL_OPTION)
 				return;
@@ -96,13 +97,13 @@ public class FitxategiOperazioakUI {
 			} catch (Exception salbuespena) {
 				throw new AlKaboomSalbuespena("Fitxategiak ez du balio!!!!!", salbuespena);
 			}
-			if (Nagusia.getPath().equals(path))
+			if (AlKaboom.getAlKaboom().getDatubasePath().equals(path))
 				JOptionPane.showMessageDialog(gureFileChooser,
 						"Hautatu duzun fitxategia kargatu duzunaren berdina da.\nMesedez, aukeratu beste bat",
-						Nagusia.IZENBURUA, JOptionPane.WARNING_MESSAGE);
+						AlKaboom.IZENBURUA, JOptionPane.WARNING_MESSAGE);
 		}
 		nireFO.kopiatu(path);
-		JOptionPane.showMessageDialog(null, "Datu basearen kopia " + path + " karpetan gorde da.", Nagusia.IZENBURUA,
+		JOptionPane.showMessageDialog(null, "Datu basearen kopia " + path + " karpetan gorde da.", AlKaboom.IZENBURUA,
 				JOptionPane.INFORMATION_MESSAGE);
 
 	}

@@ -2,6 +2,7 @@ package si.alkaboom.frontend;
 
 import javax.swing.JOptionPane;
 
+import si.alkaboom.backend.AlKaboom;
 import si.alkaboom.backend.DBKS;
 import si.alkaboom.backend.Nagusia;
 
@@ -23,7 +24,7 @@ public class AukerakUI {
 			path = nireFOUI.getPath();
 			break;
 		case JOptionPane.NO_OPTION:
-			JOptionPane.showMessageDialog(null, luzea, Nagusia.IZENBURUA, JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, luzea, AlKaboom.IZENBURUA, JOptionPane.INFORMATION_MESSAGE);
 			path = nireFOUI.datuBaseaGordetzekoPath();
 			nireFOUI.datuBaseaEraiki(path);
 			break;
@@ -47,7 +48,7 @@ public class AukerakUI {
 	private void hasiDefektuzkoDB() {
 		String[] aukerak = { "Beste Bat Erabili", "Berri bat sortu", "Defektuzkoa Kargatu" };
 		aukera = JOptionPane.showOptionDialog(null, "Defektuzko datu basea " + path + " karpetan aurkitu da.",
-				Nagusia.IZENBURUA, JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, aukerak,
+				AlKaboom.IZENBURUA, JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, aukerak,
 				aukerak[2]);
 		this.aukeratu();
 	}
@@ -56,7 +57,7 @@ public class AukerakUI {
 		String[] aukerak = { "Ireki", "Berria Sortu" };
 		aukera = JOptionPane.showOptionDialog(null,
 				"Datu Basea beste leku batetik ireki edo berria sortu nahi duzu?\nAplikazioa erabili duzun lehenengo aldia bada, berria sortu sakatu.",
-				Nagusia.IZENBURUA, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, aukerak, aukerak[1]);
+				AlKaboom.IZENBURUA, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, aukerak, aukerak[1]);
 		this.aukeratu();
 	}
 }

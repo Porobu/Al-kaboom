@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import si.alkaboom.backend.AlKaboom;
 import si.alkaboom.backend.Nagusia;
 
 public class Kautotu extends JFrame {
@@ -14,7 +15,7 @@ public class Kautotu extends JFrame {
 	private JPanel kautotuPanela;
 
 	public Kautotu() {
-		this.setTitle(Nagusia.IZENBURUA);
+		this.setTitle(AlKaboom.IZENBURUA);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 		this.kautotuPanela = new KautotuPanela();
@@ -31,7 +32,6 @@ public class Kautotu extends JFrame {
 		this.add(kautotuPanela, BorderLayout.CENTER);
 		this.revalidate();
 		this.repaint();
-
 	}
 
 	public void zailtasunaIpini() {
@@ -39,7 +39,5 @@ public class Kautotu extends JFrame {
 		this.add(zailtasunaPanela, BorderLayout.CENTER);
 		this.revalidate();
 		this.repaint();
-
 	}
-
 }

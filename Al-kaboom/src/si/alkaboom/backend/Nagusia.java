@@ -6,7 +6,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 import si.alkaboom.frontend.Kautotu;
 
 public class Nagusia {
-	private static Kautotu kautotu;
 	public static final float BERTSIOA = 0.05F;
 	public static final String IZENBURUA = "Al-Kaboom " + BERTSIOA;
 
@@ -25,10 +24,7 @@ public class Nagusia {
 						| UnsupportedLookAndFeelException e) {
 				}
 		}
-		kautotu = new Kautotu();
+		AlKaboom.getAlKaboom().jokatu();
 	}
 
-	public static Kautotu getKautotu() {
-		return kautotu;
-	}
 }

@@ -11,10 +11,11 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 
+import si.alkaboom.backend.AlKaboom;
 import si.alkaboom.backend.Nagusia;
 import si.alkaboom.externals.SpringUtilities;
 
-public class KautotuPanela extends JPanel implements KeyListener{
+public class KautotuPanela extends JPanel implements KeyListener {
 
 	private JLabel erabiltzailea, zailtasuna;
 	private JTextField erabiltzaileaField;
@@ -43,7 +44,7 @@ public class KautotuPanela extends JPanel implements KeyListener{
 		this.add(this.sartu);
 		this.aukerazkoa = new JButton("Zailtasuna Aukeratu");
 		this.aukerazkoa.setEnabled(false);
-		this.aukerazkoa.addActionListener(gureAE -> Nagusia.getKautotu().zailtasunaIpini());
+		this.aukerazkoa.addActionListener(gureAE -> AlKaboom.getAlKaboom().getKautotu().zailtasunaIpini());
 		this.add(aukerazkoa);
 		SpringUtilities.makeCompactGrid(this, 3, 2, 1, 1, 3, 3);
 	}
@@ -61,17 +62,17 @@ public class KautotuPanela extends JPanel implements KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		if(arg0.getKeyCode() == KeyEvent.VK_ENTER)
+		if (arg0.getKeyCode() == KeyEvent.VK_ENTER)
 			this.datuakGorde();
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		
+
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		
+
 	}
 }

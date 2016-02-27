@@ -9,7 +9,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import si.alkaboom.backend.AlKaboom;
 import si.alkaboom.backend.AlKaboomConstants;
 import si.alkaboom.backend.FitxategiOperazioak;
-
 import si.alkaboom.salbuespenak.AlKaboomSalbuespena;
 
 public class FitxategiOperazioakUI {
@@ -24,8 +23,8 @@ public class FitxategiOperazioakUI {
 		File fitxategia = new File(path);
 		if (fitxategia.exists())
 			aukera = JOptionPane.showConfirmDialog(null,
-					"Datu basea existitzen da izen horrekin, jarraitzen baduzu ezabatu egingo da.", AlKaboomConstants.IZENBURUA,
-					JOptionPane.YES_NO_OPTION);
+					"Datu basea existitzen da izen horrekin, jarraitzen baduzu ezabatu egingo da.",
+					AlKaboomConstants.IZENBURUA, JOptionPane.YES_NO_OPTION);
 		if (aukera == JOptionPane.NO_OPTION || aukera == JOptionPane.CLOSED_OPTION)
 			System.exit(1);
 		fitxategia.delete();
@@ -104,8 +103,8 @@ public class FitxategiOperazioakUI {
 						AlKaboomConstants.IZENBURUA, JOptionPane.WARNING_MESSAGE);
 		}
 		nireFO.kopiatu(path);
-		JOptionPane.showMessageDialog(null, "Datu basearen kopia " + path + " karpetan gorde da.", AlKaboomConstants.IZENBURUA,
-				JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Datu basearen kopia " + path + " karpetan gorde da.",
+				AlKaboomConstants.IZENBURUA, JOptionPane.INFORMATION_MESSAGE);
 
 	}
 }

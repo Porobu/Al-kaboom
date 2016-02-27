@@ -29,23 +29,22 @@ public class KautotuPanela extends JPanel implements KeyListener {
 		this.erabiltzailea = new JLabel("Erabiltzailea:", SwingConstants.TRAILING);
 		this.erabiltzaileaField = new JTextField();
 		this.erabiltzailea.setLabelFor(erabiltzaileaField);
-		this.add(erabiltzailea);
-		this.add(erabiltzaileaField);
 		this.zailtasuna = new JLabel("Zailtasuna:", SwingConstants.TRAILING);
 		aukerakArray = new String[] { "Erreza", "Normala", "Zaila", "Custom..." };
-		aukerak = new JComboBox<>(aukerakArray);
-		aukerak.addItemListener(gureIL -> this.botoiaAldatu());
+		this.aukerakEraiki(0);
 		this.zailtasuna.setLabelFor(aukerak);
-		this.add(zailtasuna);
-		this.add(aukerak);
 		this.sartu = new JButton("Sartu");
 		this.sartu.addActionListener(gureAE -> this.datuakGorde());
-		this.add(this.sartu);
-		this.aukerazkoa = new JButton("Zailtasuna Aukeratu");
+		this.aukerazkoa = new JButton("Zailtasuna Aukeratu...");
 		this.aukerazkoa.setEnabled(false);
 		this.aukerazkoa.addActionListener(gureAE -> AlKaboom.getAlKaboom().getKautotu().zailtasunaIpini());
-		this.add(aukerazkoa);
-		SpringUtilities.makeCompactGrid(this, 3, 2, 1, 1, 3, 3);
+		this.guztiaGehitu();
+	}
+
+	private void aukerakEraiki(int aukeratua) {
+		aukerak = new JComboBox<>(aukerakArray);
+		aukerak.addItemListener(gureIL -> this.botoiaAldatu());
+		aukerak.setSelectedIndex(aukeratua);
 	}
 
 	private void botoiaAldatu() {
@@ -57,6 +56,16 @@ public class KautotuPanela extends JPanel implements KeyListener {
 
 	private void datuakGorde() {
 		this.erabiltzaileaString = this.erabiltzaileaField.getText();
+	}
+
+	private void guztiaGehitu() {
+		this.add(erabiltzailea);
+		this.add(erabiltzaileaField);
+		this.add(zailtasuna);
+		this.add(aukerak);
+		this.add(this.sartu);
+		this.add(aukerazkoa);
+		SpringUtilities.makeCompactGrid(this, 3, 2, 1, 1, 3, 3);
 	}
 
 	@Override
@@ -73,5 +82,14 @@ public class KautotuPanela extends JPanel implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 
+	}
+
+	public void listaAldatu() {
+		int[] balioakCustomArray = AlKaboom.getAlKaboom().getBalioakCustom();
+		String balioakCustom = balioakCustomArray[0] + "x" + balioakCustomArray[1] + ", " + balioakCustomArray[2];
+		this.removeAll();
+		aukerakArray[3] = "Custom(" + balioakCustom + ")";
+		this.aukerakEraiki(3);
+		this.guztiaGehitu();
 	}
 }

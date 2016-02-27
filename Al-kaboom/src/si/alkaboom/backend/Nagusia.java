@@ -3,9 +3,10 @@ package si.alkaboom.backend;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import si.alkaboom.frontend.Login;
+import si.alkaboom.frontend.Kautotu;
 
 public class Nagusia {
+	private static Kautotu kautotu;
 	public static final float BERTSIOA = 0.05F;
 	public static final String IZENBURUA = "Al-Kaboom " + BERTSIOA;
 
@@ -24,6 +25,10 @@ public class Nagusia {
 						| UnsupportedLookAndFeelException e) {
 				}
 		}
-		new Login();
+		kautotu = new Kautotu();
+	}
+
+	public static Kautotu getKautotu() {
+		return kautotu;
 	}
 }

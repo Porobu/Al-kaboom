@@ -11,31 +11,19 @@ import java.nio.file.Files;
 
 import si.alkaboom.salbuespenak.AlKaboomSalbuespena;
 
-
 public class FitxategiOperazioak {
 
 	public FitxategiOperazioak() {
 
 	}
-	
-/**
- * Datu basea kopiatzen du esandako lekura
- * @param path Nora kopiatu datu basea
- */
-	public void kopiatu(String path) {
-		File oraingoa = new File("");
-		File berria = new File(path);
-		try {
-			Files.copy(oraingoa.toPath(), berria.toPath(), COPY_ATTRIBUTES);
-		} catch (IOException e) {
-			throw new AlKaboomSalbuespena("Ezin da fitxategia kopiatu", e);
-		}
-	}
 
 	/**
 	 * Datu basea ateratzen du Jar fitxategitik, eta esandako lekura idazten du
-	 * @param resourceName Zein fitxategi kopiatu
-	 * @param path Nora kopiatu
+	 * 
+	 * @param resourceName
+	 *            Zein fitxategi kopiatu
+	 * @param path
+	 *            Nora kopiatu
 	 * @return Kopiatutako fitxategiaren lekua
 	 */
 	public String dbEsportatu(String resourceName, String path) {
@@ -66,5 +54,21 @@ public class FitxategiOperazioak {
 			}
 		}
 		return jarFolder + resourceName;
+	}
+
+	/**
+	 * Datu basea kopiatzen du esandako lekura
+	 * 
+	 * @param path
+	 *            Nora kopiatu datu basea
+	 */
+	public void kopiatu(String path) {
+		File oraingoa = new File("");
+		File berria = new File(path);
+		try {
+			Files.copy(oraingoa.toPath(), berria.toPath(), COPY_ATTRIBUTES);
+		} catch (IOException e) {
+			throw new AlKaboomSalbuespena("Ezin da fitxategia kopiatu", e);
+		}
 	}
 }

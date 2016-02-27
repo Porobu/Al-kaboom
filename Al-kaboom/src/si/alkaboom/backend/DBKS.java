@@ -25,20 +25,6 @@ public final class DBKS {
 	}
 
 	/**
-	 * Metodo honek defektuzko datu basearen path-a itzultzen du,
-	 * erabiltzaileraren karpeta pertsonala + WinterTwitter.db
-	 * 
-	 * @return Datu basea egoteko defektuzko lekua (null ez bada aurkitu)
-	 */
-	public String getDefaultPath() {
-		File f = new File(System.getProperty("user.home") + "/Al-Kaboom.db");
-		if (f.exists())
-			return f.getAbsolutePath();
-		else
-			return null;
-	}
-
-	/**
 	 * Datu Basearen erantzunik behar ez duten sql aginduak exekutatzen ditu.
 	 * 
 	 * @param agindua
@@ -51,6 +37,19 @@ public final class DBKS {
 		} catch (Exception salbuespena) {
 
 			throw new AlKaboomSalbuespena("Ezin da " + agindua + " exekutatu", salbuespena);
+		}
+	}
+
+	/**
+	 * Datu basea baliozkoa den frogatzen du
+	 */
+	private void datubaseaKonprobatu() {
+		Statement st;
+		try {
+			st = konexioa.createStatement();
+			st.close();
+		} catch (SQLException e) {
+			throw new AlKaboomSalbuespena("Datu basea ez da baliozkoa!", e);
 		}
 	}
 
@@ -82,6 +81,20 @@ public final class DBKS {
 
 			throw new AlKaboomSalbuespena("Ezin da " + agindua + " exekutatu", salbuespena);
 		}
+	}
+
+	/**
+	 * Metodo honek defektuzko datu basearen path-a itzultzen du,
+	 * erabiltzaileraren karpeta pertsonala + WinterTwitter.db
+	 * 
+	 * @return Datu basea egoteko defektuzko lekua (null ez bada aurkitu)
+	 */
+	public String getDefaultPath() {
+		File f = new File(System.getProperty("user.home") + "/Al-Kaboom.db");
+		if (f.exists())
+			return f.getAbsolutePath();
+		else
+			return null;
 	}
 
 	/**
@@ -121,18 +134,5 @@ public final class DBKS {
 			throw new AlKaboomSalbuespena("Ezin da " + agindua + " exekutatu", salbuespena);
 		}
 		return emaitza;
-	}
-
-	/**
-	 * Datu basea baliozkoa den frogatzen du
-	 */
-	private void datubaseaKonprobatu() {
-		Statement st;
-		try {
-			st = konexioa.createStatement();
-			st.close();
-		} catch (SQLException e) {
-			throw new AlKaboomSalbuespena("Datu basea ez da baliozkoa!", e);
-		}
 	}
 }

@@ -12,18 +12,17 @@ import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 
 import si.alkaboom.backend.AlKaboom;
-import si.alkaboom.backend.Nagusia;
 import si.alkaboom.externals.SpringUtilities;
 
 public class KautotuPanela extends JPanel implements KeyListener {
 
+	private static final long serialVersionUID = 4842340182997453654L;
 	private JLabel erabiltzailea, zailtasuna;
 	private JTextField erabiltzaileaField;
 	private JButton sartu, aukerazkoa;
 	private JComboBox<String> aukerak;
 	private String[] aukerakArray;
 	private String erabiltzaileaString;
-	private static final long serialVersionUID = 4842340182997453654L;
 
 	public KautotuPanela() {
 		this.setLayout(new SpringLayout());
@@ -49,15 +48,15 @@ public class KautotuPanela extends JPanel implements KeyListener {
 		SpringUtilities.makeCompactGrid(this, 3, 2, 1, 1, 3, 3);
 	}
 
-	private void datuakGorde() {
-		this.erabiltzaileaString = this.erabiltzaileaField.getText();
-	}
-
 	private void botoiaAldatu() {
 		if (aukerak.getSelectedIndex() == 3)
 			aukerazkoa.setEnabled(true);
 		else
 			aukerazkoa.setEnabled(false);
+	}
+
+	private void datuakGorde() {
+		this.erabiltzaileaString = this.erabiltzaileaField.getText();
 	}
 
 	@Override

@@ -3,8 +3,6 @@ package si.alkaboom.backend;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import si.alkaboom.frontend.Kautotu;
-
 public class Nagusia {
 	public static final float BERTSIOA = 0.05F;
 	public static final String IZENBURUA = "Al-Kaboom " + BERTSIOA;

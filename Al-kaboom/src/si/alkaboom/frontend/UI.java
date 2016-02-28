@@ -19,16 +19,6 @@ public class UI extends JFrame {
 		this.setTitle(AlKaboomConstants.IZENBURUA);
 	}
 
-	public void kautotuHasieratu() {
-		kautotu = new Kautotu();
-		this.setMinimumSize(new Dimension(280, 140));
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.add(kautotu, BorderLayout.CENTER);
-		this.pack();
-		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-	}
-
 	public void alKaboomHasieratu() {
 		this.remove(kautotu);
 		this.setTitle(AlKaboomConstants.IZENBURUA + " - " + AlKaboom.getAlKaboom().getErabiltzailea());
@@ -39,11 +29,21 @@ public class UI extends JFrame {
 		this.repaint();
 	}
 
-	public void tamainaAldatu() {
-		this.pack();
-	}
-
 	public Kautotu getKautotu() {
 		return kautotu;
+	}
+
+	public void kautotuHasieratu() {
+		kautotu = new Kautotu();
+		this.setMinimumSize(new Dimension(280, 140));
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.add(kautotu, BorderLayout.CENTER);
+		this.pack();
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+	}
+
+	public void tamainaAldatu() {
+		this.pack();
 	}
 }

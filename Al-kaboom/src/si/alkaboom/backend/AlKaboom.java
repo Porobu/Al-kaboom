@@ -13,14 +13,6 @@ public class AlKaboom implements AlKaboomConstants {
 	private String datubasePath;
 	private String erabiltzailea;
 
-	public String getErabiltzailea() {
-		return erabiltzailea;
-	}
-
-	public void setErabiltzailea(String erabiltzailea) {
-		this.erabiltzailea = erabiltzailea;
-	}
-
 	private int[] balioakCustom;
 
 	private UI ui;
@@ -36,6 +28,10 @@ public class AlKaboom implements AlKaboomConstants {
 		return datubasePath;
 	}
 
+	public String getErabiltzailea() {
+		return erabiltzailea;
+	}
+
 	public UI getUI() {
 		return ui;
 	}
@@ -47,6 +43,10 @@ public class AlKaboom implements AlKaboomConstants {
 
 	public void setBalioakCustom(int[] balioakCustom) {
 		this.balioakCustom = balioakCustom;
+	}
+
+	public void setErabiltzailea(String erabiltzailea) {
+		this.erabiltzailea = erabiltzailea;
 	}
 
 }

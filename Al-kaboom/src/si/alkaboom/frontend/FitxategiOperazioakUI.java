@@ -22,19 +22,20 @@ public class FitxategiOperazioakUI {
 		int aukera = JOptionPane.YES_OPTION;
 		File fitxategia = new File(path);
 		if (fitxategia.exists())
-			aukera = JOptionPane.showConfirmDialog(null,
-					"Datu basea existitzen da izen horrekin, jarraitzen baduzu ezabatu egingo da.",
+			aukera = JOptionPane.showConfirmDialog(AlKaboom.getAlKaboom().getUI(),
+					"Partiden fitxtaegia existitzen da izen horrekin, jarraitzen baduzu ezabatu egingo da.",
 					AlKaboomConstants.IZENBURUA, JOptionPane.YES_NO_OPTION);
 		if (aukera == JOptionPane.NO_OPTION || aukera == JOptionPane.CLOSED_OPTION)
 			System.exit(1);
 		fitxategia.delete();
 		FitxategiOperazioak nireFO = new FitxategiOperazioak();
 		try {
-			nireFO.dbEsportatu("/isad/winteriscoming/DatuBasea.db", path);
+			// nireFO.dbEsportatu("/isad/winteriscoming/DatuBasea.db", path);
 		} catch (Exception e) {
 			new AlKaboomSalbuespena("Ezin da fitxategia esportatu", e);
 		}
-		JOptionPane.showMessageDialog(null, "Datu basea " + path + " karpetan gorde da.", AlKaboomConstants.IZENBURUA,
+		JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(),
+				"Partiden fitxategia " + path + " karpetan gorde da.", AlKaboomConstants.IZENBURUA,
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 
@@ -43,8 +44,8 @@ public class FitxategiOperazioakUI {
 		JFileChooser gureFileChooser = new JFileChooser(new File(System.getProperty("user.home")));
 		gureFileChooser.setAcceptAllFileFilterUsed(false);
 		gureFileChooser.setDialogTitle(AlKaboomConstants.IZENBURUA);
-		gureFileChooser.setFileFilter(new FileNameExtensionFilter("WinterTwitter Datu Baseak", "db"));
-		gureFileChooser.setSelectedFile(new File("WinterTwitter"));
+		gureFileChooser.setFileFilter(new FileNameExtensionFilter("Al-Kaboom partidak", "db"));
+		gureFileChooser.setSelectedFile(new File("Al-Kaboom"));
 		int gureZenbakia = gureFileChooser.showSaveDialog(null);
 		if (gureZenbakia == JFileChooser.CANCEL_OPTION)
 			System.exit(0);
@@ -64,7 +65,7 @@ public class FitxategiOperazioakUI {
 		JFileChooser gureFileChooser = new JFileChooser(new File(System.getProperty("user.home")));
 		gureFileChooser.setAcceptAllFileFilterUsed(false);
 		gureFileChooser.setDialogTitle(AlKaboomConstants.IZENBURUA);
-		gureFileChooser.setFileFilter(new FileNameExtensionFilter("WinterTwitter Datu Baseak", "db"));
+		gureFileChooser.setFileFilter(new FileNameExtensionFilter("Al-Kaboom partidak", "db"));
 		int gureZenbakia = gureFileChooser.showOpenDialog(null);
 		if (gureZenbakia == JFileChooser.CANCEL_OPTION)
 			System.exit(0);
@@ -77,14 +78,14 @@ public class FitxategiOperazioakUI {
 	}
 
 	public void kopiaEgin() {
-		JOptionPane.showMessageDialog(null,
-				"Hautatu non egin nahi duzun datu basearen kopia.\nTwitter-etik deskargatu duzun informazio guztia kopiatuko da.",
+		JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(),
+				"Hautatu non egin nahi duzun datu basearen kopia.\nPartida guztiak kopiatuko dira.",
 				AlKaboomConstants.IZENBURUA, JOptionPane.INFORMATION_MESSAGE);
 		String path = AlKaboom.getAlKaboom().getDatubasePath();
 		JFileChooser gureFileChooser = new JFileChooser(new File(System.getProperty("user.home")));
 		gureFileChooser.setDialogTitle(AlKaboomConstants.IZENBURUA);
 		gureFileChooser.setAcceptAllFileFilterUsed(false);
-		gureFileChooser.setFileFilter(new FileNameExtensionFilter("WinterTwitter Datu Baseak", "db"));
+		gureFileChooser.setFileFilter(new FileNameExtensionFilter("Al-Kaboom partidak", "db"));
 		while (AlKaboom.getAlKaboom().getDatubasePath().equals(path)) {
 			int gureZenbakia = gureFileChooser.showSaveDialog(null);
 			if (gureZenbakia == JFileChooser.CANCEL_OPTION)
@@ -103,8 +104,9 @@ public class FitxategiOperazioakUI {
 						AlKaboomConstants.IZENBURUA, JOptionPane.WARNING_MESSAGE);
 		}
 		nireFO.kopiatu(path);
-		JOptionPane.showMessageDialog(null, "Datu basearen kopia " + path + " karpetan gorde da.",
-				AlKaboomConstants.IZENBURUA, JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(),
+				"Partiden fitxategiaren kopia " + path + " karpetan gorde da.", AlKaboomConstants.IZENBURUA,
+				JOptionPane.INFORMATION_MESSAGE);
 
 	}
 }

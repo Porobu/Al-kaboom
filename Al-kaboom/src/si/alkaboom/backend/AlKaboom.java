@@ -1,5 +1,6 @@
 package si.alkaboom.backend;
 
+import si.alkaboom.frontend.AukerakUI;
 import si.alkaboom.frontend.UI;
 
 public class AlKaboom implements AlKaboomConstants {
@@ -38,6 +39,9 @@ public class AlKaboom implements AlKaboomConstants {
 
 	public void jokatu() {
 		ui = new UI();
+		ui.dekorazioGabeHasieratu();
+		AukerakUI gureAUI = new AukerakUI();
+		datubasePath = gureAUI.hasi();
 		ui.kautotuHasieratu();
 	}
 

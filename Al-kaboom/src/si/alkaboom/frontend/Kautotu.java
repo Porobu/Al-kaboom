@@ -19,7 +19,7 @@ public class Kautotu extends JFrame {
 		this.kautotuPanela = new KautotuPanela();
 		this.zailtasunaPanela = new ZailtasunaPanela();
 		this.add(this.kautotuPanela, BorderLayout.CENTER);
-		this.setMinimumSize(new Dimension(300, 110));
+		this.setMinimumSize(new Dimension(280, 110));
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);

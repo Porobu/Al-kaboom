@@ -3,6 +3,7 @@ package si.alkaboom.backend;
 import static java.nio.file.StandardCopyOption.COPY_ATTRIBUTES;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,7 +34,8 @@ public class FitxategiOperazioak {
 		try {
 			stream = DBKS.class.getResourceAsStream(resourceName);
 			if (stream == null) {
-				throw new AlKaboomSalbuespena("Ez da datu basea aurkitu .jar fitxategian", new Exception());
+				throw new AlKaboomSalbuespena("Ez da partiden fitxategia aurkitu .jar fitxategian",
+						new FileNotFoundException());
 			}
 			int readBytes;
 			byte[] buffer = new byte[4096];

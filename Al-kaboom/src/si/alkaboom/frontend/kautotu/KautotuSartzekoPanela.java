@@ -1,4 +1,4 @@
-package si.alkaboom.frontend;
+package si.alkaboom.frontend.kautotu;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -14,9 +14,8 @@ import javax.swing.SwingConstants;
 import si.alkaboom.backend.AlKaboom;
 import si.alkaboom.externals.SpringUtilities;
 
-public class KautotuPanela extends JPanel implements KeyListener {
-
-	private static final long serialVersionUID = 4842340182997453654L;
+public class KautotuSartzekoPanela extends JPanel implements KeyListener {
+	private static final long serialVersionUID = 3676006022124213986L;
 	private JLabel erabiltzailea, zailtasuna;
 	private JTextField erabiltzaileaField;
 	private JButton sartu, aukerazkoa;
@@ -24,9 +23,9 @@ public class KautotuPanela extends JPanel implements KeyListener {
 	private String[] aukerakArray;
 	private String erabiltzaileaString;
 
-	public KautotuPanela() {
+	public KautotuSartzekoPanela() {
 		this.setLayout(new SpringLayout());
-		this.erabiltzailea = new JLabel("Erabiltzailea:", SwingConstants.TRAILING);
+		this.erabiltzailea = new JLabel("Erabiltzaile izena:", SwingConstants.TRAILING);
 		this.erabiltzaileaField = new JTextField();
 		this.erabiltzailea.setLabelFor(erabiltzaileaField);
 		this.zailtasuna = new JLabel("Zailtasuna:", SwingConstants.TRAILING);

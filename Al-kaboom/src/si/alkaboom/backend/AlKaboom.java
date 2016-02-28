@@ -1,6 +1,6 @@
 package si.alkaboom.backend;
 
-import si.alkaboom.frontend.Kautotu;
+import si.alkaboom.frontend.kautotu.Kautotu;
 
 public class AlKaboom implements AlKaboomConstants {
 

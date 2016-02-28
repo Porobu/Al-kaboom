@@ -1,4 +1,4 @@
-package si.alkaboom.frontend;
+package si.alkaboom.frontend.tableroa;
 
 import javax.swing.JPanel;
 

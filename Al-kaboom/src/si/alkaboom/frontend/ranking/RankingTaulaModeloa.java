@@ -1,8 +1,8 @@
-package si.alkaboom.frontend;
+package si.alkaboom.frontend.ranking;
 
 import javax.swing.table.AbstractTableModel;
 
-public class TaulaModeloa extends AbstractTableModel {
+public class RankingTaulaModeloa extends AbstractTableModel {
 
 	/**
 	 * 

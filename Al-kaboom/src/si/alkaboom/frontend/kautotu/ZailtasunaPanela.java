@@ -1,4 +1,4 @@
-package si.alkaboom.frontend;
+package si.alkaboom.frontend.kautotu;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;

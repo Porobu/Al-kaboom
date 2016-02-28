@@ -1,4 +1,4 @@
-package si.alkaboom.frontend;
+package si.alkaboom.frontend.ranking;
 
 import javax.swing.JInternalFrame;
 

@@ -1,4 +1,4 @@
-package si.alkaboom.frontend;
+package si.alkaboom.frontend.kautotu;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -19,7 +19,7 @@ public class Kautotu extends JFrame {
 		this.kautotuPanela = new KautotuPanela();
 		this.zailtasunaPanela = new ZailtasunaPanela();
 		this.add(this.kautotuPanela, BorderLayout.CENTER);
-		this.setMinimumSize(new Dimension(280, 110));
+		this.setMinimumSize(new Dimension(300, 120));
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);

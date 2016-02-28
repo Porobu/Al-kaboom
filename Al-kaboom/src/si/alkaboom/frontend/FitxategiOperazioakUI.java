@@ -23,7 +23,7 @@ public class FitxategiOperazioakUI {
 		File fitxategia = new File(path);
 		if (fitxategia.exists())
 			aukera = JOptionPane.showConfirmDialog(AlKaboom.getAlKaboom().getUI(),
-					"Partiden fitxtaegia existitzen da izen horrekin, jarraitzen baduzu ezabatu egingo da.",
+					"Partiden fitxategia existitzen da izen horrekin, jarraitzen baduzu ezabatu egingo da.",
 					AlKaboomConstants.IZENBURUA, JOptionPane.YES_NO_OPTION);
 		if (aukera == JOptionPane.NO_OPTION || aukera == JOptionPane.CLOSED_OPTION)
 			System.exit(1);

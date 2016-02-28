@@ -3,25 +3,21 @@ package si.alkaboom.frontend.kautotu;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-import si.alkaboom.backend.AlKaboomConstants;
+import si.alkaboom.backend.AlKaboom;
 
-public class Kautotu extends JFrame {
+public class Kautotu extends JPanel {
 	private static final long serialVersionUID = -7323271088278163192L;
 	private ZailtasunaPanela zailtasunaPanela;
 	private KautotuPanela kautotuPanela;
 
 	public Kautotu() {
-		this.setTitle(AlKaboomConstants.IZENBURUA);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 		this.kautotuPanela = new KautotuPanela();
 		this.zailtasunaPanela = new ZailtasunaPanela();
 		this.add(this.kautotuPanela, BorderLayout.CENTER);
 		this.setMinimumSize(new Dimension(300, 140));
-		this.pack();
-		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
 
@@ -31,7 +27,7 @@ public class Kautotu extends JFrame {
 		if (aldatu)
 			kautotuPanela.listaAldatu();
 		this.revalidate();
-		this.pack();
+		AlKaboom.getAlKaboom().getUI().tamainaAldatu();
 		this.repaint();
 	}
 
@@ -39,7 +35,7 @@ public class Kautotu extends JFrame {
 		this.remove(kautotuPanela);
 		this.add(zailtasunaPanela, BorderLayout.CENTER);
 		this.revalidate();
-		this.pack();
+		AlKaboom.getAlKaboom().getUI().tamainaAldatu();
 		this.repaint();
 	}
 }

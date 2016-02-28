@@ -1,6 +1,6 @@
 package si.alkaboom.backend;
 
-import si.alkaboom.frontend.kautotu.Kautotu;
+import si.alkaboom.frontend.UI;
 
 public class AlKaboom implements AlKaboomConstants {
 
@@ -11,10 +11,19 @@ public class AlKaboom implements AlKaboomConstants {
 	}
 
 	private String datubasePath;
+	private String erabiltzailea;
+
+	public String getErabiltzailea() {
+		return erabiltzailea;
+	}
+
+	public void setErabiltzailea(String erabiltzailea) {
+		this.erabiltzailea = erabiltzailea;
+	}
 
 	private int[] balioakCustom;
 
-	private Kautotu kautotu;
+	private UI ui;
 
 	private AlKaboom() {
 	}
@@ -27,12 +36,13 @@ public class AlKaboom implements AlKaboomConstants {
 		return datubasePath;
 	}
 
-	public Kautotu getKautotu() {
-		return kautotu;
+	public UI getUI() {
+		return ui;
 	}
 
 	public void jokatu() {
-		kautotu = new Kautotu();
+		ui = new UI();
+		ui.kautotuHasieratu();
 	}
 
 	public void setBalioakCustom(int[] balioakCustom) {

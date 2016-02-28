@@ -37,7 +37,7 @@ public class ZailtasunaPanela extends JPanel {
 		ok = new JButton("OK");
 		ok.addActionListener(gureAE -> this.balioakGorde());
 		cancel = new JButton("Cancel");
-		cancel.addActionListener(gureAE -> AlKaboom.getAlKaboom().getKautotu().kautotuIpini(false));
+		cancel.addActionListener(gureAE -> AlKaboom.getAlKaboom().getUI().getKautotu().kautotuIpini(false));
 		this.add(laukiErrenkada);
 		this.add(laukiErrenkadaField);
 		this.add(laukiZutabe);
@@ -59,7 +59,7 @@ public class ZailtasunaPanela extends JPanel {
 			throw new AlKaboomSalbuespena("Sartutako balioak ez dira baliozkoak!", e);
 		}
 		AlKaboom.getAlKaboom().setBalioakCustom(balioak);
-		AlKaboom.getAlKaboom().getKautotu().kautotuIpini(true);
+		AlKaboom.getAlKaboom().getUI().getKautotu().kautotuIpini(true);
 	}
 
 }

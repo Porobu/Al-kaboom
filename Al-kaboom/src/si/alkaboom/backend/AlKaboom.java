@@ -42,7 +42,6 @@ public final class AlKaboom implements AlKaboomConstants {
 		ui.dekorazioGabeHasieratu();
 		AukerakUI gureAUI = new AukerakUI();
 		datubasePath = gureAUI.hasi();
-		DBKS.getDBKS().konektatu(datubasePath);
 		ui.kautotuHasieratu();
 	}
 

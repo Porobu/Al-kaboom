@@ -46,7 +46,7 @@ public class FitxategiOperazioak {
 				resStreamOut.write(buffer, 0, readBytes);
 			}
 		} catch (Exception ex) {
-			throw new AlKaboomSalbuespena("Ezin da partiden fitxategia sortu", ex);
+			throw new AlKaboomSalbuespena("Ezin da fitxategia kopiatu", ex);
 		} finally {
 			try {
 				stream.close();
@@ -65,7 +65,7 @@ public class FitxategiOperazioak {
 	 *            Nora kopiatu datu basea
 	 */
 	public void kopiatu(String path) {
-		File oraingoa = new File(AlKaboom.getAlKaboom().getDatubasePath());
+		File oraingoa = new File("");
 		File berria = new File(path);
 		try {
 			Files.copy(oraingoa.toPath(), berria.toPath(), COPY_ATTRIBUTES);

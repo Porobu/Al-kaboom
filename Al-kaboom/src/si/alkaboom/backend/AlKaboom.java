@@ -3,7 +3,7 @@ package si.alkaboom.backend;
 import si.alkaboom.frontend.AukerakUI;
 import si.alkaboom.frontend.UI;
 
-public final class AlKaboom implements AlKaboomConstants {
+public class AlKaboom implements AlKaboomConstants {
 
 	private static AlKaboom gureAlKaboom;
 

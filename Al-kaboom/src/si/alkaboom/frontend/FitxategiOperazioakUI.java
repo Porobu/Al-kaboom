@@ -29,7 +29,11 @@ public class FitxategiOperazioakUI {
 			System.exit(1);
 		fitxategia.delete();
 		FitxategiOperazioak nireFO = new FitxategiOperazioak();
-		nireFO.dbEsportatu("/isad/winteriscoming/DatuBasea.db", path);
+		try {
+			// nireFO.dbEsportatu("/isad/winteriscoming/DatuBasea.db", path);
+		} catch (Exception e) {
+			new AlKaboomSalbuespena("Ezin da fitxategia esportatu", e);
+		}
 		JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(),
 				"Partiden fitxategia " + path + " karpetan gorde da.", AlKaboomConstants.IZENBURUA,
 				JOptionPane.INFORMATION_MESSAGE);

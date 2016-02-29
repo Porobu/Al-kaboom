@@ -64,7 +64,7 @@ public final class DBKS {
 		}
 		try {
 			if (konexioa.isClosed()) {
-				JOptionPane.showMessageDialog(null, "Datu basetik deskonektatu zara", "Booqueen",
+				JOptionPane.showMessageDialog(null, "Datu basetik deskonektatu zara", AlKaboomConstants.IZENBURUA,
 						JOptionPane.WARNING_MESSAGE);
 
 			}

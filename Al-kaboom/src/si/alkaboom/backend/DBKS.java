@@ -78,7 +78,6 @@ public final class DBKS {
 			Statement st = this.konexioa.createStatement();
 			st.executeUpdate(agindua);
 		} catch (Exception salbuespena) {
-
 			throw new AlKaboomSalbuespena("Ezin da " + agindua + " exekutatu", salbuespena);
 		}
 	}

@@ -23,7 +23,6 @@ public class TaulaPanela extends JPanel implements MouseListener {
 
 	public TaulaPanela(String mota, String izena) {
 		this.setLayout(new BorderLayout());
-
 		if (mota.equalsIgnoreCase("Kautotu"))
 			gureModeloa = new KautotuTaulaModeloa(izena);
 		else

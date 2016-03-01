@@ -17,10 +17,10 @@ public class AlKaboomSalbuespena extends RuntimeException {
 		String izenburua = "Al-Kaboom Errorea!!!!!";
 		System.err.println(izenburua + "\n");
 		String fitxategia = System.getProperty("user.home") + "/Al-KaboomErrorea.txt";
-		String gorde = "\nStack trace " + fitxategia + " fitxategian gorde da.";
 		errorea.printStackTrace();
 		if (System.getProperty("os.name").toLowerCase().contains("win"))
 			fitxategia = System.getProperty("user.home") + "\\Al-KaboomErrorea.txt";
+		String gorde = "\nStack trace-a " + fitxategia + " fitxategian gorde da.";
 		try {
 			PrintWriter gurePW = new PrintWriter(new File(fitxategia));
 			gurePW.println(izenburua);

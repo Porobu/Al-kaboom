@@ -53,7 +53,7 @@ public final class DBKS {
 			st.executeQuery("Select Id, Puntuak, PartidaKopurua from Puntuazioa");
 			st.close();
 		} catch (SQLException e) {
-			throw new AlKaboomSalbuespena("Datu basea ez da baliozkoa!", e);
+			throw new AlKaboomSalbuespena("Partiden fitxategia ez da baliozkoa!", e);
 		}
 	}
 

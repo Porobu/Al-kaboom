@@ -35,6 +35,5 @@ public class AlKaboomSalbuespena extends RuntimeException {
 				+ ExceptionUtils.getRootCauseStackTrace(this)[1];
 		JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(), mezua + "\nStack Trace Laburra:\n" + stackLaburra
 				+ "\nStack trace " + fitxategia + " fitxategian gorde da.", izenburua, JOptionPane.ERROR_MESSAGE);
-
 	}
 }

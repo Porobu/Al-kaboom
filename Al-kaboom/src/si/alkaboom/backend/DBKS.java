@@ -47,6 +47,10 @@ public final class DBKS {
 		Statement st;
 		try {
 			st = konexioa.createStatement();
+			st.executeQuery("SELECT Id, Izena,PartidaGordeta, AzkenData, IrabaziKop, GalduKop from Jokalaria");
+			st.executeQuery(
+					"Select ErabiltzaileID, Minak, Zenbakiak, Hutsak, Egindakoak, MarkatutakoakBanderita, MarkatutakoaGaldera, ErrenkadaKop, ZutabeKop,MinaKop from Partida");
+			st.executeQuery("Select Id, Puntuak, PartidaKopurua from Puntuazioa");
 			st.close();
 		} catch (SQLException e) {
 			throw new AlKaboomSalbuespena("Datu basea ez da baliozkoa!", e);

@@ -26,6 +26,9 @@ public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 		this.setLayout(new SpringLayout());
 		this.erabiltzailea = new JLabel("Erabiltzaile izena:", SwingConstants.TRAILING);
 		this.erabiltzaileaField = new JTextField();
+		this.erabiltzaileaField.addActionListener(gureAE -> AlKaboom.getAlKaboom().getUI().getKautotu()
+				.getKautotuPanela().taulaEguneratu(this.erabiltzaileaField.getText()));
+		this.erabiltzaileaField.addKeyListener(this);
 		this.erabiltzailea.setLabelFor(erabiltzaileaField);
 		this.zailtasuna = new JLabel("Zailtasuna:", SwingConstants.TRAILING);
 		aukerakArray = new String[] { "Erreza", "Normala", "Zaila", "Custom..." };
@@ -69,7 +72,7 @@ public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		if (arg0.getKeyCode() == KeyEvent.VK_ENTER)
+		if (arg0.getKeyCode() == KeyEvent.VK_ENTER && arg0.getSource() == sartu)
 			this.datuakGorde();
 	}
 
@@ -80,7 +83,9 @@ public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-
+		if (arg0.getSource() == erabiltzaileaField)
+			AlKaboom.getAlKaboom().getUI().getKautotu().getKautotuPanela()
+					.taulaEguneratu(this.erabiltzaileaField.getText());
 	}
 
 	public void listaAldatu() {

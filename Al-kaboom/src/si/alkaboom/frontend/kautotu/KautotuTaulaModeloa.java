@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
+import si.alkaboom.backend.Operazioak;
+
 public class KautotuTaulaModeloa extends AbstractTableModel {
 	private static final long serialVersionUID = -6370469542217113325L;
 	private ArrayList<String[]> datuak;
@@ -11,10 +13,8 @@ public class KautotuTaulaModeloa extends AbstractTableModel {
 
 	public KautotuTaulaModeloa(String izena) {
 		izenak = new String[] { "Erabiltzailearen izena", "Partida gordeta?", "Azkeneko data" };
-		datuak = new ArrayList<>();
-		datuak.add(new String[] { "Test1", "Ez", "" });
-		datuak.add(new String[] { "Test2", "Bai", "2016-02-28" });
-		datuak.add(new String[] { "Test3", "Ez", "2016-03-03" });
+		Operazioak gureOP = new Operazioak();
+		datuak = gureOP.erabiltzaileakBistaratu(3, izena);
 	}
 
 	@Override

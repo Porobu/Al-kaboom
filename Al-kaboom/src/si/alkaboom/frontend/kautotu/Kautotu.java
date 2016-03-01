@@ -21,6 +21,10 @@ public class Kautotu extends JPanel {
 		this.setVisible(true);
 	}
 
+	public KautotuPanela getKautotuPanela() {
+		return kautotuPanela;
+	}
+
 	public void kautotuIpini(boolean aldatu) {
 		this.remove(zailtasunaPanela);
 		this.add(kautotuPanela, BorderLayout.CENTER);

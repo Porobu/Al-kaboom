@@ -19,12 +19,6 @@ public class UI extends JFrame {
 		this.setTitle(AlKaboomConstants.IZENBURUA);
 	}
 
-	public void dekorazioGabeHasieratu() {
-		this.setUndecorated(true);
-		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-	}
-
 	public void alKaboomHasieratu() {
 		this.remove(kautotu);
 		this.setTitle(AlKaboomConstants.IZENBURUA + " - " + AlKaboom.getAlKaboom().getErabiltzailea());
@@ -33,6 +27,12 @@ public class UI extends JFrame {
 		this.revalidate();
 		this.pack();
 		this.repaint();
+	}
+
+	public void dekorazioGabeHasieratu() {
+		this.setUndecorated(true);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
 	}
 
 	public Kautotu getKautotu() {

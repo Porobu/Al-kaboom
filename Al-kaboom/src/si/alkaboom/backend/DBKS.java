@@ -64,8 +64,8 @@ public final class DBKS {
 		}
 		try {
 			if (konexioa.isClosed()) {
-				JOptionPane.showMessageDialog(null, "Datu basetik deskonektatu zara", AlKaboomConstants.IZENBURUA,
-						JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(), "Datu basetik deskonektatu zara",
+						AlKaboomConstants.IZENBURUA, JOptionPane.WARNING_MESSAGE);
 
 			}
 		} catch (HeadlessException | SQLException e) {

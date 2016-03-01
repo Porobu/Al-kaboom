@@ -42,7 +42,7 @@ public class FitxategiOperazioakUI {
 		gureFileChooser.setDialogTitle(AlKaboomConstants.IZENBURUA);
 		gureFileChooser.setFileFilter(new FileNameExtensionFilter("Al-Kaboom partidak", "db"));
 		gureFileChooser.setSelectedFile(new File("Al-Kaboom"));
-		int gureZenbakia = gureFileChooser.showSaveDialog(null);
+		int gureZenbakia = gureFileChooser.showSaveDialog(AlKaboom.getAlKaboom().getUI());
 		if (gureZenbakia == JFileChooser.CANCEL_OPTION)
 			System.exit(0);
 		try {
@@ -62,7 +62,7 @@ public class FitxategiOperazioakUI {
 		gureFileChooser.setAcceptAllFileFilterUsed(false);
 		gureFileChooser.setDialogTitle(AlKaboomConstants.IZENBURUA);
 		gureFileChooser.setFileFilter(new FileNameExtensionFilter("Al-Kaboom partidak", "db"));
-		int gureZenbakia = gureFileChooser.showOpenDialog(null);
+		int gureZenbakia = gureFileChooser.showOpenDialog(AlKaboom.getAlKaboom().getUI());
 		if (gureZenbakia == JFileChooser.CANCEL_OPTION)
 			System.exit(0);
 		try {
@@ -83,7 +83,7 @@ public class FitxategiOperazioakUI {
 		gureFileChooser.setAcceptAllFileFilterUsed(false);
 		gureFileChooser.setFileFilter(new FileNameExtensionFilter("Al-Kaboom partidak", "db"));
 		while (AlKaboom.getAlKaboom().getDatubasePath().equals(path)) {
-			int gureZenbakia = gureFileChooser.showSaveDialog(null);
+			int gureZenbakia = gureFileChooser.showSaveDialog(AlKaboom.getAlKaboom().getUI());
 			if (gureZenbakia == JFileChooser.CANCEL_OPTION)
 				return;
 			try {

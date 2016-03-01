@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
+import si.alkaboom.backend.AlKaboom;
+
 public class AlKaboomSalbuespena extends RuntimeException {
 	private static final long serialVersionUID = -9212558555853305997L;
 
@@ -31,8 +33,8 @@ public class AlKaboomSalbuespena extends RuntimeException {
 		String stackLaburra = ExceptionUtils.getRootCauseStackTrace(errorea)[0] + "\n"
 				+ ExceptionUtils.getRootCauseStackTrace(errorea)[1] + "\nthrown "
 				+ ExceptionUtils.getRootCauseStackTrace(this)[1];
-		JOptionPane.showMessageDialog(null, mezua + "\nStack Trace Laburra:\n" + stackLaburra + "\nStack trace "
-				+ fitxategia + " fitxategian gorde da.", izenburua, JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(), mezua + "\nStack Trace Laburra:\n" + stackLaburra
+				+ "\nStack trace " + fitxategia + " fitxategian gorde da.", izenburua, JOptionPane.ERROR_MESSAGE);
 
 	}
 }

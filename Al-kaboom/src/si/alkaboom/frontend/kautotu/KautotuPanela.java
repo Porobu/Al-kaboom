@@ -21,6 +21,10 @@ public class KautotuPanela extends JPanel {
 		this.add(taula, BorderLayout.CENTER);
 	}
 
+	public KautotuSartzekoPanela getKsPanela() {
+		return ksPanela;
+	}
+
 	public void listaAldatu() {
 		ksPanela.listaAldatu();
 	}

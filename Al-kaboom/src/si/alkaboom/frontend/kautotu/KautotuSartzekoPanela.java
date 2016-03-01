@@ -78,14 +78,14 @@ public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-
+		if (arg0.getSource() == erabiltzaileaField)
+			AlKaboom.getAlKaboom().getUI().getKautotu().getKautotuPanela()
+					.taulaEguneratu(this.erabiltzaileaField.getText());
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		if (arg0.getSource() == erabiltzaileaField)
-			AlKaboom.getAlKaboom().getUI().getKautotu().getKautotuPanela()
-					.taulaEguneratu(this.erabiltzaileaField.getText());
+
 	}
 
 	public void listaAldatu() {
@@ -95,5 +95,10 @@ public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 		aukerakArray[3] = "Custom(" + balioakCustom + ")";
 		this.aukerakEraiki(3);
 		this.guztiaGehitu();
+	}
+	
+	public void izenaAldatu(String izenBerria)
+	{
+		this.erabiltzaileaField.setText(izenBerria);
 	}
 }

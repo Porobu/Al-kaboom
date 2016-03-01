@@ -1,0 +1,16 @@
+BEGIN TRANSACTION;
+CREATE TABLE `Puntuazioa` (
+	`Id`	INTEGER NOT NULL,
+	`Puntuak`	INTEGER NOT NULL,
+	`PartidaKopurua`	INTEGER NOT NULL,
+	PRIMARY KEY(Id)
+);
+CREATE TABLE "Jokalaria" (
+	`Id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`Izena`	TEXT NOT NULL UNIQUE,
+	`PartidaGordeta`	TEXT,
+	`AzkenData`	TEXT,
+	`IrabaziKop`	INTEGER,
+	`GalduKop`	INTEGER
+);
+COMMIT;

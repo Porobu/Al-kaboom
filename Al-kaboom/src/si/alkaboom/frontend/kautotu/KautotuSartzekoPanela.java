@@ -96,9 +96,8 @@ public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 		this.aukerakEraiki(3);
 		this.guztiaGehitu();
 	}
-	
-	public void izenaAldatu(String izenBerria)
-	{
+
+	public void izenaAldatu(String izenBerria) {
 		this.erabiltzaileaField.setText(izenBerria);
 	}
 }

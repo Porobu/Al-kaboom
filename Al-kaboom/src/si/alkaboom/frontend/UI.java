@@ -9,6 +9,7 @@ import javax.swing.WindowConstants;
 import si.alkaboom.backend.AlKaboom;
 import si.alkaboom.backend.AlKaboomConstants;
 import si.alkaboom.frontend.kautotu.Kautotu;
+import si.alkaboom.frontend.tableroa.PartidaMenuBarra;
 
 public class UI extends JFrame {
 	private static final long serialVersionUID = 6902848848036097903L;
@@ -24,6 +25,7 @@ public class UI extends JFrame {
 		this.setTitle(AlKaboomConstants.IZENBURUA + " - " + AlKaboom.getAlKaboom().getErabiltzailea());
 		this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		this.addWindowListener(new GureWindowListener());
+		this.add(new PartidaMenuBarra());
 		this.revalidate();
 		this.pack();
 		this.repaint();

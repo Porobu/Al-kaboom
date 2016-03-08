@@ -28,12 +28,12 @@ public class FitxategiOperazioak {
 	 * @return Kopiatutako fitxategiaren lekua
 	 */
 	public String dbEsportatu(String resourceName, String path) {
-		InputStream stream = null;
-		OutputStream resStreamOut = null;
+		InputStream in = null;
+		OutputStream out = null;
 		String jarFolder;
 		try {
-			stream = DBKS.class.getResourceAsStream(resourceName);
-			if (stream == null) {
+			in = DBKS.class.getResourceAsStream(resourceName);
+			if (in == null) {
 				throw new AlKaboomSalbuespena("Ez da partiden fitxategia aurkitu .jar fitxategian",
 						new FileNotFoundException());
 			}
@@ -41,16 +41,16 @@ public class FitxategiOperazioak {
 			byte[] buffer = new byte[4096];
 			File f = new File(ClassLoader.getSystemClassLoader().getResource(".").toURI());
 			jarFolder = f.toString();
-			resStreamOut = new FileOutputStream(path);
-			while ((readBytes = stream.read(buffer)) > 0) {
-				resStreamOut.write(buffer, 0, readBytes);
+			out = new FileOutputStream(path);
+			while ((readBytes = in.read(buffer)) > 0) {
+				out.write(buffer, 0, readBytes);
 			}
 		} catch (Exception ex) {
 			throw new AlKaboomSalbuespena("Ezin da partiden fitxategia sortu", ex);
 		} finally {
 			try {
-				stream.close();
-				resStreamOut.close();
+				in.close();
+				out.close();
 			} catch (IOException e) {
 
 			}
@@ -61,12 +61,14 @@ public class FitxategiOperazioak {
 	/**
 	 * Datu basea kopiatzen du esandako lekura
 	 * 
-	 * @param path
-	 *            Nora kopiatu datu basea
+	 * @param pathZaharra
+	 *            oraingo fitxategiaren path-a
+	 * @param pathBerria
+	 *            kopiaren path-a
 	 */
-	public void kopiatu(String path) {
-		File oraingoa = new File(AlKaboom.getAlKaboom().getDatubasePath());
-		File berria = new File(path);
+	public void kopiatu(String pathZaharra, String pathBerria) {
+		File oraingoa = new File(pathZaharra);
+		File berria = new File(pathBerria);
 		try {
 			Files.copy(oraingoa.toPath(), berria.toPath(), COPY_ATTRIBUTES);
 		} catch (IOException e) {

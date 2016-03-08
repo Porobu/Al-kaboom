@@ -88,7 +88,7 @@ public final class DBKS {
 
 	/**
 	 * Metodo honek defektuzko datu basearen path-a itzultzen du,
-	 * erabiltzaileraren karpeta pertsonala + WinterTwitter.db
+	 * erabiltzaileraren karpeta pertsonala + Al-Kaboom.db
 	 * 
 	 * @return Datu basea egoteko defektuzko lekua (null ez bada aurkitu)
 	 */
@@ -104,7 +104,7 @@ public final class DBKS {
 	 * Datu base batetara konekatzen da, SQLite erabiliz
 	 * 
 	 * @param path
-	 *            Datu basea dagoen lekua (ezin da null izan)
+	 *            Datu basea dagoen lekua (ezin da {@code null} izan)
 	 */
 	public void konektatu(String path) {
 		try {
@@ -137,5 +137,16 @@ public final class DBKS {
 			throw new AlKaboomSalbuespena("Ezin da " + agindua + " exekutatu", salbuespena);
 		}
 		return emaitza;
+	}
+
+	/**
+	 * Konektatuta dagoen edo ez itxultzen du.
+	 * 
+	 * @return {@code true} itzultzen du konektatuta badago, {@code false}
+	 *         bestela.
+	 * @throws SQLException
+	 */
+	public boolean konekatutaDago() throws SQLException {
+		return !konexioa.isClosed();
 	}
 }

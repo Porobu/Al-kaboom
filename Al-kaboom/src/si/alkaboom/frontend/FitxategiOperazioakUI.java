@@ -99,7 +99,7 @@ public class FitxategiOperazioakUI {
 						"Hautatu duzun fitxategia kargatu duzunaren berdina da.\nMesedez, aukeratu beste bat",
 						AlKaboomConstants.IZENBURUA, JOptionPane.WARNING_MESSAGE);
 		}
-		nireFO.kopiatu(path);
+		nireFO.kopiatu(AlKaboom.getAlKaboom().getDatubasePath(),path);
 		JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(),
 				"Partiden fitxategiaren kopia " + path + " karpetan gorde da.", AlKaboomConstants.IZENBURUA,
 				JOptionPane.INFORMATION_MESSAGE);

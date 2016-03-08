@@ -12,7 +12,6 @@ import si.alkaboom.frontend.kautotu.Kautotu;
 import si.alkaboom.frontend.tableroa.PartidaMenuBarra;
 import si.alkaboom.frontend.tableroa.TableroPanela;
 
-
 public class UI extends JFrame {
 	private static final long serialVersionUID = 6902848848036097903L;
 	private Kautotu kautotu;

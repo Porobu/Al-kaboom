@@ -22,5 +22,4 @@ public class Nagusia {
 		}
 		AlKaboom.getAlKaboom().jokatu();
 	}
-
 }

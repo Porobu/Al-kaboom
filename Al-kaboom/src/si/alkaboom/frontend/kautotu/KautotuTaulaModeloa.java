@@ -14,7 +14,7 @@ public class KautotuTaulaModeloa extends AbstractTableModel {
 	public KautotuTaulaModeloa(String izena) {
 		izenak = new String[] { "Erabiltzailearen izena", "Partida gordeta?", "Azkeneko data" };
 		Operazioak gureOP = new Operazioak();
-		datuak = gureOP.erabiltzaileakBistaratu(3, izena);
+		datuak = gureOP.erabiltzaileakBistaratu(izena);
 	}
 
 	@Override

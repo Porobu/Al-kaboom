@@ -70,6 +70,10 @@ public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 		SpringUtilities.makeCompactGrid(this, 3, 2, 3, 3, 3, 3);
 	}
 
+	public void izenaAldatu(String izenBerria) {
+		this.erabiltzaileaField.setText(izenBerria);
+	}
+
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		if (arg0.getKeyCode() == KeyEvent.VK_ENTER && arg0.getSource() == sartu)
@@ -95,9 +99,5 @@ public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 		aukerakArray[3] = "Custom(" + balioakCustom + ")";
 		this.aukerakEraiki(3);
 		this.guztiaGehitu();
-	}
-
-	public void izenaAldatu(String izenBerria) {
-		this.erabiltzaileaField.setText(izenBerria);
 	}
 }

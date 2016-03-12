@@ -1,6 +1,5 @@
 package si.alkaboom.backend;
 
-import java.awt.HeadlessException;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,11 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.swing.JOptionPane;
-
 import si.alkaboom.salbuespenak.AlKaboomSalbuespena;
 
-public final class DBKS {
+public class DBKS {
 	private static DBKS gureDBKS;
 
 	public static DBKS getDBKS() {
@@ -21,7 +18,8 @@ public final class DBKS {
 
 	private Connection konexioa;
 
-	private DBKS() {
+	protected DBKS() {
+
 	}
 
 	/**
@@ -35,7 +33,6 @@ public final class DBKS {
 			Statement st = this.konexioa.createStatement();
 			st.execute(agindua);
 		} catch (Exception salbuespena) {
-
 			throw new AlKaboomSalbuespena("Ezin da " + agindua + " exekutatu", salbuespena);
 		}
 	}
@@ -43,7 +40,7 @@ public final class DBKS {
 	/**
 	 * Datu basea baliozkoa den frogatzen du
 	 */
-	private void datubaseaKonprobatu() {
+	private boolean datubaseaKonprobatu() {
 		Statement st;
 		try {
 			st = konexioa.createStatement();
@@ -53,27 +50,19 @@ public final class DBKS {
 			st.executeQuery("Select Id, Puntuak, PartidaKopurua from Puntuazioa");
 			st.close();
 		} catch (SQLException e) {
-			throw new AlKaboomSalbuespena("Partiden fitxategia ez da baliozkoa!", e);
+			return false;
 		}
+		return true;
 	}
 
 	/**
 	 * Konexioa ixten du datu basearekin
 	 */
-	public void deskonektatu() {
+	protected void deskonektatu() {
 		try {
 			this.konexioa.close();
 		} catch (SQLException e) {
 			throw new AlKaboomSalbuespena("Ezin da deskonexioa egin", e);
-		}
-		try {
-			if (konexioa.isClosed()) {
-				JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(), "Datu basetik deskonektatu zara",
-						AlKaboomConstants.IZENBURUA, JOptionPane.WARNING_MESSAGE);
-
-			}
-		} catch (HeadlessException | SQLException e) {
-			e.printStackTrace();
 		}
 	}
 
@@ -101,6 +90,17 @@ public final class DBKS {
 	}
 
 	/**
+	 * Konektatuta dagoen edo ez itxultzen du.
+	 * 
+	 * @return {@code true} itzultzen du konektatuta badago, {@code false}
+	 *         bestela.
+	 * @throws SQLException
+	 */
+	public boolean konekatutaDago() throws SQLException {
+		return !konexioa.isClosed();
+	}
+
+	/**
 	 * Datu base batetara konekatzen da, SQLite erabiliz
 	 * 
 	 * @param path
@@ -118,7 +118,8 @@ public final class DBKS {
 		} catch (SQLException salbuespena) {
 			throw new AlKaboomSalbuespena("Ezin da datu basera konektatu", salbuespena);
 		}
-		this.datubaseaKonprobatu();
+		if (!this.datubaseaKonprobatu())
+			throw new AlKaboomSalbuespena("Partiden fitxategia ez da baliozkoa!", new IllegalStateException());
 	}
 
 	/**
@@ -137,16 +138,5 @@ public final class DBKS {
 			throw new AlKaboomSalbuespena("Ezin da " + agindua + " exekutatu", salbuespena);
 		}
 		return emaitza;
-	}
-
-	/**
-	 * Konektatuta dagoen edo ez itxultzen du.
-	 * 
-	 * @return {@code true} itzultzen du konektatuta badago, {@code false}
-	 *         bestela.
-	 * @throws SQLException
-	 */
-	public boolean konekatutaDago() throws SQLException {
-		return !konexioa.isClosed();
 	}
 }

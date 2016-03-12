@@ -1,6 +1,6 @@
 package si.alkaboom.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 
@@ -43,7 +43,7 @@ public class FitxategiOperazioakTest {
 		File file = new File(System.getProperty("user.home") + "/kopia.db");
 		if (!file.exists())
 			fail();
-		if(!file.delete())
+		if (!file.delete())
 			System.err.println("Ezin da fitxategia ezabatu");
 	}
 

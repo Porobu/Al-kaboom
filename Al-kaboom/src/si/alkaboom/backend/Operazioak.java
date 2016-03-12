@@ -4,13 +4,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import si.alkaboom.salbuespenak.AlKaboomSalbuespena;
+
 public class Operazioak {
 
-	public ArrayList<String[]> erabiltzaileakBistaratu(int kop, String izena) {
+	public ArrayList<String[]> erabiltzaileakBistaratu(String izena) {
 		izena = "%" + izena + "%";
 		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu(
 				"Select Izena, PartidaGordeta, AzkenData from Jokalaria where Izena like '" + izena + "'");
-		return this.rsKopiatu(rs, kop);
+		try {
+			return this.rsKopiatu(rs, rs.getMetaData().getColumnCount());
+		} catch (SQLException e) {
+			throw new AlKaboomSalbuespena("Ezin da zutabe kopurua kalkulatu", e);
+		}
 	}
 
 	private ArrayList<String[]> rsKopiatu(ResultSet rs, int kop) {

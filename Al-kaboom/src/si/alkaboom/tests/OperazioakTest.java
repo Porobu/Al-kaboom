@@ -74,11 +74,10 @@ public class OperazioakTest {
 		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu("Select * from Jokalaria");
 		ResultSetMetaData rsdata = rs.getMetaData();
 		Object object = rsKop.invoke(o, rs, rsdata.getColumnCount());
-		@SuppressWarnings("unchecked")
-		ArrayList<String[]> array = (ArrayList<String[]>) object;
+		ArrayList<?> array = (ArrayList<?>) object;
 		System.out.println("Test RS Kopiatu");
-		for (Iterator<String[]> iterator = array.iterator(); iterator.hasNext();) {
-			String[] strings = iterator.next();
+		for (Iterator<?> iterator = (Iterator<?>) array.iterator(); iterator.hasNext();) {
+			String[] strings = (String[]) iterator.next();
 			for (String string : strings) {
 				System.out.print(string + " - ");
 			}

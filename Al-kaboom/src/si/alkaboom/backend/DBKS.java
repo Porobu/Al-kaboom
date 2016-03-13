@@ -18,7 +18,7 @@ public class DBKS {
 
 	private Connection konexioa;
 
-	protected DBKS() {
+	private DBKS() {
 
 	}
 
@@ -58,7 +58,7 @@ public class DBKS {
 	/**
 	 * Konexioa ixten du datu basearekin
 	 */
-	protected void deskonektatu() {
+	private void deskonektatu() {
 		try {
 			this.konexioa.close();
 		} catch (SQLException e) {
@@ -97,7 +97,7 @@ public class DBKS {
 	 * @throws SQLException
 	 */
 	public boolean konekatutaDago() throws SQLException {
-		return !konexioa.isClosed();
+		return konexioa != null ? !konexioa.isClosed() : false;
 	}
 
 	/**
@@ -108,14 +108,12 @@ public class DBKS {
 	 */
 	public void konektatu(String path) {
 		try {
+			if (this.konekatutaDago())
+				this.deskonektatu();
 			Class.forName("org.sqlite.JDBC").newInstance();
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException salbuespena) {
-			salbuespena.printStackTrace();
-		}
-		try {
 			this.konexioa = DriverManager.getConnection("jdbc:sqlite:" + path);
 			this.konexioa.setAutoCommit(true);
-		} catch (SQLException salbuespena) {
+		} catch (SQLException | InstantiationException | IllegalAccessException | ClassNotFoundException salbuespena) {
 			throw new AlKaboomSalbuespena("Ezin da datu basera konektatu", salbuespena);
 		}
 		if (!this.datubaseaKonprobatu())

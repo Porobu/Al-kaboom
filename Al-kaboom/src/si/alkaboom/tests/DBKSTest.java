@@ -16,6 +16,7 @@ import org.junit.Test;
 
 import si.alkaboom.backend.DBKS;
 import si.alkaboom.backend.FitxategiOperazioak;
+import si.alkaboom.frontend.DBKSMezuGrafikoak;
 
 public class DBKSTest {
 	private DBKS singletonDBKS;
@@ -137,6 +138,7 @@ public class DBKSTest {
 		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu("Select * from Jokalaria");
 		if (!rs.next())
 			fail();
+		DBKSMezuGrafikoak.getDBKSPantailaratu().deskonektatu();
 	}
 
 }

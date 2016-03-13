@@ -21,7 +21,7 @@ public class KautotuPanela extends JPanel {
 		this.add(taula, BorderLayout.CENTER);
 	}
 
-	public KautotuSartzekoPanela getKsPanela() {
+	public KautotuSartzekoPanela getKSPanela() {
 		return ksPanela;
 	}
 

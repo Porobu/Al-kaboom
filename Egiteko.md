@@ -17,13 +17,13 @@
 
 - Klase diagramaren zirriborroa
 - Sekuentzia diagramaren zirriborroa
-- jokoa pantailaratu
+- kautotu pantailaratu
 - Datu basea diseinatu
 - JUnit testak diseinatu
 
 2 Sprint:
 
-- Jokoan kautotu
+- Jokoa pantailaratu
 - Jokoan partida galdu / irabazi
 - Rankinga diseinatu
 - Partida gorde

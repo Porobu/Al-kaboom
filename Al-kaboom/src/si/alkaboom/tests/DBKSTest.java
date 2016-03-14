@@ -20,6 +20,7 @@ import si.alkaboom.backend.FitxategiOperazioak;
 public class DBKSTest {
 	private DBKS singletonDBKS;
 	private Method deskonektatuMetodoa;
+	private Class<DBKS> dbks;
 
 	@Before
 	public void setUp() throws NoSuchFieldException, SecurityException, IllegalArgumentException,
@@ -28,7 +29,7 @@ public class DBKSTest {
 		if (path == null)
 			fail("Datu basea ez da aurkitu");
 		DBKS.getDBKS().konektatu(path);
-		Class<DBKS> dbks = DBKS.class;
+		dbks = DBKS.class;
 		Field singleton = dbks.getDeclaredField("gureDBKS");
 		singleton.setAccessible(true);
 		singletonDBKS = (DBKS) singleton.get(dbks);
@@ -68,9 +69,6 @@ public class DBKSTest {
 	@Test
 	public void testDatuBaseaKonprobatu() throws NoSuchMethodException, SecurityException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
-		Class<DBKS> dbks = DBKS.class;
-		Field singleton = dbks.getDeclaredField("gureDBKS");
-		singleton.setAccessible(true);
 		Method dbKonprobatu = dbks.getDeclaredMethod("datubaseaKonprobatu");
 		dbKonprobatu.setAccessible(true);
 		boolean b = (boolean) dbKonprobatu.invoke(singletonDBKS);

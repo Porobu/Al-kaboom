@@ -25,6 +25,7 @@ public class DBKSTest {
 	@Before
 	public void setUp() throws NoSuchFieldException, SecurityException, IllegalArgumentException,
 			IllegalAccessException, NoSuchMethodException {
+		
 		String path = DBKS.getDBKS().getDefaultPath();
 		if (path == null)
 			fail("Datu basea ez da aurkitu");

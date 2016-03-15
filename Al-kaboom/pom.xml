@@ -50,4 +50,11 @@
 		</dependency>
 
 	</dependencies>
+	<url>http://porobu.github.io/Al-kaboom/Al-kaboom/</url>
+	<scm>
+		<url>https://github.com/Porobu/Al-kaboom</url>
+	</scm>
+	<issueManagement>
+		<url>https://github.com/Porobu/Al-kaboom/issues</url>
+	</issueManagement>
 </project>

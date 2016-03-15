@@ -15,11 +15,11 @@
 
 1 Sprint:
 
-- Klase diagramaren zirriborroa
-- Sekuentzia diagramaren zirriborroa
-- kautotu pantailaratu
-- Datu basea diseinatu
-- JUnit testak diseinatu
+- Klase diagramaren zirriborroa Edu
+- Sekuentzia diagramaren zirriborroa Goizane
+- kautotu pantailaratu Sergio
+- Datu basea diseinatu Aitor
+- JUnit testak diseinatu Iker
 
 2 Sprint:
 

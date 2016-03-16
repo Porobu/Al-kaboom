@@ -1,4 +1,4 @@
-package si.alkaboom.tests;
+package si.alkaboom.tests.backend;
 
 import static org.junit.Assert.fail;
 

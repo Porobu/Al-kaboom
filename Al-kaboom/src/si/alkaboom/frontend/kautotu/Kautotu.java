@@ -16,6 +16,7 @@ public class Kautotu extends JPanel {
 		this.setLayout(new BorderLayout());
 		this.kautotuPanela = new KautotuPanela();
 		this.zailtasunaPanela = new ZailtasunaPanela();
+		this.zailtasunaPanela.setName("Zailtasuna Panela");
 		this.add(this.kautotuPanela, BorderLayout.CENTER);
 		this.setMinimumSize(new Dimension(300, 140));
 		this.setVisible(true);

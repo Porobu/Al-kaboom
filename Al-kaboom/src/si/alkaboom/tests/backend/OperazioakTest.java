@@ -76,7 +76,7 @@ public class OperazioakTest {
 		Object object = rsKop.invoke(o, rs, rsdata.getColumnCount());
 		ArrayList<?> array = (ArrayList<?>) object;
 		System.out.println("Test RS Kopiatu");
-		for (Iterator<?> iterator = (Iterator<?>) array.iterator(); iterator.hasNext();) {
+		for (Iterator<?> iterator = array.iterator(); iterator.hasNext();) {
 			String[] strings = (String[]) iterator.next();
 			for (String string : strings) {
 				System.out.print(string + " - ");

@@ -26,6 +26,7 @@ public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 		this.setLayout(new SpringLayout());
 		this.erabiltzailea = new JLabel("Erabiltzaile izena:", SwingConstants.TRAILING);
 		this.erabiltzaileaField = new JTextField();
+		this.erabiltzaileaField.setName("Erabiltzailea Field");
 		this.erabiltzaileaField.addActionListener(gureAE -> AlKaboom.getAlKaboom().getUI().getKautotu()
 				.getKautotuPanela().taulaEguneratu(this.erabiltzaileaField.getText()));
 		this.erabiltzaileaField.addKeyListener(this);
@@ -35,15 +36,18 @@ public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 		this.aukerakEraiki(0);
 		this.zailtasuna.setLabelFor(aukerak);
 		this.sartu = new JButton("Sartu");
+		this.sartu.setName("Sartu");
 		this.sartu.addActionListener(gureAE -> this.datuakGorde());
 		this.aukerazkoa = new JButton("Zailtasuna Aukeratu...");
 		this.aukerazkoa.setEnabled(false);
+		this.aukerazkoa.setName("Zailtasuna Sartu");
 		this.aukerazkoa.addActionListener(gureAE -> AlKaboom.getAlKaboom().getUI().getKautotu().zailtasunaIpini());
 		this.guztiaGehitu();
 	}
 
 	private void aukerakEraiki(int aukeratua) {
 		aukerak = new JComboBox<>(aukerakArray);
+		this.aukerak.setName("Aukerak");
 		aukerak.addItemListener(gureIL -> this.botoiaAldatu());
 		aukerak.setSelectedIndex(aukeratua);
 	}

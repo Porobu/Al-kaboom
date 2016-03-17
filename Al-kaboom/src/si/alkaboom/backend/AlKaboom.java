@@ -58,7 +58,7 @@ public final class AlKaboom implements AlKaboomConstants {
 		this.erabiltzailea = erabiltzailea;
 	}
 
-	public void setUi(UI ui) {
+	public void setUI(UI ui) {
 		this.ui = ui;
 	}
 

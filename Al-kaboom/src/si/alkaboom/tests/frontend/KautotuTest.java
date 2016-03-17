@@ -21,24 +21,26 @@ import si.alkaboom.frontend.UI;
 @GUITest
 public class KautotuTest {
 	private static NoExitSecurityManagerInstaller noExitSecurityManagerInstaller;
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		FailOnThreadViolationRepaintManager.install();
 		noExitSecurityManagerInstaller = NoExitSecurityManagerInstaller.installNoExitSecurityManager();
 	}
+
 	@AfterClass
 	public static void tearDownAfterClass() {
 		noExitSecurityManagerInstaller.uninstall();
 	}
 
 	private JPanelFixture ksPanela;
-
 	private FrameFixture window;
 
 	@Test
 	public void kautotuDefektuzkoAukerak() {
 		ksPanela = window.panel("Kautotu Panela").panel("Kautotu Sartzeko Panela");
 		ksPanela.textBox("Erabiltzailea Field").enterText("Test");
+		Assertions.assertThat( window.panel("Kautotu Panela").panel("Taula Panela").table().rowCount()).isEqualTo(1);
 		ksPanela.button("Sartu").click();
 	}
 
@@ -65,7 +67,7 @@ public class KautotuTest {
 				UI oraingoUI = new UI();
 				oraingoUI.dekorazioGabeHasieratu();
 				oraingoUI.kautotuHasieratu();
-				AlKaboom.getAlKaboom().setUi(oraingoUI);
+				AlKaboom.getAlKaboom().setUI(oraingoUI);
 				return oraingoUI;
 			}
 		});

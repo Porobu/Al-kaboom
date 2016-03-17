@@ -34,6 +34,7 @@ public class KautotuPanela extends JPanel {
 	public void taulaEguneratu(String izenBerria) {
 		this.remove(taula);
 		taula = new TaulaPanela(KAUTOTU, izenBerria);
+		taula.setName("Taula Panela");
 		this.add(taula, BorderLayout.CENTER);
 		this.revalidate();
 		this.repaint();

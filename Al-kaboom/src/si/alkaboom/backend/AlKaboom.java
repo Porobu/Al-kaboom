@@ -29,6 +29,10 @@ public final class AlKaboom implements AlKaboomConstants {
 		return datubasePath;
 	}
 
+	public void setDatubasePath(String datubasePath) {
+		this.datubasePath = datubasePath;
+	}
+
 	public String getErabiltzailea() {
 		return erabiltzailea;
 	}

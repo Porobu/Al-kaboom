@@ -1,34 +1,44 @@
 package si.alkaboom.tests.frontend;
 
+import static org.junit.Assert.fail;
+
+import java.util.Random;
+
 import org.assertj.core.api.Assertions;
+import org.assertj.swing.annotation.GUITest;
 import org.assertj.swing.edt.FailOnThreadViolationRepaintManager;
 import org.assertj.swing.edt.GuiActionRunner;
 import org.assertj.swing.edt.GuiQuery;
 import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.fixture.JPanelFixture;
+import org.assertj.swing.image.ScreenshotTaker;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import si.alkaboom.backend.AlKaboom;
 import si.alkaboom.backend.DBKS;
 import si.alkaboom.frontend.UI;
 
+@GUITest
 public class KautotuTest {
 	private JPanelFixture ksPanela;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		FailOnThreadViolationRepaintManager.install();
-		DBKS.getDBKS().konektatu(DBKS.getDBKS().getDefaultPath());
-		DBKS.getDBKS().aginduaExekutatu(
-				"INSERT OR REPLACE INTO Jokalaria(Izena, PartidaGordeta, AzkenData, IrabaziKop, GalduKop) VALUES ('Test', 'Bai', '01-01-2010', 10,20 )");
+
 	}
 
 	private FrameFixture window;
 
 	@Before
 	public void setUp() throws Exception {
+		DBKS.getDBKS().konektatu(DBKS.getDBKS().getDefaultPath());
+		DBKS.getDBKS().aginduaExekutatu(
+				"INSERT OR REPLACE INTO Jokalaria(Izena, PartidaGordeta, AzkenData, IrabaziKop, GalduKop) VALUES ('Test', 'Bai', '01-01-2010', 10,20 )");
+		AlKaboom.getAlKaboom().setDatubasePath(DBKS.getDBKS().getDefaultPath());
 		UI frame = GuiActionRunner.execute(new GuiQuery<UI>() {
 			@Override
 			protected UI executeInEDT() {
@@ -72,7 +82,14 @@ public class KautotuTest {
 				"Zaila", "Custom...");
 		ksPanela.comboBox("Aukerak").selectItem(3);
 		ksPanela.button("Zailtasuna Sartu").click();
-		JPanelFixture zailtasunaSartu = window.panel("kautotu").panel("Zailtasuna Panela");
+		ScreenshotTaker screenshotTaker = new ScreenshotTaker();
+		try {
+			JPanelFixture zailtasunaSartu = window.panel("kautotu").panel("Zailtasuna Panela");
+		} catch (Exception e) {
+			screenshotTaker.saveDesktopAsPng(
+					System.getProperty("user.home") + "/zailtasunaEskuzSartu" + System.currentTimeMillis() + ".png");
+			throw e;
+		}
 
 	}
 }

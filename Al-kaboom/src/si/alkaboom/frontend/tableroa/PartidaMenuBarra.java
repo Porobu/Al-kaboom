@@ -6,7 +6,6 @@ import javax.swing.JMenuItem;
 
 public class PartidaMenuBarra extends JMenuBar {
 	private static final long serialVersionUID = 6278678590130942938L;
-
 	private JMenu fitxategia, partida, gehiago;
 	private JMenuItem partidaBerria, partidaKargatu, partidaGorde, itxi, pausa, partidaBertanBehera, laguntza,
 			alKaboomBuruz, alKaboomWeb;
@@ -57,6 +56,13 @@ public class PartidaMenuBarra extends JMenuBar {
 		partida.add(partidaGorde);
 		partida.add(pausa);
 		partida.add(partidaBertanBehera);
+		this.fitxategiMenuaEraiki();
+		this.partidaMenuaEraiki();
+		this.gehiagoMenuaEraiki();
+		this.add(fitxategia);
+		this.add(partida);
+		this.add(gehiago);
 
 	}
+
 }

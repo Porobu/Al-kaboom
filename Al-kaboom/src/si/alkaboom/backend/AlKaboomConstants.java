@@ -1,7 +1,11 @@
 package si.alkaboom.backend;
 
 public interface AlKaboomConstants {
+<<<<<<< HEAD
 	public static final String BERTSIOA = "0.3.0";
+=======
+	public static final String BERTSIOA = "0.2.5";
+>>>>>>> branch 'stable' of https://github.com/Porobu/Al-kaboom
 	public static final String IZENBURUA = "Al-Kaboom " + BERTSIOA;
 	public static final int ERRENKADA_KOPURUA_ERREZA = 0;
 	public static final int ZUTABE_KOPURUA_ERREZA = 0;

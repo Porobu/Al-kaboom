@@ -19,6 +19,7 @@ public class KautotuPanela extends JPanel {
 		ksPanela.setName("Kautotu Sartzeko Panela");
 		this.add(ksPanela, BorderLayout.PAGE_START);
 		taula = new TaulaPanela(KAUTOTU, "");
+		taula.setName("Taula Panela");
 		this.add(taula, BorderLayout.CENTER);
 	}
 

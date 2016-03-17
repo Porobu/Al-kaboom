@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.assertj.core.api.Assertions;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,10 +43,11 @@ public class OperazioakTest {
 
 	@Test
 	public void testErabiltzaileakBistaratu() {
-		System.out.println("Test Erabiltzaileak Bistaratu");
+		System.out.println("\nTest Erabiltzaileak Bistaratu");
 		System.out.println("izena like t");
 		Operazioak op = new Operazioak();
-		ArrayList<String[]> array = op.erabiltzaileakBistaratu("t");
+		ArrayList<String[]> array = op.erabiltzaileakBistaratu("\nizena like %t%");
+		Assertions.assertThat(array).isNotNull();
 		for (Iterator<String[]> iterator = array.iterator(); iterator.hasNext();) {
 			String[] strings = iterator.next();
 			for (String string : strings) {
@@ -53,8 +55,9 @@ public class OperazioakTest {
 			}
 			System.out.println();
 		}
-		System.out.println("izena like %");
+		System.out.println("\nizena like %%");
 		array = op.erabiltzaileakBistaratu("");
+		Assertions.assertThat(array).isNotNull();
 		for (Iterator<String[]> iterator = array.iterator(); iterator.hasNext();) {
 			String[] strings = iterator.next();
 			for (String string : strings) {
@@ -74,9 +77,10 @@ public class OperazioakTest {
 		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu("Select * from Jokalaria");
 		ResultSetMetaData rsdata = rs.getMetaData();
 		Object object = rsKop.invoke(o, rs, rsdata.getColumnCount());
-		ArrayList<?> array = (ArrayList<?>) object;
+		ArrayList<? extends Object> array = (ArrayList<?>) object;
+		Assertions.assertThat(array).isNotNull();
 		System.out.println("Test RS Kopiatu");
-		for (Iterator<?> iterator = array.iterator(); iterator.hasNext();) {
+		for (Iterator<? extends Object> iterator = array.iterator(); iterator.hasNext();) {
 			String[] strings = (String[]) iterator.next();
 			for (String string : strings) {
 				System.out.print(string + " - ");

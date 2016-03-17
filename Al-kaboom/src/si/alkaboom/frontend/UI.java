@@ -51,7 +51,7 @@ public class UI extends JFrame {
 		this.dispose();
 		this.setUndecorated(false);
 		kautotu = new Kautotu();
-		kautotu.setName("kautotu");
+		kautotu.setName("Kautotu Panela");
 		this.setMinimumSize(new Dimension(280, 140));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.add(kautotu, BorderLayout.CENTER);

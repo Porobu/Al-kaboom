@@ -1,18 +1,12 @@
 package si.alkaboom.tests.db;
 
-import static org.junit.Assert.*;
-
-import java.io.File;
-
 import org.assertj.db.type.Source;
 import org.assertj.db.type.Table;
 
 import static org.assertj.db.api.Assertions.assertThat;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import si.alkaboom.backend.DBKS;

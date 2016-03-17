@@ -17,19 +17,12 @@ public class PartidaMenuBarra extends JMenuBar {
 		this.add(fitxategia);
 		this.add(partida);
 		this.add(gehiago);
-		this.fitxategiMenuaEraiki();
-		this.partidaMenuaEraiki();
-		this.gehiagoMenuaEraiki();
-		this.add(fitxategia);
-		this.add(partida);
-		this.add(gehiago);
 	}
 
 	private void fitxategiMenuaEraiki() {
 		fitxategia = new JMenu("Fitxategia");
 		partidaBerria = new JMenuItem("Partida berria");
 		itxi = new JMenuItem("Programa itxi");
-
 		fitxategia.add(partidaBerria);
 		fitxategia.add(itxi);
 
@@ -51,18 +44,11 @@ public class PartidaMenuBarra extends JMenuBar {
 		partidaKargatu = new JMenuItem("Partida bat kargatu");
 		partidaGorde = new JMenuItem("Partida gorde");
 		pausa = new JMenuItem("Pausa");
-		partidaBertanBehera = new JMenuItem("Partida bertan ehera utzi");
+		partidaBertanBehera = new JMenuItem("Partida bertan behera utzi");
 		partida.add(partidaKargatu);
 		partida.add(partidaGorde);
 		partida.add(pausa);
 		partida.add(partidaBertanBehera);
-		this.fitxategiMenuaEraiki();
-		this.partidaMenuaEraiki();
-		this.gehiagoMenuaEraiki();
-		this.add(fitxategia);
-		this.add(partida);
-		this.add(gehiago);
-
 	}
 
 }

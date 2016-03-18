@@ -40,7 +40,7 @@ public class KautotuTest {
 	public void kautotuDefektuzkoAukerak() {
 		ksPanela = window.panel("Kautotu Panela").panel("Kautotu Sartzeko Panela");
 		ksPanela.textBox("Erabiltzailea Field").enterText("Test");
-		Assertions.assertThat( window.panel("Kautotu Panela").panel("Taula Panela").table().rowCount()).isEqualTo(1);
+		Assertions.assertThat(window.panel("Kautotu Panela").panel("Taula Panela").table().rowCount()).isEqualTo(1);
 		ksPanela.button("Sartu").click();
 	}
 
@@ -81,6 +81,7 @@ public class KautotuTest {
 		JPanelFixture taulaPanela = window.panel("Kautotu Panela").panel("Taula Panela");
 		taulaPanela.table().cell("Test").click();
 		Assertions.assertThat(ksPanela.textBox("Erabiltzailea Field").text()).contains("Test");
+		ksPanela.button("Sartu").click();
 	}
 
 	@After
@@ -107,6 +108,15 @@ public class KautotuTest {
 		Assertions.assertThat(zailtasunaSartu.textBox("Mina Kopurua").text()).contains("15");
 		zailtasunaSartu.button("OK").click();
 		Assertions.assertThat(ksPanela.comboBox("Aukerak").contents()).contains("Custom(10x999, 15)");
+		ksPanela.button("Sartu").click();
+	}
+
+	@Test
+	public void izenaTaulanEzDago() {
+		DBKS.getDBKS().aginduaExekutatu("Delete from Jokalaria where izena = 'Test'");
+		ksPanela = window.panel("Kautotu Panela").panel("Kautotu Sartzeko Panela");
+		ksPanela.textBox("Erabiltzailea Field").enterText("Test");
+		Assertions.assertThat(window.panel("Kautotu Panela").panel("Taula Panela").table().rowCount()).isEqualTo(0);
 		ksPanela.button("Sartu").click();
 	}
 }

@@ -21,7 +21,7 @@
 - Datu basea diseinatu Aitor
 - JUnit testak diseinatu Iker
 
-2 Sprint:
+# 2 Sprint: (ESTIMAZIOAK GEHITU)
 
 - Jokoa pantailaratu
 - Jokoan partida galdu / irabazi

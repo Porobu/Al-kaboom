@@ -8,6 +8,7 @@ import javax.swing.WindowConstants;
 
 import si.alkaboom.backend.AlKaboom;
 import si.alkaboom.backend.AlKaboomConstants;
+import si.alkaboom.backend.Erabiltzailea;
 import si.alkaboom.frontend.kautotu.Kautotu;
 import si.alkaboom.frontend.tableroa.PartidaMenuBarra;
 import si.alkaboom.frontend.tableroa.TableroPanela;
@@ -25,12 +26,16 @@ public class UI extends JFrame {
 
 	public void alKaboomHasieratu() {
 		this.remove(kautotu);
-		this.setTitle(AlKaboomConstants.IZENBURUA + " - " + AlKaboom.getAlKaboom().getErabiltzailea());
+		this.setTitle(AlKaboomConstants.IZENBURUA + " - " + AlKaboom.getAlKaboom().getErabiltzailea().getIzena());
 		this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		this.addWindowListener(new GureWindowListener());
 		this.menuBarraAK = new PartidaMenuBarra();
 		this.setJMenuBar(menuBarraAK);
-		this.tp = new TableroPanela();
+		Erabiltzailea e = AlKaboom.getAlKaboom().getErabiltzailea();
+		if (e.getZailtasuna().equalsIgnoreCase("Custom"))
+			this.tp = new TableroPanela(e.getErrenkadak(), e.getZutabeak(), e.getMinak());
+		else
+			this.tp = new TableroPanela(e.getZailtasuna());
 		this.add(tp);
 		this.revalidate();
 		this.pack();

@@ -12,6 +12,7 @@ import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 
 import si.alkaboom.backend.AlKaboom;
+import si.alkaboom.backend.Erabiltzailea;
 import si.alkaboom.externals.SpringUtilities;
 
 public class KautotuSartzekoPanela extends JPanel implements KeyListener {
@@ -60,8 +61,14 @@ public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 	}
 
 	private void datuakGorde() {
-		AlKaboom.getAlKaboom().setErabiltzailea(this.erabiltzaileaField.getText());
-		AlKaboom.getAlKaboom().getUI().alKaboomHasieratu();
+		AlKaboom ak = AlKaboom.getAlKaboom();
+		if (this.aukerak.getSelectedIndex() == 3)
+			ak.setErabiltzailea(new Erabiltzailea(this.erabiltzaileaField.getText(), ak.getBalioakCustom()[0],
+					ak.getBalioakCustom()[1], ak.getBalioakCustom()[2]));
+		else
+			ak.setErabiltzailea(
+					new Erabiltzailea(this.erabiltzaileaField.getText(), (String) this.aukerak.getSelectedItem()));
+		ak.getUI().alKaboomHasieratu();
 	}
 
 	private void guztiaGehitu() {

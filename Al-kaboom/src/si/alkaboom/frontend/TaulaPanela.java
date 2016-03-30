@@ -27,7 +27,7 @@ public class TaulaPanela extends JPanel implements ListSelectionListener {
 		if (mota.equalsIgnoreCase("Kautotu"))
 			gureModeloa = new KautotuTaulaModeloa(izena);
 		else
-			gureModeloa = new RankingTaulaModeloa();
+			gureModeloa = new RankingTaulaModeloa(mota);
 		gureTaula = new ZebraJTable(gureModeloa);
 		gureTaula.setCellSelectionEnabled(true);
 		ListSelectionModel cellSelectionModel = gureTaula.getSelectionModel();

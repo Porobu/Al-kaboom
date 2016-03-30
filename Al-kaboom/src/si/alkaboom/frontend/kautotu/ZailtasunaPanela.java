@@ -25,12 +25,12 @@ public class ZailtasunaPanela extends JPanel {
 		laukiErrenkada = new JLabel("Lauki errenkada kopurua:", SwingConstants.TRAILING);
 		laukiErrenkadaField = new JTextField();
 		laukiErrenkadaField.setName("Errenkada Kopurua");
-		((AbstractDocument) laukiErrenkadaField.getDocument()).setDocumentFilter(new NumericAndLengthFilter(3));
+		((AbstractDocument) laukiErrenkadaField.getDocument()).setDocumentFilter(new NumericAndLengthFilter(2));
 		laukiErrenkada.setLabelFor(laukiErrenkadaField);
 		laukiZutabe = new JLabel("Lauki zutabe kopurua:", SwingConstants.TRAILING);
 		laukiZutabeField = new JTextField();
 		laukiZutabeField.setName("Zutabe Kopurua");
-		((AbstractDocument) laukiZutabeField.getDocument()).setDocumentFilter(new NumericAndLengthFilter(3));
+		((AbstractDocument) laukiZutabeField.getDocument()).setDocumentFilter(new NumericAndLengthFilter(2));
 		laukiZutabe.setLabelFor(laukiZutabeField);
 		minaKop = new JLabel("Mina kopurua:", SwingConstants.TRAILING);
 		minaKopField = new JTextField();

@@ -12,14 +12,12 @@ public class PartidaMenuBarra extends JMenuBar {
 			alKaboomBuruz, alKaboomWeb;
 
 	public PartidaMenuBarra() {
-
 		this.fitxategiMenuaEraiki();
 		this.partidaMenuaEraiki();
 		this.gehiagoMenuaEraiki();
 		this.add(fitxategia);
 		this.add(partida);
 		this.add(gehiago);
-
 	}
 
 	private void fitxategiMenuaEraiki() {
@@ -34,25 +32,21 @@ public class PartidaMenuBarra extends JMenuBar {
 	}
 
 	private void gehiagoMenuaEraiki() {
-
 		gehiago = new JMenu("Gehiago");
 		laguntza = new JMenuItem("Laguntza");
 		alKaboomBuruz = new JMenuItem("AlKaboom-eri buruz");
 		alKaboomWeb = new JMenuItem("AlKaboom-eri buruz interneten");
-
 		gehiago.add(laguntza);
 		gehiago.add(alKaboomBuruz);
 		gehiago.add(alKaboomWeb);
 	}
 
 	private void partidaMenuaEraiki() {
-
 		partida = new JMenu("Partida");
 		partidaKargatu = new JMenuItem("Partida bat kargatu");
 		partidaGorde = new JMenuItem("Partida gorde");
 		pausa = new JMenuItem("Pausa");
 		partidaBertanBehera = new JMenuItem("Partida bertan ehera utzi");
-
 		partida.add(partidaKargatu);
 		partida.add(partidaGorde);
 		partida.add(pausa);

@@ -4,19 +4,23 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import si.alkaboom.backend.AlKaboom;
+
 public class PartidaMenuBarra extends JMenuBar {
 	private static final long serialVersionUID = 6278678590130942938L;
 
-	private JMenu fitxategia, partida, gehiago;
+	private JMenu fitxategia, partida, gehiago, ranking;
 	private JMenuItem partidaBerria, partidaKargatu, partidaGorde, itxi, pausa, partidaBertanBehera, laguntza,
-			alKaboomBuruz, alKaboomWeb;
+			alKaboomBuruz, alKaboomWeb, rankingBistaratu;
 
 	public PartidaMenuBarra() {
 		this.fitxategiMenuaEraiki();
 		this.partidaMenuaEraiki();
+		this.rankingMenuaEraiki();
 		this.gehiagoMenuaEraiki();
 		this.add(fitxategia);
 		this.add(partida);
+		this.add(ranking);
 		this.add(gehiago);
 	}
 
@@ -24,11 +28,8 @@ public class PartidaMenuBarra extends JMenuBar {
 		fitxategia = new JMenu("Fitxategia");
 		partidaBerria = new JMenuItem("Partida berria");
 		itxi = new JMenuItem("Programa itxi");
-
 		fitxategia.add(partidaBerria);
 		fitxategia.add(itxi);
-
-		// partidaBerria.addActionListener(null);
 	}
 
 	private void gehiagoMenuaEraiki() {
@@ -51,6 +52,23 @@ public class PartidaMenuBarra extends JMenuBar {
 		partida.add(partidaGorde);
 		partida.add(pausa);
 		partida.add(partidaBertanBehera);
-
 	}
+
+	private void rankingMenuaEraiki() {
+		this.ranking = new JMenu("Ranking");
+		rankingBistaratu = new JMenuItem("Ranking Bistaratu");
+		rankingBistaratu.addActionListener(gureAE -> this.menuaAldatu());
+		ranking.add(rankingBistaratu);
+	}
+
+	private void menuaAldatu() {
+		if (rankingBistaratu.getText().equalsIgnoreCase("Ranking Bistaratu")) {
+			rankingBistaratu.setText("Rankingetik Itzuli");
+			AlKaboom.getAlKaboom().getUI().rankingIpini();
+		} else {
+			rankingBistaratu.setText("Ranking Bistaratu");
+			AlKaboom.getAlKaboom().getUI().rankingItxi();
+		}
+	}
+
 }

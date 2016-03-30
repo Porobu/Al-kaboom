@@ -18,8 +18,8 @@ public class KautotuTaulaModeloa extends AbstractTableModel {
 	}
 
 	@Override
-	public Class<String> getColumnClass(int c) {
-		return String.class;
+	public Class<? extends Object> getColumnClass(int c) {
+		return this.getValueAt(0, c).getClass();
 	}
 
 	@Override

@@ -10,6 +10,7 @@ import si.alkaboom.backend.AlKaboom;
 import si.alkaboom.backend.AlKaboomConstants;
 import si.alkaboom.backend.Erabiltzailea;
 import si.alkaboom.frontend.kautotu.Kautotu;
+import si.alkaboom.frontend.ranking.RankingDesktopPanela;
 import si.alkaboom.frontend.tableroa.PartidaMenuBarra;
 import si.alkaboom.frontend.tableroa.TableroPanela;
 
@@ -18,6 +19,11 @@ public class UI extends JFrame {
 	private Kautotu kautotu;
 	private PartidaMenuBarra menuBarraAK;
 	private TableroPanela tp;
+	private RankingDesktopPanela ranking;
+
+	public RankingDesktopPanela getRanking() {
+		return ranking;
+	}
 
 	public UI() {
 		this.setLayout(new BorderLayout());
@@ -37,6 +43,8 @@ public class UI extends JFrame {
 		else
 			this.tp = new TableroPanela(e.getZailtasuna());
 		this.add(tp);
+		this.ranking = new RankingDesktopPanela();
+		this.ranking.hasieratu();
 		this.revalidate();
 		this.pack();
 		this.repaint();
@@ -69,4 +77,19 @@ public class UI extends JFrame {
 	public void tamainaAldatu() {
 		this.pack();
 	}
+
+	public void rankingIpini() {
+		this.remove(tp);
+		this.add(ranking);
+		this.revalidate();
+		this.repaint();
+	}
+
+	public void rankingItxi() {
+		this.remove(ranking);
+		this.add(tp);
+		this.revalidate();
+		this.repaint();
+	}
+
 }

@@ -46,7 +46,8 @@ public class UI extends JFrame {
 		this.ranking = new RankingDesktopPanela();
 		this.ranking.hasieratu();
 		this.revalidate();
-		this.pack();
+		this.setMinimumSize(new Dimension(AlKaboomConstants.TABLERO_TAMAINA_HORIZONTALA,
+				AlKaboomConstants.TABLERO_TAMAINA_BERTIKALA));
 		this.repaint();
 	}
 
@@ -81,6 +82,8 @@ public class UI extends JFrame {
 	public void rankingIpini() {
 		this.remove(tp);
 		this.add(ranking);
+		this.setMinimumSize(new Dimension(AlKaboomConstants.TABLERO_TAMAINA_HORIZONTALA,
+				AlKaboomConstants.TABLERO_TAMAINA_BERTIKALA));
 		this.revalidate();
 		this.repaint();
 	}

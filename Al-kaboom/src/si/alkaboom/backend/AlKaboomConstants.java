@@ -17,4 +17,6 @@ public interface AlKaboomConstants {
 	public static final int[] NORMALA = new int[] { ERRENKADA_KOPURUA_NORMALA, ZUTABE_KOPURUA_NORMALA,
 			MINA_KOPURUA_NORMALA };
 	public static final int[] ZAILA = new int[] { ERRENKADA_KOPURUA_ZAILA, ZUTABE_KOPURUA_ZAILA, MINA_KOPURUA_ZAILA };
+	public static final int TABLERO_TAMAINA_HORIZONTALA = 800;
+	public static final int TABLERO_TAMAINA_BERTIKALA = 700;
 }

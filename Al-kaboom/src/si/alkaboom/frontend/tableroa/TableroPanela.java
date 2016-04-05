@@ -8,11 +8,21 @@ import si.alkaboom.backend.AlKaboomConstants;
 
 public class TableroPanela extends JPanel {
 	private static final long serialVersionUID = -6744712728807455322L;
-	private AKLaukia[][] laukiak;
-
-	public TableroPanela(String mota) {
-		this(zailtasunaAukeratu(mota)[0], zailtasunaAukeratu(mota)[1], zailtasunaAukeratu(mota)[2]);
+	private static int[] zailtasunaAukeratu(String zailtasuna) {
+		switch (zailtasuna.toLowerCase()) {
+		case "erreza":
+			return AlKaboomConstants.ERREZA;
+		case "normala":
+			return AlKaboomConstants.NORMALA;
+		case "zaila":
+			return AlKaboomConstants.ZAILA;
+		default:
+			break;
+		}
+		return new int[] {};
 	}
+
+	private AKLaukia[][] laukiak;
 
 	public TableroPanela(int errenkadak, int zutabeak, int minak) {
 		this.setLayout(new GridLayout(errenkadak, zutabeak));
@@ -27,17 +37,7 @@ public class TableroPanela extends JPanel {
 		this.setOpaque(true);
 	}
 
-	private static int[] zailtasunaAukeratu(String zailtasuna) {
-		switch (zailtasuna.toLowerCase()) {
-		case "erreza":
-			return AlKaboomConstants.ERREZA;
-		case "normala":
-			return AlKaboomConstants.NORMALA;
-		case "zaila":
-			return AlKaboomConstants.ZAILA;
-		default:
-			break;
-		}
-		return new int[] {};
+	public TableroPanela(String mota) {
+		this(zailtasunaAukeratu(mota)[0], zailtasunaAukeratu(mota)[1], zailtasunaAukeratu(mota)[2]);
 	}
 }

@@ -10,17 +10,6 @@ import si.alkaboom.backend.laukia.LaukiaZenb;
 
 public class TableroModeloaTest {
 
-	@Test
-	public void testTableroModeloa()
-			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
-		TableroModeloa gureTableroa = new TableroModeloa(10, 10, 10, 3, 3);
-		this.bistaratu(gureTableroa);
-		System.out.println();
-		System.out.println();
-		gureTableroa = new TableroModeloa(12, 10, 70, 0, 0);
-		this.bistaratu(gureTableroa);
-	}
-
 	private void bistaratu(TableroModeloa gureTableroa)
 			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
 		Class<TableroModeloa> tm = TableroModeloa.class;
@@ -38,6 +27,17 @@ public class TableroModeloaTest {
 			}
 			System.out.println();
 		}
+	}
+
+	@Test
+	public void testTableroModeloa()
+			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+		TableroModeloa gureTableroa = new TableroModeloa(10, 10, 10, 3, 3);
+		this.bistaratu(gureTableroa);
+		System.out.println();
+		System.out.println();
+		gureTableroa = new TableroModeloa(12, 10, 70, 0, 0);
+		this.bistaratu(gureTableroa);
 	}
 
 }

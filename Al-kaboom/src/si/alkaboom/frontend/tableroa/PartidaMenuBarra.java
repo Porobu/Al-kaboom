@@ -42,6 +42,16 @@ public class PartidaMenuBarra extends JMenuBar {
 		gehiago.add(alKaboomWeb);
 	}
 
+	private void menuaAldatu() {
+		if (rankingBistaratu.getText().equalsIgnoreCase("Ranking Bistaratu")) {
+			rankingBistaratu.setText("Rankingetik Itzuli");
+			AlKaboom.getAlKaboom().getUI().rankingIpini();
+		} else {
+			rankingBistaratu.setText("Ranking Bistaratu");
+			AlKaboom.getAlKaboom().getUI().rankingItxi();
+		}
+	}
+
 	private void partidaMenuaEraiki() {
 		partida = new JMenu("Partida");
 		partidaKargatu = new JMenuItem("Partida bat kargatu");
@@ -59,16 +69,6 @@ public class PartidaMenuBarra extends JMenuBar {
 		rankingBistaratu = new JMenuItem("Ranking Bistaratu");
 		rankingBistaratu.addActionListener(gureAE -> this.menuaAldatu());
 		ranking.add(rankingBistaratu);
-	}
-
-	private void menuaAldatu() {
-		if (rankingBistaratu.getText().equalsIgnoreCase("Ranking Bistaratu")) {
-			rankingBistaratu.setText("Rankingetik Itzuli");
-			AlKaboom.getAlKaboom().getUI().rankingIpini();
-		} else {
-			rankingBistaratu.setText("Ranking Bistaratu");
-			AlKaboom.getAlKaboom().getUI().rankingItxi();
-		}
 	}
 
 }

@@ -19,6 +19,17 @@ public class Operazioak {
 		}
 	}
 
+	public ArrayList<String[]> erabiltzaileenPuntuazioakLortu(String mota) {
+		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu(
+				"Select Izena, Puntuak, Denbora from Jokalaria, Puntuazioa where Puntuazioa.Zailtasuna like '%" + mota
+						+ "%' and Jokalaria.ID = Puntuazioa.ID");
+		try {
+			return this.rsKopiatu(rs, rs.getMetaData().getColumnCount());
+		} catch (SQLException e) {
+			throw new AlKaboomSalbuespena("Ezin da zutabe kopurua kalkulatu", e);
+		}
+	}
+
 	private ArrayList<String[]> rsKopiatu(ResultSet rs, int kop) {
 		ArrayList<String[]> emaitza = new ArrayList<>();
 		try {
@@ -32,16 +43,5 @@ public class Operazioak {
 		} catch (SQLException e) {
 		}
 		return emaitza;
-	}
-
-	public ArrayList<String[]> erabiltzaileenPuntuazioakLortu(String mota) {
-		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu(
-				"Select Izena, Puntuak, Denbora from Jokalaria, Puntuazioa where Puntuazioa.Zailtasuna like '%" + mota
-						+ "%' and Jokalaria.ID = Puntuazioa.ID");
-		try {
-			return this.rsKopiatu(rs, rs.getMetaData().getColumnCount());
-		} catch (SQLException e) {
-			throw new AlKaboomSalbuespena("Ezin da zutabe kopurua kalkulatu", e);
-		}
 	}
 }

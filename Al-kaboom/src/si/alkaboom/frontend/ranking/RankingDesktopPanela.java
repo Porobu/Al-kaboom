@@ -9,15 +9,15 @@ public class RankingDesktopPanela extends JDesktopPane {
 	private RankingInternalFrame[] lehioak;
 	private final String[] izenburuak = new String[] { "Erreza", "Normala", "Zaila", "Custom" };
 
-	public int getIrekitakoLeihoKop() {
-		return irekitakoLeihoKop;
-	}
-
 	private int irekitakoLeihoKop;
 
 	public RankingDesktopPanela() {
 		irekitakoLeihoKop = 4;
 		lehioak = new RankingInternalFrame[4];
+	}
+
+	public int getIrekitakoLeihoKop() {
+		return irekitakoLeihoKop;
 	}
 
 	public void hasieratu() {

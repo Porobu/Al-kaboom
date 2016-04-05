@@ -21,10 +21,6 @@ public class UI extends JFrame {
 	private TableroPanela tp;
 	private RankingDesktopPanela ranking;
 
-	public RankingDesktopPanela getRanking() {
-		return ranking;
-	}
-
 	public UI() {
 		this.setLayout(new BorderLayout());
 		this.setTitle(AlKaboomConstants.IZENBURUA);
@@ -61,6 +57,10 @@ public class UI extends JFrame {
 		return kautotu;
 	}
 
+	public RankingDesktopPanela getRanking() {
+		return ranking;
+	}
+
 	public void kautotuHasieratu() {
 		this.dispose();
 		this.setUndecorated(false);
@@ -73,10 +73,6 @@ public class UI extends JFrame {
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-	}
-
-	public void tamainaAldatu() {
-		this.pack();
 	}
 
 	public void rankingIpini() {
@@ -93,6 +89,10 @@ public class UI extends JFrame {
 		this.add(tp);
 		this.revalidate();
 		this.repaint();
+	}
+
+	public void tamainaAldatu() {
+		this.pack();
 	}
 
 }

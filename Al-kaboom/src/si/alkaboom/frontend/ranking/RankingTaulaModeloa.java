@@ -18,8 +18,18 @@ public class RankingTaulaModeloa extends AbstractTableModel {
 	}
 
 	@Override
+	public Class<? extends Object> getColumnClass(int c) {
+		return this.getValueAt(0, c).getClass();
+	}
+
+	@Override
 	public int getColumnCount() {
 		return izenak.length;
+	}
+
+	@Override
+	public String getColumnName(int i) {
+		return izenak[i];
 	}
 
 	@Override
@@ -30,16 +40,6 @@ public class RankingTaulaModeloa extends AbstractTableModel {
 	@Override
 	public Object getValueAt(int arg0, int arg1) {
 		return datuak.get(arg0)[arg1];
-	}
-
-	@Override
-	public Class<? extends Object> getColumnClass(int c) {
-		return this.getValueAt(0, c).getClass();
-	}
-
-	@Override
-	public String getColumnName(int i) {
-		return izenak[i];
 	}
 
 	@Override

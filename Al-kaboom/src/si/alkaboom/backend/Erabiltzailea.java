@@ -2,13 +2,8 @@ package si.alkaboom.backend;
 
 public class Erabiltzailea {
 	private String izena, zailtasuna;
-	private int errenkadak, zutabeak, minak; 
+	private int errenkadak, zutabeak, minak;
 
-	public Erabiltzailea(String izena, String zailtasuna) {
-		this.izena = izena;
-		this.zailtasuna = zailtasuna;
-	}
-	
 	public Erabiltzailea(String izena, int errenkadak, int zutabeak, int minak) {
 		this.izena = izena;
 		this.zailtasuna = "Custom";
@@ -17,24 +12,29 @@ public class Erabiltzailea {
 		this.minak = minak;
 	}
 
-	public String getIzena() {
-		return izena;
-	}
-
-	public String getZailtasuna() {
-		return zailtasuna;
+	public Erabiltzailea(String izena, String zailtasuna) {
+		this.izena = izena;
+		this.zailtasuna = zailtasuna;
 	}
 
 	public int getErrenkadak() {
 		return errenkadak;
 	}
 
-	public int getZutabeak() {
-		return zutabeak;
+	public String getIzena() {
+		return izena;
 	}
 
 	public int getMinak() {
 		return minak;
 	}
-	
+
+	public String getZailtasuna() {
+		return zailtasuna;
+	}
+
+	public int getZutabeak() {
+		return zutabeak;
+	}
+
 }

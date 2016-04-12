@@ -37,9 +37,10 @@ public class DBKS {
 		}
 	}
 
-	/**
-	 * Datu basea baliozkoa den frogatzen du
-	 */
+/**
+ * Datu basea baliozkoa den frogatzen du
+ * @return {@code true} ondo badago, {@code false bestela}
+ */
 	private boolean datubaseaKonprobatu() {
 		Statement st;
 		try {
@@ -90,11 +91,11 @@ public class DBKS {
 	}
 
 	/**
-	 * Konektatuta dagoen edo ez itxultzen du.
+	 * Konektatuta dagoen edo ez itzultzen du.
 	 * 
 	 * @return {@code true} itzultzen du konektatuta badago, {@code false}
 	 *         bestela.
-	 * @throws SQLException
+	 * @throws SQLException salbuespena badago
 	 */
 	public boolean konekatutaDago() throws SQLException {
 		return !konexioa.isClosed();

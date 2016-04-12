@@ -21,7 +21,7 @@
 - Datu basea diseinatu Aitor
 - JUnit testak diseinatu Iker
 
-# 2 Sprint: (ESTIMAZIOAK GEHITU)
+# 2 Sprint:
 
 - Jokoa pantailaratu: 4 ordu, 2 ordu
 - Jokoan algoritmoa egin: 2 ordu, ordu 1

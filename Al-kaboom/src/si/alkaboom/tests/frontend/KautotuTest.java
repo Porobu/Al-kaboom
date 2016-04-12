@@ -112,11 +112,11 @@ public class KautotuTest {
 		zailtasunaSartu.textBox("Zutabe Kopurua").enterText("abc");
 		Assertions.assertThat(zailtasunaSartu.textBox("Zutabe Kopurua").text()).contains("");
 		zailtasunaSartu.textBox("Zutabe Kopurua").enterText("9999");
-		Assertions.assertThat(zailtasunaSartu.textBox("Zutabe Kopurua").text()).contains("999");
+		Assertions.assertThat(zailtasunaSartu.textBox("Zutabe Kopurua").text()).contains("99");
 		zailtasunaSartu.textBox("Mina Kopurua").enterText("15");
 		Assertions.assertThat(zailtasunaSartu.textBox("Mina Kopurua").text()).contains("15");
 		zailtasunaSartu.button("OK").click();
-		Assertions.assertThat(ksPanela.comboBox("Aukerak").contents()).contains("Custom(10x999, 15)");
+		Assertions.assertThat(ksPanela.comboBox("Aukerak").contents()).contains("Custom(10x99, 15)");
 		ksPanela.button("Sartu").click();
 	}
 }

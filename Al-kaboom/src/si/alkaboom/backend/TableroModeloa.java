@@ -44,9 +44,9 @@ public class TableroModeloa {
 		for (int i = -1; i < 2; i++) {
 			for (int j = -1; j < 2; j++) {
 				if (errenkada + i >= tableroa.length || zutabea + j >= tableroa[0].length || errenkada + i < 0
-						|| zutabea + j < 0) {
-
-				} else {
+						|| zutabea + j < 0)
+					;
+				else {
 					if (tableroa[errenkada + i][zutabea + j] == null) {
 						tableroa[errenkada + i][zutabea + j] = new LaukiaZenb();
 					} else if (tableroa[errenkada + i][zutabea + j].getClass().getName().contains("Zenb")) {

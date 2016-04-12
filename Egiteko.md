@@ -23,11 +23,11 @@
 
 # 2 Sprint: (ESTIMAZIOAK GEHITU)
 
-- Jokoa pantailaratu 2 ordu, ordu 1
-- Jokoan algoritmoa egin, 2 ordu, ordu 1
-- Rankinga diseinatu 4 ordu, 3 ordu
-- Klase diagrama zuzendu edo hobetu ordu 1, ordu 1
-- Sekuentzia diagrama zuzendu edo hobetu 2 ordu, 2 ordu
+- Jokoa pantailaratu: 4 ordu, 2 ordu
+- Jokoan algoritmoa egin: 2 ordu, ordu 1
+- Rankinga diseinatu: 6 ordu, 4 ordu
+- Klase diagrama zuzendu edo hobetu: ordu 1, ordu 1
+- Sekuentzia diagrama zuzendu edo hobetu: ordu 1, 2 ordu
 
 3 Sprint :
 

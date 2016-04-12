@@ -29,7 +29,7 @@
 - Klase diagrama zuzendu edo hobetu: Goizane ordu 1, ordu 1
 - Sekuentzia diagrama zuzendu edo hobetu: Edu ordu 1, 2 ordu
 
-3 Sprint :
+# 3 Sprint :
 
 - Jokoa bukatu
 - Dokumentazio teknikoa idatzi

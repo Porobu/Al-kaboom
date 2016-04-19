@@ -8,9 +8,22 @@ import si.alkaboom.backend.laukia.LaukiaMina;
 import si.alkaboom.backend.laukia.LaukiaZenb;
 
 public class TableroModeloa {
+	private static TableroModeloa gureTableroModeloa;
+	public static TableroModeloa getTableroModeloa() {
+		return gureTableroModeloa != null ? gureTableroModeloa : (gureTableroModeloa = new TableroModeloa());
+	}
+
 	private ILaukia[][] tableroa;
 
-	public TableroModeloa(int errenkadak, int zutabeak, int minak, int klikErrenkada, int klikZutabea) {
+	private TableroModeloa() {
+
+	}
+
+	public ILaukia getPos(int errenkada, int zutabea) {
+		return tableroa[errenkada][zutabea];
+	}
+
+	public void hasieratu(int errenkadak, int zutabeak, int minak, int klikErrenkada, int klikZutabea) {
 		tableroa = new ILaukia[errenkadak][zutabeak];
 		tableroa[klikErrenkada][klikZutabea] = new LaukiaHutsa();
 		Random r = new Random();

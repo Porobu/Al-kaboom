@@ -16,4 +16,10 @@ public class LaukiaZenb implements ILaukia {
 		zenbakia++;
 	}
 
+	@Override
+	public boolean irekitaDago() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

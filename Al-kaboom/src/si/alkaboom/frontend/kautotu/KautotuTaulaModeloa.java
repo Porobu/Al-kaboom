@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
-import si.alkaboom.backend.Operazioak;
+import si.alkaboom.backend.DBOperazioak;
 
 public class KautotuTaulaModeloa extends AbstractTableModel {
 	private static final long serialVersionUID = -6370469542217113325L;
@@ -13,7 +13,7 @@ public class KautotuTaulaModeloa extends AbstractTableModel {
 
 	public KautotuTaulaModeloa(String izena) {
 		izenak = new String[] { "Erabiltzailearen izena", "Partida gordeta?", "Azkeneko data" };
-		Operazioak gureOP = new Operazioak();
+		DBOperazioak gureOP = new DBOperazioak();
 		datuak = gureOP.erabiltzaileakBistaratu(izena);
 	}
 

@@ -1,5 +1,7 @@
 package si.alkaboom.backend;
 
+import org.sqlite.core.DB;
+
 public class Erabiltzailea {
 	private String izena, zailtasuna;
 	private int errenkadak, zutabeak, minak;
@@ -35,6 +37,14 @@ public class Erabiltzailea {
 
 	public int getZutabeak() {
 		return zutabeak;
+	}
+
+	public void datubaseaEguneratu() {
+		DBOperazioak o = new DBOperazioak();
+		if (!o.erabiltzaileaDago(this.izena))
+			o.erabiltzaileaErregistratu(this.izena);
+		else
+			o.azkenDataEguneratu(this.izena);
 	}
 
 }

@@ -2,11 +2,13 @@ package si.alkaboom.backend;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import si.alkaboom.salbuespenak.AlKaboomSalbuespena;
 
-public class Operazioak {
+public class DBOperazioak {
 
 	public ArrayList<String[]> erabiltzaileakBistaratu(String izena) {
 		izena = "%" + izena + "%";
@@ -43,5 +45,31 @@ public class Operazioak {
 		} catch (SQLException e) {
 		}
 		return emaitza;
+	}
+
+	public boolean erabiltzaileaDago(String erabiltzailea) {
+		String agindua = "Select * from Jokalaria where Izena = '" + erabiltzailea + "'";
+		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu(agindua);
+		try {
+			return rs.next();
+		} catch (SQLException e) {
+			return false;
+		}
+	}
+
+	public void erabiltzaileaErregistratu(String erabiltzailea) {
+		SimpleDateFormat formatua = new SimpleDateFormat("dd-MM-yyyy");
+		Date data = new Date();
+		String agindua = "Insert into Jokalaria(Izena, PartidaGordeta, AzkenData, IrabaziKop, GalduKop) values ('"
+				+ erabiltzailea + "', 'Ez', '" + formatua.format(data) + "', 0, 0)";
+		DBKS.getDBKS().aginduaExekutatu(agindua);
+	}
+
+	public void azkenDataEguneratu(String erabiltzailea) {
+		SimpleDateFormat formatua = new SimpleDateFormat("dd-MM-yyyy");
+		Date data = new Date();
+		String agindua = "UPdate  Jokalaria Set Azkendata = '" + formatua.format(data) + "' where Izena = '"
+				+ erabiltzailea + "'";
+		DBKS.getDBKS().eguneraketaExekutatu(agindua);
 	}
 }

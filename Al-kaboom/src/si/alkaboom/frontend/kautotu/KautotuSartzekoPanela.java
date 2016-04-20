@@ -38,6 +38,7 @@ public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 		this.zailtasuna.setLabelFor(aukerak);
 		this.sartu = new JButton("Sartu");
 		this.sartu.setName("Sartu");
+		this.sartu.setEnabled(false);
 		this.sartu.addActionListener(gureAE -> this.datuakGorde());
 		this.aukerazkoa = new JButton("Zailtasuna Aukeratu...");
 		this.aukerazkoa.setEnabled(false);
@@ -68,6 +69,7 @@ public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 		else
 			ak.setErabiltzailea(
 					new Erabiltzailea(this.erabiltzaileaField.getText(), (String) this.aukerak.getSelectedItem()));
+		ak.getErabiltzailea().datubaseaEguneratu();
 		ak.getUI().alKaboomHasieratu();
 	}
 
@@ -96,6 +98,14 @@ public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 		if (arg0.getSource() == erabiltzaileaField)
 			AlKaboom.getAlKaboom().getUI().getKautotu().getKautotuPanela()
 					.taulaEguneratu(this.erabiltzaileaField.getText());
+		this.sartuEgoeraAldatu();
+	}
+
+	public void sartuEgoeraAldatu() {
+		if (erabiltzaileaField.getText().trim().equals(""))
+			this.sartu.setEnabled(false);
+		else
+			this.sartu.setEnabled(true);
 	}
 
 	@Override

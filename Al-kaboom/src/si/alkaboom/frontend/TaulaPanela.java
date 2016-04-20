@@ -45,8 +45,8 @@ public class TaulaPanela extends JPanel implements ListSelectionListener {
 		if (gureModeloa.getClass().getSimpleName().contains("Kautotu")) {
 			String izena = (String) gureModeloa.getValueAt(gureTaula.getSelectedRow(), 0);
 			AlKaboom.getAlKaboom().getUI().getKautotu().getKautotuPanela().getKSPanela().izenaAldatu(izena);
+			AlKaboom.getAlKaboom().getUI().getKautotu().getKautotuPanela().getKSPanela().sartuEgoeraAldatu();
 		}
-
 	}
 
 }

@@ -17,7 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import si.alkaboom.backend.DBKS;
-import si.alkaboom.backend.Operazioak;
+import si.alkaboom.backend.DBOperazioak;
 
 public class OperazioakTest {
 	private DBKS singletonDBKS;
@@ -45,7 +45,7 @@ public class OperazioakTest {
 	public void testErabiltzaileakBistaratu() {
 		System.out.println("\nTest Erabiltzaileak Bistaratu");
 		System.out.println("izena like t");
-		Operazioak op = new Operazioak();
+		DBOperazioak op = new DBOperazioak();
 		ArrayList<String[]> array = op.erabiltzaileakBistaratu("\nizena like %t%");
 		Assertions.assertThat(array).isNotNull();
 		for (Iterator<String[]> iterator = array.iterator(); iterator.hasNext();) {
@@ -70,8 +70,8 @@ public class OperazioakTest {
 	@Test
 	public void testRSKopiatu() throws NoSuchMethodException, SecurityException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException, SQLException {
-		Operazioak o = new Operazioak();
-		Class<Operazioak> c = Operazioak.class;
+		DBOperazioak o = new DBOperazioak();
+		Class<DBOperazioak> c = DBOperazioak.class;
 		Method rsKop = c.getDeclaredMethod("rsKopiatu", ResultSet.class, int.class);
 		rsKop.setAccessible(true);
 		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu("Select * from Jokalaria");

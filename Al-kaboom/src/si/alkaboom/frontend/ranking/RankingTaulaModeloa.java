@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
-import si.alkaboom.backend.Operazioak;
+import si.alkaboom.backend.DBOperazioak;
 
 public class RankingTaulaModeloa extends AbstractTableModel {
 
@@ -14,7 +14,7 @@ public class RankingTaulaModeloa extends AbstractTableModel {
 
 	public RankingTaulaModeloa(String zailtasuna) {
 		izenak = new String[] { "Erabiltzailearen izena", "Puntuak", "Denbora" };
-		datuak = new Operazioak().erabiltzaileenPuntuazioakLortu(zailtasuna);
+		datuak = new DBOperazioak().erabiltzaileenPuntuazioakLortu(zailtasuna);
 	}
 
 	@Override

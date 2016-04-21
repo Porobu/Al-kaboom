@@ -1,7 +1,5 @@
 package si.alkaboom.backend;
 
-import org.sqlite.core.DB;
-
 public class Erabiltzailea {
 	private String izena, zailtasuna;
 	private int errenkadak, zutabeak, minak;

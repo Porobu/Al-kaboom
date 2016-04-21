@@ -45,8 +45,7 @@ public class DBKS {
 		try {
 			st = konexioa.createStatement();
 			st.executeQuery("SELECT Id, Izena,PartidaGordeta, AzkenData, IrabaziKop, GalduKop from Jokalaria");
-			st.executeQuery(
-					"Select ErabiltzaileID, Minak, Zenbakiak, Hutsak, Egindakoak, MarkatutakoakBanderita, MarkatutakoaGaldera, ErrenkadaKop, ZutabeKop,MinaKop from Partida");
+			st.executeQuery("Select ErabiltzaileID, Tableroa, ErrenkadaKop, ZutabeKop from Partida");
 			st.executeQuery("Select Id, Puntuak, PartidaKopurua, Denbora, Zailtasuna from Puntuazioa");
 			st.close();
 		} catch (SQLException e) {

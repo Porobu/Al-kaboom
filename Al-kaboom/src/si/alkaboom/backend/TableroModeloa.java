@@ -103,4 +103,8 @@ public class TableroModeloa {
 		}
 	}
 
+	public boolean partidaGaldutaDago() {
+		return this.partidaGalduta;
+	}
+
 }

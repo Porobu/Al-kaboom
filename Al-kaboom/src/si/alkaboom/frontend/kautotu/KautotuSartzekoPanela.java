@@ -13,7 +13,9 @@ import javax.swing.SwingConstants;
 
 import si.alkaboom.backend.AlKaboom;
 import si.alkaboom.backend.Erabiltzailea;
+import si.alkaboom.backend.TableroModeloa;
 import si.alkaboom.externals.SpringUtilities;
+import si.alkaboom.frontend.PartidaKargatuJOP;
 
 public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 	private static final long serialVersionUID = 3676006022124213986L;
@@ -70,6 +72,10 @@ public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 			ak.setErabiltzailea(
 					new Erabiltzailea(this.erabiltzaileaField.getText(), (String) this.aukerak.getSelectedItem()));
 		ak.getErabiltzailea().datubaseaEguneratu();
+		PartidaKargatuJOP pkjop = new PartidaKargatuJOP();
+		if (ak.getErabiltzailea().partidaDauka())
+			if (pkjop.partidaKargatuGaldetu())
+				TableroModeloa.getTableroModeloa().partidaKargatu();
 		ak.getUI().alKaboomHasieratu();
 	}
 
@@ -101,13 +107,6 @@ public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 		this.sartuEgoeraAldatu();
 	}
 
-	public void sartuEgoeraAldatu() {
-		if (erabiltzaileaField.getText().trim().equals(""))
-			this.sartu.setEnabled(false);
-		else
-			this.sartu.setEnabled(true);
-	}
-
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 
@@ -120,5 +119,12 @@ public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 		aukerakArray[3] = "Custom(" + balioakCustom + ")";
 		this.aukerakEraiki(3);
 		this.guztiaGehitu();
+	}
+
+	public void sartuEgoeraAldatu() {
+		if (erabiltzaileaField.getText().trim().equals(""))
+			this.sartu.setEnabled(false);
+		else
+			this.sartu.setEnabled(true);
 	}
 }

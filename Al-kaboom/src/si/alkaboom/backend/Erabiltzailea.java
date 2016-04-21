@@ -17,6 +17,14 @@ public class Erabiltzailea {
 		this.zailtasuna = zailtasuna;
 	}
 
+	public void datubaseaEguneratu() {
+		DBOperazioak o = new DBOperazioak();
+		if (!o.erabiltzaileaDago(this.izena))
+			o.erabiltzaileaErregistratu(this.izena);
+		else
+			o.azkenDataEguneratu(this.izena);
+	}
+
 	public int getErrenkadak() {
 		return errenkadak;
 	}
@@ -37,12 +45,9 @@ public class Erabiltzailea {
 		return zutabeak;
 	}
 
-	public void datubaseaEguneratu() {
+	public boolean partidaDauka() {
 		DBOperazioak o = new DBOperazioak();
-		if (!o.erabiltzaileaDago(this.izena))
-			o.erabiltzaileaErregistratu(this.izena);
-		else
-			o.azkenDataEguneratu(this.izena);
+		return o.partidaGordetaDago(izena);
 	}
 
 }

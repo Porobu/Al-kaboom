@@ -19,7 +19,7 @@ import org.junit.Test;
 import si.alkaboom.backend.DBKS;
 import si.alkaboom.backend.DBOperazioak;
 
-public class OperazioakTest {
+public class DBOperazioakTest {
 	private DBKS singletonDBKS;
 	private Method deskonektatuMetodoa;
 

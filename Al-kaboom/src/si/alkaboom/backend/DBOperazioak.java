@@ -10,6 +10,32 @@ import si.alkaboom.salbuespenak.AlKaboomSalbuespena;
 
 public class DBOperazioak {
 
+	public void azkenDataEguneratu(String erabiltzailea) {
+		SimpleDateFormat formatua = new SimpleDateFormat("dd-MM-yyyy");
+		Date data = new Date();
+		String agindua = "UPdate  Jokalaria Set Azkendata = '" + formatua.format(data) + "' where Izena = '"
+				+ erabiltzailea + "'";
+		DBKS.getDBKS().eguneraketaExekutatu(agindua);
+	}
+
+	public boolean erabiltzaileaDago(String erabiltzailea) {
+		String agindua = "Select * from Jokalaria where Izena = '" + erabiltzailea + "'";
+		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu(agindua);
+		try {
+			return rs.next();
+		} catch (SQLException e) {
+			return false;
+		}
+	}
+
+	public void erabiltzaileaErregistratu(String erabiltzailea) {
+		SimpleDateFormat formatua = new SimpleDateFormat("dd-MM-yyyy");
+		Date data = new Date();
+		String agindua = "Insert into Jokalaria(Izena, PartidaGordeta, AzkenData, IrabaziKop, GalduKop) values ('"
+				+ erabiltzailea + "', 'Ez', '" + formatua.format(data) + "', 0, 0)";
+		DBKS.getDBKS().aginduaExekutatu(agindua);
+	}
+
 	public ArrayList<String[]> erabiltzaileakBistaratu(String izena) {
 		izena = "%" + izena + "%";
 		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu(
@@ -32,6 +58,23 @@ public class DBOperazioak {
 		}
 	}
 
+	public void partidaGorde(String partida, int errenkadak, int zutabeak) {
+
+	}
+
+	public boolean partidaGordetaDago(String erabiltzailea) {
+		String agindua = "Select PartidaGordeta from Jokalaria where Izena = '" + erabiltzailea + "'";
+		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu(agindua);
+		String partida = "";
+		try {
+			rs.next();
+			partida = rs.getString(1);
+		} catch (SQLException e) {
+			return false;
+		}
+		return (partida.trim().equalsIgnoreCase("Bai") ? true : false);
+	}
+
 	private ArrayList<String[]> rsKopiatu(ResultSet rs, int kop) {
 		ArrayList<String[]> emaitza = new ArrayList<>();
 		try {
@@ -45,31 +88,5 @@ public class DBOperazioak {
 		} catch (SQLException e) {
 		}
 		return emaitza;
-	}
-
-	public boolean erabiltzaileaDago(String erabiltzailea) {
-		String agindua = "Select * from Jokalaria where Izena = '" + erabiltzailea + "'";
-		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu(agindua);
-		try {
-			return rs.next();
-		} catch (SQLException e) {
-			return false;
-		}
-	}
-
-	public void erabiltzaileaErregistratu(String erabiltzailea) {
-		SimpleDateFormat formatua = new SimpleDateFormat("dd-MM-yyyy");
-		Date data = new Date();
-		String agindua = "Insert into Jokalaria(Izena, PartidaGordeta, AzkenData, IrabaziKop, GalduKop) values ('"
-				+ erabiltzailea + "', 'Ez', '" + formatua.format(data) + "', 0, 0)";
-		DBKS.getDBKS().aginduaExekutatu(agindua);
-	}
-
-	public void azkenDataEguneratu(String erabiltzailea) {
-		SimpleDateFormat formatua = new SimpleDateFormat("dd-MM-yyyy");
-		Date data = new Date();
-		String agindua = "UPdate  Jokalaria Set Azkendata = '" + formatua.format(data) + "' where Izena = '"
-				+ erabiltzailea + "'";
-		DBKS.getDBKS().eguneraketaExekutatu(agindua);
 	}
 }

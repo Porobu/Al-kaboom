@@ -9,14 +9,17 @@ import si.alkaboom.backend.laukia.LaukiaZenb;
 
 public class TableroModeloa {
 	private static TableroModeloa gureTableroModeloa;
+
 	public static TableroModeloa getTableroModeloa() {
 		return gureTableroModeloa != null ? gureTableroModeloa : (gureTableroModeloa = new TableroModeloa());
 	}
 
+	private boolean partidaGalduta;
+
 	private ILaukia[][] tableroa;
 
 	private TableroModeloa() {
-
+		this.partidaGalduta = false;
 	}
 
 	public ILaukia getPos(int errenkada, int zutabea) {
@@ -51,6 +54,35 @@ public class TableroModeloa {
 				}
 			}
 		}
+	}
+
+	public void partidaGaldu() {
+		this.partidaGalduta = true;
+	}
+
+	public void partidaGorde() {
+		StringBuilder gordetzeko = new StringBuilder("");
+		int errenkadak = tableroa.length;
+		int zutabeak = tableroa[0].length;
+		for (int i = 0; i < tableroa.length; i++) {
+			for (int j = 0; j < tableroa[0].length; j++) {
+				if (tableroa[i][j].getClass().getSimpleName().contains("Zenb")) {
+					LaukiaZenb l = (LaukiaZenb) tableroa[i][j];
+					gordetzeko.append(l.getClass().getSimpleName());
+					gordetzeko.append(l.getZenbakia());
+
+				} else
+					gordetzeko.append(tableroa[i][j].getClass().getSimpleName());
+				gordetzeko.append(tableroa[i][j].daukanMarka());
+				gordetzeko.append("-");
+			}
+		}
+		DBOperazioak dbo = new DBOperazioak();
+		dbo.partidaGorde(gordetzeko.toString(), errenkadak, zutabeak);
+	}
+
+	public void partidaKargatu() {
+		// TODO
 	}
 
 	private void zenbakiagehitu(int errenkada, int zutabea) {

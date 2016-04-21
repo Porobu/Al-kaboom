@@ -32,11 +32,12 @@ public class TableroModeloaTest {
 	@Test
 	public void testTableroModeloa()
 			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
-		TableroModeloa gureTableroa = null ;//= new TableroModeloa(10, 10, 10, 3, 3);
+		TableroModeloa gureTableroa = null;// = new TableroModeloa(10, 10, 10,
+											// 3, 3);
 		this.bistaratu(gureTableroa);
 		System.out.println();
 		System.out.println();
-		//gureTableroa = new TableroModeloa(12, 10, 70, 0, 0);
+		// gureTableroa = new TableroModeloa(12, 10, 70, 0, 0);
 		this.bistaratu(gureTableroa);
 	}
 

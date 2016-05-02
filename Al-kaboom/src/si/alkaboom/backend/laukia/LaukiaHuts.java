@@ -2,14 +2,11 @@ package si.alkaboom.backend.laukia;
 
 import si.alkaboom.backend.AlKaboomConstants;
 
-public class LaukiaZenb implements ILaukia {
-
-	private int zenbakia;
+public class LaukiaHuts implements ILaukia {
 	private String marka;
 	private boolean irekita;
 
-	public LaukiaZenb() {
-		zenbakia = 1;
+	public LaukiaHuts() {
 		this.marka = AlKaboomConstants.MARKARIK_EZ;
 		this.irekita = false;
 	}
@@ -17,10 +14,6 @@ public class LaukiaZenb implements ILaukia {
 	@Override
 	public String daukanMarka() {
 		return irekita ? AlKaboomConstants.MARKARIK_EZ : this.marka;
-	}
-
-	public int getZenbakia() {
-		return zenbakia;
 	}
 
 	@Override
@@ -32,18 +25,19 @@ public class LaukiaZenb implements ILaukia {
 		irekita = true;
 	}
 
-	public void zenbPlus() {
-		zenbakia++;
+	@Override
+	public int getZenbakia() {
+		return 0;
 	}
 
 	@Override
 	public void setZenbakia(int berria) {
-		this.zenbakia = berria;
+		
 	}
 
 	@Override
 	public void markaIpini(String marka) {
-		this.marka = marka;
+		this.marka = marka;	
 	}
 
 }

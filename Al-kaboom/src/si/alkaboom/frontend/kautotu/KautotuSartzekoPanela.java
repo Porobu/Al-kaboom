@@ -15,7 +15,7 @@ import si.alkaboom.backend.AlKaboom;
 import si.alkaboom.backend.Erabiltzailea;
 import si.alkaboom.backend.TableroModeloa;
 import si.alkaboom.externals.SpringUtilities;
-import si.alkaboom.frontend.PartidaKargatuJOP;
+import si.alkaboom.frontend.PartidaMezuGrafikoak;
 
 public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 	private static final long serialVersionUID = 3676006022124213986L;
@@ -72,9 +72,9 @@ public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 			ak.setErabiltzailea(
 					new Erabiltzailea(this.erabiltzaileaField.getText(), (String) this.aukerak.getSelectedItem()));
 		ak.getErabiltzailea().datubaseaEguneratu();
-		PartidaKargatuJOP pkjop = new PartidaKargatuJOP();
+		PartidaMezuGrafikoak pmg = new PartidaMezuGrafikoak();
 		if (ak.getErabiltzailea().partidaDauka())
-			if (pkjop.partidaKargatuGaldetu())
+			if (pmg.partidaKargatuGaldetu())
 				TableroModeloa.getTableroModeloa().partidaKargatu();
 		ak.getUI().alKaboomHasieratu();
 	}

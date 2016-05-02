@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 import si.alkaboom.salbuespenak.AlKaboomSalbuespena;
 
-public class DBKS {
+public final class DBKS {
 	private static DBKS gureDBKS;
 
 	public static DBKS getDBKS() {
@@ -18,7 +18,7 @@ public class DBKS {
 
 	private Connection konexioa;
 
-	protected DBKS() {
+	private DBKS() {
 
 	}
 
@@ -44,7 +44,7 @@ public class DBKS {
 		Statement st;
 		try {
 			st = konexioa.createStatement();
-			st.executeQuery("SELECT Id, Izena,PartidaGordeta, AzkenData, IrabaziKop, GalduKop from Jokalaria");
+			st.executeQuery("SELECT Id, Izena, AzkenData, IrabaziKop, GalduKop from Jokalaria");
 			st.executeQuery("Select ErabiltzaileID, Tableroa, ErrenkadaKop, ZutabeKop from Partida");
 			st.executeQuery("Select Id, Puntuak, PartidaKopurua, Denbora, Zailtasuna from Puntuazioa");
 			st.close();
@@ -57,7 +57,7 @@ public class DBKS {
 	/**
 	 * Konexioa ixten du datu basearekin
 	 */
-	protected void deskonektatu() {
+	public void deskonektatu() {
 		try {
 			this.konexioa.close();
 		} catch (SQLException e) {

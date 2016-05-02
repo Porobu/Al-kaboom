@@ -15,6 +15,10 @@ import si.alkaboom.frontend.tableroa.PartidaMenuBarra;
 import si.alkaboom.frontend.tableroa.TableroPanela;
 
 public class UI extends JFrame {
+	public TableroPanela getTp() {
+		return tp;
+	}
+
 	private static final long serialVersionUID = 6902848848036097903L;
 	private Kautotu kautotu;
 	private PartidaMenuBarra menuBarraAK;

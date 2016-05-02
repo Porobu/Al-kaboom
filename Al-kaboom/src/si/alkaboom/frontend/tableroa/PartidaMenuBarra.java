@@ -5,6 +5,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import si.alkaboom.backend.AlKaboom;
+import si.alkaboom.frontend.PartidaMezuGrafikoak;
 
 public class PartidaMenuBarra extends JMenuBar {
 	private static final long serialVersionUID = 6278678590130942938L;
@@ -12,8 +13,10 @@ public class PartidaMenuBarra extends JMenuBar {
 	private JMenu fitxategia, partida, gehiago, ranking;
 	private JMenuItem partidaBerria, partidaKargatu, partidaGorde, itxi, pausa, partidaBertanBehera, laguntza,
 			alKaboomBuruz, alKaboomWeb, rankingBistaratu;
+	private PartidaMezuGrafikoak pmg;
 
 	public PartidaMenuBarra() {
+		pmg = new PartidaMezuGrafikoak();
 		this.fitxategiMenuaEraiki();
 		this.partidaMenuaEraiki();
 		this.rankingMenuaEraiki();
@@ -55,7 +58,9 @@ public class PartidaMenuBarra extends JMenuBar {
 	private void partidaMenuaEraiki() {
 		partida = new JMenu("Partida");
 		partidaKargatu = new JMenuItem("Partida bat kargatu");
+		partidaKargatu.addActionListener(gureAE -> pmg.partidaKargatu());
 		partidaGorde = new JMenuItem("Partida gorde");
+		partidaGorde.addActionListener(gureAE -> pmg.patidaGorde());
 		pausa = new JMenuItem("Pausa");
 		partidaBertanBehera = new JMenuItem("Partida bertan ehera utzi");
 		partida.add(partidaKargatu);

@@ -23,9 +23,8 @@ public class TableroPanela extends JPanel implements MouseListener {
 		case "zaila":
 			return AlKaboomConstants.ZAILA;
 		default:
-			break;
+			return new int[] {};
 		}
-		return new int[] {};
 	}
 
 	private boolean hasiera;
@@ -66,21 +65,49 @@ public class TableroPanela extends JPanel implements MouseListener {
 		for (int i = 0; i < laukiak.length; i++) {
 			for (int j = 0; j < laukiak[0].length; j++) {
 				ILaukia oraingoa = tm.getPos(i, j);
-				String klasea = oraingoa.getClass().getSimpleName();
-				switch (klasea.toLowerCase()) {
-				case "laukiahutsa":
-					laukiak[i][j].setText("H");
-					break;
-				case "laukiamina":
-					laukiak[i][j].setText("M");
-					break;
-				case "laukiazenb":
-					LaukiaZenb l = (LaukiaZenb) oraingoa;
-					laukiak[i][j].setText(String.valueOf(l.getZenbakia()));
-					break;
-				default:
-					break;
-				}
+				this.motaIpini(i, j, oraingoa);
+				this.markaErabili(i, j, oraingoa);
+			}
+		}
+	}
+
+	private void motaIpini(int i, int j, ILaukia oraingoa) {
+		String klasea = oraingoa.getClass().getSimpleName();
+		switch (klasea.toLowerCase()) {
+		case "laukiahuts":
+			laukiak[i][j].setText("H");
+			break;
+		case "laukiamina":
+			laukiak[i][j].setText("M");
+			break;
+		case "laukiazenb":
+			LaukiaZenb l = (LaukiaZenb) oraingoa;
+			laukiak[i][j].setText(String.valueOf(l.getZenbakia()));
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void markaErabili(int i, int j, ILaukia oraingoa) {
+		String marka = oraingoa.daukanMarka();
+		switch (marka) {
+		case AlKaboomConstants.MARKARIK_EZ:
+			break;
+		case AlKaboomConstants.BANDERITA:
+			laukiak[i][j].setText(laukiak[i][j].getText() + " B");
+			break;
+		case AlKaboomConstants.GALDERA:
+			laukiak[i][j].setText(laukiak[i][j].getText() + " ?");
+			break;
+		}
+	}
+
+	public void tableroaEguneratu() {
+		for (int i = 0; i < laukiak.length; i++) {
+			for (int j = 0; j < laukiak[0].length; j++) {
+				this.motaIpini(i, j, TableroModeloa.getTableroModeloa().getPos(i, j));
+				this.markaErabili(i, j, TableroModeloa.getTableroModeloa().getPos(i, j));
 			}
 		}
 	}
@@ -97,7 +124,7 @@ public class TableroPanela extends JPanel implements MouseListener {
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
+	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 
 	}
@@ -119,4 +146,5 @@ public class TableroPanela extends JPanel implements MouseListener {
 		// TODO Auto-generated method stub
 
 	}
+
 }

@@ -3,12 +3,13 @@ package si.alkaboom.backend;
 import java.util.Random;
 
 import si.alkaboom.backend.laukia.ILaukia;
-import si.alkaboom.backend.laukia.LaukiaHutsa;
+import si.alkaboom.backend.laukia.LaukiaHuts;
 import si.alkaboom.backend.laukia.LaukiaMina;
 import si.alkaboom.backend.laukia.LaukiaZenb;
 
 public class TableroModeloa {
 	private static TableroModeloa gureTableroModeloa;
+	private DBOperazioak dbo;
 
 	public static TableroModeloa getTableroModeloa() {
 		return gureTableroModeloa != null ? gureTableroModeloa : (gureTableroModeloa = new TableroModeloa());
@@ -20,6 +21,7 @@ public class TableroModeloa {
 
 	private TableroModeloa() {
 		this.partidaGalduta = false;
+		this.dbo = new DBOperazioak();
 	}
 
 	public ILaukia getPos(int errenkada, int zutabea) {
@@ -28,7 +30,7 @@ public class TableroModeloa {
 
 	public void hasieratu(int errenkadak, int zutabeak, int minak, int klikErrenkada, int klikZutabea) {
 		tableroa = new ILaukia[errenkadak][zutabeak];
-		tableroa[klikErrenkada][klikZutabea] = new LaukiaHutsa();
+		tableroa[klikErrenkada][klikZutabea] = new LaukiaHuts();
 		Random r = new Random();
 		for (int i = 0; i < minak; i++) {
 			int a = r.nextInt(errenkadak), b = r.nextInt(zutabeak);
@@ -50,7 +52,7 @@ public class TableroModeloa {
 		for (int i = 0; i < errenkadak; i++) {
 			for (int j = 0; j < zutabeak; j++) {
 				if (tableroa[i][j] == null) {
-					tableroa[i][j] = new LaukiaHutsa();
+					tableroa[i][j] = new LaukiaHuts();
 				}
 			}
 		}
@@ -66,23 +68,30 @@ public class TableroModeloa {
 		int zutabeak = tableroa[0].length;
 		for (int i = 0; i < tableroa.length; i++) {
 			for (int j = 0; j < tableroa[0].length; j++) {
-				if (tableroa[i][j].getClass().getSimpleName().contains("Zenb")) {
-					LaukiaZenb l = (LaukiaZenb) tableroa[i][j];
-					gordetzeko.append(l.getClass().getSimpleName());
-					gordetzeko.append(l.getZenbakia());
-
-				} else
-					gordetzeko.append(tableroa[i][j].getClass().getSimpleName());
-				gordetzeko.append(tableroa[i][j].daukanMarka());
+				ILaukia l = tableroa[i][j];
+				gordetzeko.append(l.getClass().getSimpleName());
+				gordetzeko.append(l.getZenbakia());
+				gordetzeko.append(l.daukanMarka());
 				gordetzeko.append("-");
 			}
 		}
-		DBOperazioak dbo = new DBOperazioak();
 		dbo.partidaGorde(gordetzeko.toString(), errenkadak, zutabeak);
 	}
 
 	public void partidaKargatu() {
-		// TODO
+		String[] datuak = dbo.partidaKargatu();
+		String partida = datuak[0];
+		int errenkadak = Integer.parseInt(datuak[1]);
+		int zutabeak = Integer.parseInt(datuak[2]);
+		String[] partidaLista = partida.split("-");
+		tableroa = new ILaukia[errenkadak][zutabeak];
+		for (int i = 0; i < tableroa.length; i++) {
+			for (int j = 0; j < tableroa[0].length; j++) {
+				String oraingoa = partidaLista[i + i * j];
+				tableroa[i][j] = LaukiFaktoria.getLaukiFaktoria().laukiaEgindaLortu(oraingoa.substring(0, 10),
+						Integer.parseInt(oraingoa.substring(10, 11)), oraingoa.substring(11, 12));
+			}
+		}
 	}
 
 	private void zenbakiagehitu(int errenkada, int zutabea) {

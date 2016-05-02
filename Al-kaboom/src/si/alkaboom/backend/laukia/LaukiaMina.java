@@ -28,4 +28,20 @@ public class LaukiaMina implements ILaukia {
 		TableroModeloa.getTableroModeloa().partidaGaldu();
 	}
 
+	@Override
+	public int getZenbakia() {
+		return 0;
+	}
+
+	@Override
+	public void setZenbakia(int berria) {
+		
+	}
+
+	@Override
+	public void markaIpini(String marka) {
+		this.marka = marka;
+		
+	}
+
 }

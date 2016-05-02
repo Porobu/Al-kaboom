@@ -9,25 +9,16 @@ import si.alkaboom.backend.AlKaboom;
 import si.alkaboom.backend.AlKaboomConstants;
 import si.alkaboom.backend.DBKS;
 
-public final class DBKSMezuGrafikoak extends DBKS {
-	private static DBKSMezuGrafikoak gureMezuGrafikoak;
-
-	public static DBKSMezuGrafikoak getDBKSPantailaratu() {
-		return gureMezuGrafikoak == null ? gureMezuGrafikoak = new DBKSMezuGrafikoak() : gureMezuGrafikoak;
-	}
-
-	private DBKSMezuGrafikoak() {
-
-	}
+public final class DBKSMezuGrafikoak{
 
 	/**
 	 * Konexioa ixten du datu basearekin
 	 */
-	@Override
+	
 	public void deskonektatu() {
-		super.deskonektatu();
+		DBKS.getDBKS().deskonektatu();
 		try {
-			if (!super.konekatutaDago()) {
+			if (!DBKS.getDBKS().konekatutaDago()) {
 				JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(), "Datu basetik deskonektatu zara",
 						AlKaboomConstants.IZENBURUA, JOptionPane.WARNING_MESSAGE);
 			}

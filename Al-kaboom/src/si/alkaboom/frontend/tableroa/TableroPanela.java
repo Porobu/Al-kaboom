@@ -71,6 +71,20 @@ public class TableroPanela extends JPanel implements MouseListener {
 		}
 	}
 
+	private void markaErabili(int i, int j, ILaukia oraingoa) {
+		String marka = oraingoa.daukanMarka();
+		switch (marka) {
+		case AlKaboomConstants.MARKARIK_EZ:
+			break;
+		case AlKaboomConstants.BANDERITA:
+			laukiak[i][j].setText(laukiak[i][j].getText() + " B");
+			break;
+		case AlKaboomConstants.GALDERA:
+			laukiak[i][j].setText(laukiak[i][j].getText() + " ?");
+			break;
+		}
+	}
+
 	private void motaIpini(int i, int j, ILaukia oraingoa) {
 		String klasea = oraingoa.getClass().getSimpleName();
 		switch (klasea.toLowerCase()) {
@@ -89,37 +103,19 @@ public class TableroPanela extends JPanel implements MouseListener {
 		}
 	}
 
-	private void markaErabili(int i, int j, ILaukia oraingoa) {
-		String marka = oraingoa.daukanMarka();
-		switch (marka) {
-		case AlKaboomConstants.MARKARIK_EZ:
-			break;
-		case AlKaboomConstants.BANDERITA:
-			laukiak[i][j].setText(laukiak[i][j].getText() + " B");
-			break;
-		case AlKaboomConstants.GALDERA:
-			laukiak[i][j].setText(laukiak[i][j].getText() + " ?");
-			break;
-		}
-	}
-
-	public void tableroaEguneratu() {
-		for (int i = 0; i < laukiak.length; i++) {
-			for (int j = 0; j < laukiak[0].length; j++) {
-				this.motaIpini(i, j, TableroModeloa.getTableroModeloa().getPos(i, j));
-				this.markaErabili(i, j, TableroModeloa.getTableroModeloa().getPos(i, j));
-			}
-		}
-	}
-
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		AKLaukia l = (AKLaukia) e.getSource();
+		String[] pos = l.getName().split(",");
+		int errenkada = Integer.parseInt(pos[0]);
+		int zutabea = Integer.parseInt(pos[1]);
 		if (hasiera) {
 			hasiera = false;
 			this.laukiakIpini(l.getName());
-		} else
-			;
+		} else {
+			TableroModeloa.getTableroModeloa().laukiakIreki(errenkada, zutabea);
+			this.tableroaEguneratu();
+		}
 
 	}
 
@@ -145,6 +141,17 @@ public class TableroPanela extends JPanel implements MouseListener {
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void tableroaEguneratu() {
+		for (int i = 0; i < laukiak.length; i++) {
+			for (int j = 0; j < laukiak[0].length; j++) {
+				if (TableroModeloa.getTableroModeloa().getPos(i, j).irekitaDago())
+					laukiak[i][j].setEnabled(false);
+				this.motaIpini(i, j, TableroModeloa.getTableroModeloa().getPos(i, j));
+				this.markaErabili(i, j, TableroModeloa.getTableroModeloa().getPos(i, j));
+			}
+		}
 	}
 
 }

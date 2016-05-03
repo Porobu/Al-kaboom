@@ -3,13 +3,13 @@ package si.alkaboom.backend.laukia;
 public interface ILaukia {
 	public String daukanMarka();
 
-	public void laukiaIreki();
+	public int getZenbakia();
 
 	public boolean irekitaDago();
 
-	public int getZenbakia();
-
-	public void setZenbakia(int berria);
+	public void laukiaIreki();
 
 	public void markaIpini(String marka);
+
+	public void setZenbakia(int berria);
 }

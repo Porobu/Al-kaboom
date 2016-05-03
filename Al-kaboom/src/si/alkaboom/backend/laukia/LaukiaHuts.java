@@ -17,27 +17,28 @@ public class LaukiaHuts implements ILaukia {
 	}
 
 	@Override
-	public boolean irekitaDago() {
-		return irekita;
-	}
-
-	public void laukiaIreki() {
-		irekita = true;
-	}
-
-	@Override
 	public int getZenbakia() {
 		return 0;
 	}
 
 	@Override
-	public void setZenbakia(int berria) {
-		
+	public boolean irekitaDago() {
+		return irekita;
+	}
+
+	@Override
+	public void laukiaIreki() {
+		irekita = true;
 	}
 
 	@Override
 	public void markaIpini(String marka) {
-		this.marka = marka;	
+		this.marka = marka;
+	}
+
+	@Override
+	public void setZenbakia(int berria) {
+
 	}
 
 }

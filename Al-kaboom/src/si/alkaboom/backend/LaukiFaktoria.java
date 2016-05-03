@@ -8,12 +8,19 @@ import si.alkaboom.backend.laukia.LaukiaZenb;
 public final class LaukiFaktoria {
 	private static LaukiFaktoria gureLaukiFaktoria;
 
+	public static LaukiFaktoria getLaukiFaktoria() {
+		return gureLaukiFaktoria != null ? gureLaukiFaktoria : (gureLaukiFaktoria = new LaukiFaktoria());
+	}
+
 	private LaukiFaktoria() {
 
 	}
 
-	public static LaukiFaktoria getLaukiFaktoria() {
-		return gureLaukiFaktoria != null ? gureLaukiFaktoria : (gureLaukiFaktoria = new LaukiFaktoria());
+	public ILaukia laukiaEgindaLortu(String izena, int zenb, String marka) {
+		ILaukia l = this.laukiaLortu(izena);
+		l.setZenbakia(zenb);
+		l.markaIpini(marka);
+		return l;
 	}
 
 	private ILaukia laukiaLortu(String izena) {
@@ -26,13 +33,6 @@ public final class LaukiFaktoria {
 			return new LaukiaZenb();
 		}
 
-	}
-
-	public ILaukia laukiaEgindaLortu(String izena, int zenb, String marka) {
-		ILaukia l = this.laukiaLortu(izena);
-		l.setZenbakia(zenb);
-		l.markaIpini(marka);
-		return l;
 	}
 
 }

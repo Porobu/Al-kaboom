@@ -9,12 +9,12 @@ import si.alkaboom.backend.AlKaboom;
 import si.alkaboom.backend.AlKaboomConstants;
 import si.alkaboom.backend.DBKS;
 
-public final class DBKSMezuGrafikoak{
+public final class DBKSMezuGrafikoak {
 
 	/**
 	 * Konexioa ixten du datu basearekin
 	 */
-	
+
 	public void deskonektatu() {
 		DBKS.getDBKS().deskonektatu();
 		try {

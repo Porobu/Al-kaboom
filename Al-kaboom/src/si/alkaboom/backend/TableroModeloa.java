@@ -9,11 +9,11 @@ import si.alkaboom.backend.laukia.LaukiaZenb;
 
 public class TableroModeloa {
 	private static TableroModeloa gureTableroModeloa;
-	private DBOperazioak dbo;
-
 	public static TableroModeloa getTableroModeloa() {
 		return gureTableroModeloa != null ? gureTableroModeloa : (gureTableroModeloa = new TableroModeloa());
 	}
+
+	private DBOperazioak dbo;
 
 	private boolean partidaGalduta;
 
@@ -58,8 +58,32 @@ public class TableroModeloa {
 		}
 	}
 
+	public void laukiakIreki(int errenkada, int zutabea) {
+		if (tableroa[errenkada][zutabea].getClass().getSimpleName().toLowerCase().contains("mina")) {
+			partidaGalduta = true;
+			return;
+		}
+		for (int i = -1; i <= 1; i++) {
+			for (int j = -1; j <= 1; j++) {
+				if (errenkada + i >= tableroa.length || zutabea + j >= tableroa[0].length || errenkada + i < 0
+						|| zutabea + j < 0)
+					;
+				else if (tableroa[errenkada + i][zutabea + j].getClass().getSimpleName().toLowerCase().contains("mina"))
+					;
+				else {
+					tableroa[i][j].laukiaIreki();
+					laukiakIreki(errenkada + i, zutabea + j);
+				}
+			}
+		}
+	}
+
 	public void partidaGaldu() {
 		this.partidaGalduta = true;
+	}
+
+	public boolean partidaGaldutaDago() {
+		return this.partidaGalduta;
 	}
 
 	public void partidaGorde() {
@@ -110,10 +134,6 @@ public class TableroModeloa {
 				}
 			}
 		}
-	}
-
-	public boolean partidaGaldutaDago() {
-		return this.partidaGalduta;
 	}
 
 }

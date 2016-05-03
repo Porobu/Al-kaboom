@@ -95,6 +95,17 @@ public class DBOperazioak {
 				+ errenkadak + ", " + zutabeak + ")");
 	}
 
+	public boolean partidaGordetaDago(String erabiltzailea) {
+		String agindua = "Select * from Partida where ErabiltzaileID = (Select Id from Jokalaria where Izena = '"
+				+ erabiltzailea + "')";
+		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu(agindua);
+		try {
+			return rs.next();
+		} catch (SQLException e) {
+			return false;
+		}
+	}
+
 	public String[] partidaKargatu() {
 		if (!this.partidaGordetaDago(AlKaboom.getAlKaboom().getErabiltzailea().getIzena()))
 			return new String[1];
@@ -114,17 +125,6 @@ public class DBOperazioak {
 			return new String[] { rs.getString(2), rs.getString(3), rs.getString(4) };
 		} catch (SQLException e) {
 			throw new AlKaboomSalbuespena("Ezin da partida kargatu!", e);
-		}
-	}
-
-	public boolean partidaGordetaDago(String erabiltzailea) {
-		String agindua = "Select * from Partida where ErabiltzaileID = (Select Id from Jokalaria where Izena = '"
-				+ erabiltzailea + "')";
-		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu(agindua);
-		try {
-			return rs.next();
-		} catch (SQLException e) {
-			return false;
 		}
 	}
 

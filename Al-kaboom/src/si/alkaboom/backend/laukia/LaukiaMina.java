@@ -19,29 +19,30 @@ public class LaukiaMina implements ILaukia {
 	}
 
 	@Override
+	public int getZenbakia() {
+		return 0;
+	}
+
+	@Override
 	public boolean irekitaDago() {
 		return irekita;
 	}
 
+	@Override
 	public void laukiaIreki() {
 		irekita = true;
 		TableroModeloa.getTableroModeloa().partidaGaldu();
 	}
 
 	@Override
-	public int getZenbakia() {
-		return 0;
+	public void markaIpini(String marka) {
+		this.marka = marka;
+
 	}
 
 	@Override
 	public void setZenbakia(int berria) {
-		
-	}
 
-	@Override
-	public void markaIpini(String marka) {
-		this.marka = marka;
-		
 	}
 
 }

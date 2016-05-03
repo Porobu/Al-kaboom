@@ -19,6 +19,7 @@ public class LaukiaZenb implements ILaukia {
 		return irekita ? AlKaboomConstants.MARKARIK_EZ : this.marka;
 	}
 
+	@Override
 	public int getZenbakia() {
 		return zenbakia;
 	}
@@ -28,12 +29,14 @@ public class LaukiaZenb implements ILaukia {
 		return irekita;
 	}
 
+	@Override
 	public void laukiaIreki() {
 		irekita = true;
 	}
 
-	public void zenbPlus() {
-		zenbakia++;
+	@Override
+	public void markaIpini(String marka) {
+		this.marka = marka;
 	}
 
 	@Override
@@ -41,9 +44,8 @@ public class LaukiaZenb implements ILaukia {
 		this.zenbakia = berria;
 	}
 
-	@Override
-	public void markaIpini(String marka) {
-		this.marka = marka;
+	public void zenbPlus() {
+		zenbakia++;
 	}
 
 }

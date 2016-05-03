@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import si.alkaboom.backend.AlKaboomConstants;
@@ -116,30 +117,27 @@ public class TableroPanela extends JPanel implements MouseListener {
 			TableroModeloa.getTableroModeloa().laukiakIreki(errenkada, zutabea);
 			this.tableroaEguneratu();
 		}
-
+		if (TableroModeloa.getTableroModeloa().partidaGaldutaDago())
+			this.partidaGaldu();
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -152,6 +150,14 @@ public class TableroPanela extends JPanel implements MouseListener {
 				this.markaErabili(i, j, TableroModeloa.getTableroModeloa().getPos(i, j));
 			}
 		}
+	}
+
+	private void partidaGaldu() {
+		for (int i = 0; i < laukiak.length; i++)
+			for (int j = 0; j < laukiak[0].length; j++)
+				laukiak[i][j].setEnabled(false);
+		JOptionPane.showMessageDialog(this, "Partida galdu duzu!", AlKaboomConstants.IZENBURUA,
+				JOptionPane.ERROR_MESSAGE);
 	}
 
 }

@@ -9,6 +9,7 @@ import si.alkaboom.backend.laukia.LaukiaZenb;
 
 public class TableroModeloa {
 	private static TableroModeloa gureTableroModeloa;
+
 	public static TableroModeloa getTableroModeloa() {
 		return gureTableroModeloa != null ? gureTableroModeloa : (gureTableroModeloa = new TableroModeloa());
 	}
@@ -61,18 +62,31 @@ public class TableroModeloa {
 	public void laukiakIreki(int errenkada, int zutabea) {
 		if (tableroa[errenkada][zutabea].getClass().getSimpleName().toLowerCase().contains("mina")) {
 			partidaGalduta = true;
+			for (int i = 0; i < tableroa.length; i++) {
+				for (int j = 0; j < tableroa[0].length; j++) {
+					tableroa[i][j].markaIpini(AlKaboomConstants.MARKARIK_EZ);
+					tableroa[i][j].laukiaIreki();
+				}
+			}
 			return;
 		}
+		this.laukiakIrekiErrekurtsiboa(errenkada, zutabea);
+	}
+
+	private void laukiakIrekiErrekurtsiboa(int errenkada, int zutabea) {
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
+				System.out.println(tableroa[errenkada][zutabea].getClass().getSimpleName());
 				if (errenkada + i >= tableroa.length || zutabea + j >= tableroa[0].length || errenkada + i < 0
 						|| zutabea + j < 0)
 					;
-				else if (tableroa[errenkada + i][zutabea + j].getClass().getSimpleName().toLowerCase().contains("mina"))
+				else if (tableroa[errenkada][zutabea].getClass().getSimpleName().equalsIgnoreCase("LaukiaMina"))
 					;
+				else if (tableroa[errenkada][zutabea].getClass().getSimpleName().equalsIgnoreCase("LaukiaZenb"))
+					tableroa[errenkada][zutabea].laukiaIreki();
 				else {
-					tableroa[i][j].laukiaIreki();
-					laukiakIreki(errenkada + i, zutabea + j);
+					tableroa[errenkada][zutabea].laukiaIreki();
+					laukiakIrekiErrekurtsiboa(errenkada + i, zutabea + j);
 				}
 			}
 		}

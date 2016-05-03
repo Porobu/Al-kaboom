@@ -13,7 +13,7 @@ public class DBOperazioak {
 	public void azkenDataEguneratu(String erabiltzailea) {
 		SimpleDateFormat formatua = new SimpleDateFormat("dd-MM-yyyy");
 		Date data = new Date();
-		String agindua = "UPdate  Jokalaria Set Azkendata = '" + formatua.format(data) + "' where Izena = '"
+		String agindua = "Update Jokalaria Set Azkendata = '" + formatua.format(data) + "' where Izena = '"
 				+ erabiltzailea + "'";
 		DBKS.getDBKS().eguneraketaExekutatu(agindua);
 	}

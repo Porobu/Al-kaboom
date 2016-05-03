@@ -3,8 +3,10 @@ package si.alkaboom.frontend.tableroa;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import si.alkaboom.backend.AlKaboom;
+import si.alkaboom.backend.AlKaboomConstants;
 import si.alkaboom.frontend.PartidaMezuGrafikoak;
 
 public class PartidaMenuBarra extends JMenuBar {
@@ -31,6 +33,7 @@ public class PartidaMenuBarra extends JMenuBar {
 		fitxategia = new JMenu("Fitxategia");
 		partidaBerria = new JMenuItem("Partida berria");
 		itxi = new JMenuItem("Programa itxi");
+		itxi.addActionListener(gureAE -> this.programaItxi());
 		fitxategia.add(partidaBerria);
 		fitxategia.add(itxi);
 	}
@@ -74,6 +77,13 @@ public class PartidaMenuBarra extends JMenuBar {
 		rankingBistaratu = new JMenuItem("Ranking Bistaratu");
 		rankingBistaratu.addActionListener(gureAE -> this.menuaAldatu());
 		ranking.add(rankingBistaratu);
+	}
+
+	private void programaItxi() {
+		int aukera = JOptionPane.showConfirmDialog(AlKaboom.getAlKaboom().getUI(), "Al-Kaboom itxi nahi duzu?\nGorde ez den partida galduko da",
+				AlKaboomConstants.IZENBURUA, JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+		if(aukera == JOptionPane.YES_OPTION)
+			System.exit(0);
 	}
 
 }

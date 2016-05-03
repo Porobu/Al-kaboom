@@ -115,10 +115,11 @@ public class TableroPanela extends JPanel implements MouseListener {
 			this.laukiakIpini(l.getName());
 		} else {
 			TableroModeloa.getTableroModeloa().laukiakIreki(errenkada, zutabea);
-			this.tableroaEguneratu();
+
 		}
 		if (TableroModeloa.getTableroModeloa().partidaGaldutaDago())
 			this.partidaGaldu();
+		this.tableroaEguneratu();
 	}
 
 	@Override
@@ -158,6 +159,19 @@ public class TableroPanela extends JPanel implements MouseListener {
 				laukiak[i][j].setEnabled(false);
 		JOptionPane.showMessageDialog(this, "Partida galdu duzu!", AlKaboomConstants.IZENBURUA,
 				JOptionPane.ERROR_MESSAGE);
+	}
+
+	public void listaHasieratu(int errenkadak, int zutabeak) {
+		this.hasiera = false;
+		laukiak = new AKLaukia[errenkadak][zutabeak];
+		for (int i = 0; i < laukiak.length; i++) {
+			for (int j = 0; j < laukiak[0].length; j++) {
+				laukiak[i][j] = new AKLaukia();
+				laukiak[i][j].addMouseListener(this);
+			}
+		}
+		this.repaint();
+
 	}
 
 }

@@ -57,6 +57,7 @@ public class TableroModeloa {
 				}
 			}
 		}
+		this.laukiakIreki(klikErrenkada, klikZutabea);
 	}
 
 	public void laukiakIreki(int errenkada, int zutabea) {
@@ -76,20 +77,26 @@ public class TableroModeloa {
 	private void laukiakIrekiErrekurtsiboa(int errenkada, int zutabea) {
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
-				System.out.println(tableroa[errenkada][zutabea].getClass().getSimpleName());
+				ILaukia l = tableroa[errenkada][zutabea];
 				if (errenkada + i >= tableroa.length || zutabea + j >= tableroa[0].length || errenkada + i < 0
 						|| zutabea + j < 0)
 					;
-				else if (tableroa[errenkada][zutabea].getClass().getSimpleName().equalsIgnoreCase("LaukiaMina"))
-					;
-				else if (tableroa[errenkada][zutabea].getClass().getSimpleName().equalsIgnoreCase("LaukiaZenb"))
-					tableroa[errenkada][zutabea].laukiaIreki();
 				else {
-					tableroa[errenkada][zutabea].laukiaIreki();
-					laukiakIrekiErrekurtsiboa(errenkada + i, zutabea + j);
+					if (l.getClass().getSimpleName().equalsIgnoreCase("LaukiaMina"))
+						;
+					else if (l.getClass().getSimpleName().equalsIgnoreCase("LaukiaZenb")) {
+						l.laukiaIreki();
+
+					} else {
+						l.laukiaIreki();
+						if (!tableroa[errenkada + i][zutabea + j].irekitaDago())
+							laukiakIrekiErrekurtsiboa(errenkada + i, zutabea + j);
+					}
 				}
 			}
+
 		}
+
 	}
 
 	public void partidaGaldu() {
@@ -148,6 +155,10 @@ public class TableroModeloa {
 				}
 			}
 		}
+	}
+
+	public int[] getTamaina() {
+		return new int[] { tableroa.length, tableroa[0].length };
 	}
 
 }

@@ -73,10 +73,16 @@ public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 					new Erabiltzailea(this.erabiltzaileaField.getText(), (String) this.aukerak.getSelectedItem()));
 		ak.getErabiltzailea().datubaseaEguneratu();
 		PartidaMezuGrafikoak pmg = new PartidaMezuGrafikoak();
-		if (ak.getErabiltzailea().partidaDauka())
-			if (pmg.partidaKargatuGaldetu())
-				TableroModeloa.getTableroModeloa().partidaKargatu();
 		ak.getUI().alKaboomHasieratu();
+		if (ak.getErabiltzailea().partidaDauka())
+			if (pmg.partidaKargatuGaldetu()) {
+				TableroModeloa.getTableroModeloa().partidaKargatu();
+				AlKaboom.getAlKaboom().getUI().getTp().listaHasieratu(
+						TableroModeloa.getTableroModeloa().getTamaina()[0],
+						TableroModeloa.getTableroModeloa().getTamaina()[1]);
+				AlKaboom.getAlKaboom().getUI().getTp().tableroaEguneratu();
+			}
+		
 	}
 
 	private void guztiaGehitu() {

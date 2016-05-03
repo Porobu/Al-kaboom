@@ -163,12 +163,19 @@ public class TableroPanela extends JPanel implements MouseListener {
 
 	public void listaHasieratu(int errenkadak, int zutabeak) {
 		this.hasiera = false;
+		for (int i = 0; i < laukiak.length; i++) {
+			for (int j = 0; j < laukiak[0].length; j++) {
+				this.remove(laukiak[i][j]);
+			}
+		}
+		this.setLayout(new GridLayout(errenkadak, zutabeak));
 		laukiak = new AKLaukia[errenkadak][zutabeak];
 		for (int i = 0; i < laukiak.length; i++) {
 			for (int j = 0; j < laukiak[0].length; j++) {
 				laukiak[i][j] = new AKLaukia();
 				laukiak[i][j].addMouseListener(this);
 				laukiak[i][j].setName(i + "," + j);
+				this.add(laukiak[i][j]);
 			}
 		}
 		this.repaint();

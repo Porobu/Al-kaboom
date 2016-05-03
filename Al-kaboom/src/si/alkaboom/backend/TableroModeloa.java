@@ -29,6 +29,10 @@ public class TableroModeloa {
 		return tableroa[errenkada][zutabea];
 	}
 
+	public int[] getTamaina() {
+		return new int[] { tableroa.length, tableroa[0].length };
+	}
+
 	public void hasieratu(int errenkadak, int zutabeak, int minak, int klikErrenkada, int klikZutabea) {
 		tableroa = new ILaukia[errenkadak][zutabeak];
 		tableroa[klikErrenkada][klikZutabea] = new LaukiaHuts();
@@ -158,10 +162,6 @@ public class TableroModeloa {
 				}
 			}
 		}
-	}
-
-	public int[] getTamaina() {
-		return new int[] { tableroa.length, tableroa[0].length };
 	}
 
 }

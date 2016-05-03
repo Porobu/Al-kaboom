@@ -21,7 +21,8 @@ public class PartidaMezuGrafikoak {
 		if (aukera == JOptionPane.NO_OPTION)
 			return;
 		TableroModeloa.getTableroModeloa().partidaKargatu();
-		AlKaboom.getAlKaboom().getUI().getTp().listaHasieratu(TableroModeloa.getTableroModeloa().getTamaina()[0], TableroModeloa.getTableroModeloa().getTamaina()[1]);
+		AlKaboom.getAlKaboom().getUI().getTp().listaHasieratu(TableroModeloa.getTableroModeloa().getTamaina()[0],
+				TableroModeloa.getTableroModeloa().getTamaina()[1]);
 		AlKaboom.getAlKaboom().getUI().getTp().tableroaEguneratu();
 	}
 

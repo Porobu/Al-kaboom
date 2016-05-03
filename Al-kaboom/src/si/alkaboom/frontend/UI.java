@@ -21,6 +21,7 @@ public class UI extends JFrame {
 	private PartidaMenuBarra menuBarraAK;
 	private TableroPanela tp;
 	private RankingDesktopPanela ranking;
+
 	public UI() {
 		this.setLayout(new BorderLayout());
 		this.setTitle(AlKaboomConstants.IZENBURUA);
@@ -29,8 +30,7 @@ public class UI extends JFrame {
 	public void alKaboomHasieratu() {
 		this.remove(kautotu);
 		this.setTitle(AlKaboomConstants.IZENBURUA + " - " + AlKaboom.getAlKaboom().getErabiltzailea().getIzena());
-		this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-		this.addWindowListener(new GureWindowListener());
+		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.menuBarraAK = new PartidaMenuBarra();
 		this.setJMenuBar(menuBarraAK);
 		Erabiltzailea e = AlKaboom.getAlKaboom().getErabiltzailea();

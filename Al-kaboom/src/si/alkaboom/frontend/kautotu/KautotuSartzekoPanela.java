@@ -82,7 +82,7 @@ public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 						TableroModeloa.getTableroModeloa().getTamaina()[1]);
 				AlKaboom.getAlKaboom().getUI().getTp().tableroaEguneratu();
 			}
-		
+
 	}
 
 	private void guztiaGehitu() {

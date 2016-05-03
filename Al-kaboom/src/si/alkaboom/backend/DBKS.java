@@ -17,6 +17,7 @@ public final class DBKS {
 	}
 
 	private Connection konexioa;
+	private Statement st;
 
 	private DBKS() {
 
@@ -30,7 +31,6 @@ public final class DBKS {
 	 */
 	public void aginduaExekutatu(String agindua) {
 		try {
-			Statement st = this.konexioa.createStatement();
 			st.execute(agindua);
 		} catch (Exception salbuespena) {
 			throw new AlKaboomSalbuespena("Ezin da " + agindua + " exekutatu", salbuespena);
@@ -41,13 +41,10 @@ public final class DBKS {
 	 * Datu basea baliozkoa den frogatzen du
 	 */
 	private boolean datubaseaKonprobatu() {
-		Statement st;
 		try {
-			st = konexioa.createStatement();
 			st.executeQuery("SELECT Id, Izena, AzkenData, IrabaziKop, GalduKop from Jokalaria");
 			st.executeQuery("Select ErabiltzaileID, Tableroa, ErrenkadaKop, ZutabeKop from Partida");
 			st.executeQuery("Select Id, Puntuak, PartidaKopurua, Denbora, Zailtasuna from Puntuazioa");
-			st.close();
 		} catch (SQLException e) {
 			return false;
 		}
@@ -67,7 +64,6 @@ public final class DBKS {
 
 	public void eguneraketaExekutatu(String agindua) {
 		try {
-			Statement st = this.konexioa.createStatement();
 			st.executeUpdate(agindua);
 		} catch (Exception salbuespena) {
 			throw new AlKaboomSalbuespena("Ezin da " + agindua + " exekutatu", salbuespena);
@@ -114,6 +110,7 @@ public final class DBKS {
 		try {
 			this.konexioa = DriverManager.getConnection("jdbc:sqlite:" + path);
 			this.konexioa.setAutoCommit(true);
+			this.st = this.konexioa.createStatement();
 		} catch (SQLException salbuespena) {
 			throw new AlKaboomSalbuespena("Ezin da datu basera konektatu", salbuespena);
 		}
@@ -131,7 +128,6 @@ public final class DBKS {
 	public ResultSet kontsultaExekutatu(String agindua) {
 		ResultSet emaitza = null;
 		try {
-			Statement st = this.konexioa.createStatement();
 			emaitza = st.executeQuery(agindua);
 		} catch (Exception salbuespena) {
 			throw new AlKaboomSalbuespena("Ezin da " + agindua + " exekutatu", salbuespena);

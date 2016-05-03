@@ -1,16 +1,16 @@
 package si.alkaboom.backend;
 
 public interface AlKaboomConstants {
-	public static final String BERTSIOA = "0.5.0-Beta1";
+	public static final String BERTSIOA = "0.5.0-Beta2";
 	public static final String IZENBURUA = "Al-Kaboom " + BERTSIOA;
 	public static final int ERRENKADA_KOPURUA_ERREZA = 10;
 	public static final int ZUTABE_KOPURUA_ERREZA = 10;
 	public static final int MINA_KOPURUA_ERREZA = 10;
-	public static final int ERRENKADA_KOPURUA_NORMALA = 25;
+	public static final int ERRENKADA_KOPURUA_NORMALA = 15;
 	public static final int ZUTABE_KOPURUA_NORMALA = 15;
 	public static final int MINA_KOPURUA_NORMALA = 60;
-	public static final int ERRENKADA_KOPURUA_ZAILA = 40;
-	public static final int ZUTABE_KOPURUA_ZAILA = 30;
+	public static final int ERRENKADA_KOPURUA_ZAILA = 30;
+	public static final int ZUTABE_KOPURUA_ZAILA = 20;
 	public static final int MINA_KOPURUA_ZAILA = 200;
 	public static final int[] ERREZA = new int[] { ERRENKADA_KOPURUA_ERREZA, ZUTABE_KOPURUA_ERREZA,
 			MINA_KOPURUA_ERREZA };

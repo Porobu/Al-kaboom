@@ -6,10 +6,10 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import si.alkaboom.backend.AlKaboomConstants;
 import si.alkaboom.backend.TableroModeloa;
-import si.alkaboom.backend.laukia.ILaukia;
 import si.alkaboom.backend.laukia.LaukiaZenb;
 
 public class TableroPanela extends JPanel implements MouseListener {
@@ -65,43 +65,69 @@ public class TableroPanela extends JPanel implements MouseListener {
 		laukiak[Integer.parseInt(posizioa[0])][Integer.parseInt(posizioa[1])].setEnabled(false);
 		for (int i = 0; i < laukiak.length; i++) {
 			for (int j = 0; j < laukiak[0].length; j++) {
-				ILaukia oraingoa = tm.getPos(i, j);
-				this.motaIpini(i, j, oraingoa);
-				this.markaErabili(i, j, oraingoa);
+				this.motaIpini(i, j, false);
+				// this.markaErabili(i, j);
 			}
 		}
 	}
 
-	private void markaErabili(int i, int j, ILaukia oraingoa) {
-		String marka = oraingoa.daukanMarka();
-		switch (marka) {
-		case AlKaboomConstants.MARKARIK_EZ:
-			break;
-		case AlKaboomConstants.BANDERITA:
-			laukiak[i][j].setText(laukiak[i][j].getText() + " B");
-			break;
-		case AlKaboomConstants.GALDERA:
-			laukiak[i][j].setText(laukiak[i][j].getText() + " ?");
-			break;
+	public void listaHasieratu(int errenkadak, int zutabeak) {
+		this.hasiera = false;
+		for (int i = 0; i < laukiak.length; i++) {
+			for (int j = 0; j < laukiak[0].length; j++) {
+				this.remove(laukiak[i][j]);
+			}
 		}
+		this.setLayout(new GridLayout(errenkadak, zutabeak));
+		laukiak = new AKLaukia[errenkadak][zutabeak];
+		for (int i = 0; i < laukiak.length; i++) {
+			for (int j = 0; j < laukiak[0].length; j++) {
+				laukiak[i][j] = new AKLaukia();
+				laukiak[i][j].addMouseListener(this);
+				laukiak[i][j].setName(i + "," + j);
+				this.add(laukiak[i][j]);
+			}
+		}
+		this.repaint();
+
 	}
 
-	private void motaIpini(int i, int j, ILaukia oraingoa) {
-		String klasea = oraingoa.getClass().getSimpleName();
-		switch (klasea.toLowerCase()) {
-		case "laukiahuts":
-			laukiak[i][j].setText("H");
-			break;
-		case "laukiamina":
-			laukiak[i][j].setText("M");
-			break;
-		case "laukiazenb":
-			LaukiaZenb l = (LaukiaZenb) oraingoa;
-			laukiak[i][j].setText(String.valueOf(l.getZenbakia()));
-			break;
-		default:
-			break;
+	// private void markaErabili(int i, int j) {
+	// String marka = TableroModeloa.getTableroModeloa().getPos(i,
+	// j).daukanMarka();
+	// switch (marka) {
+	// case AlKaboomConstants.MARKARIK_EZ:
+	// break;
+	// case AlKaboomConstants.BANDERITA:
+	// laukiak[i][j].setText(laukiak[i][j].getText() + " B");
+	// break;
+	// case AlKaboomConstants.GALDERA:
+	// laukiak[i][j].setText(laukiak[i][j].getText() + " ?");
+	// break;
+	// }
+	// }
+
+	private void motaIpini(int i, int j, boolean ezer) {
+		if (ezer) {
+			laukiak[i][j].setText("");
+			return;
 		}
+		String klasea = TableroModeloa.getTableroModeloa().getPos(i, j).getClass().getSimpleName();
+		if (TableroModeloa.getTableroModeloa().getPos(i, j).irekitaDago())
+			switch (klasea.toLowerCase()) {
+			case "laukiahuts":
+				laukiak[i][j].setText("");
+				break;
+			case "laukiamina":
+				laukiak[i][j].setText("M");
+				break;
+			case "laukiazenb":
+				LaukiaZenb l = (LaukiaZenb) TableroModeloa.getTableroModeloa().getPos(i, j);
+				laukiak[i][j].setText(String.valueOf(l.getZenbakia()));
+				break;
+			default:
+				break;
+			}
 	}
 
 	@Override
@@ -110,16 +136,36 @@ public class TableroPanela extends JPanel implements MouseListener {
 		String[] pos = l.getName().split(",");
 		int errenkada = Integer.parseInt(pos[0]);
 		int zutabea = Integer.parseInt(pos[1]);
-		if (hasiera) {
-			hasiera = false;
-			this.laukiakIpini(l.getName());
+		if (SwingUtilities.isLeftMouseButton(e)) {
+			if (!hasiera && !TableroModeloa.getTableroModeloa().getPos(errenkada, zutabea).daukanMarka()
+					.equals(AlKaboomConstants.MARKARIK_EZ))
+				return;
+			if (hasiera) {
+				hasiera = false;
+				this.laukiakIpini(l.getName());
+			} else
+				TableroModeloa.getTableroModeloa().laukiakIreki(errenkada, zutabea);
+			if (TableroModeloa.getTableroModeloa().partidaGaldutaDago())
+				this.partidaGaldu();
+			this.tableroaEguneratu();
 		} else {
-			TableroModeloa.getTableroModeloa().laukiakIreki(errenkada, zutabea);
-
+			this.motaIpini(errenkada, zutabea, true);
+			switch (TableroModeloa.getTableroModeloa().getPos(errenkada, zutabea).daukanMarka()) {
+			case AlKaboomConstants.MARKARIK_EZ:
+				l.setText(l.getText() + " " + AlKaboomConstants.BANDERITA);
+				TableroModeloa.getTableroModeloa().getPos(errenkada, zutabea).markaIpini(AlKaboomConstants.BANDERITA);
+				break;
+			case AlKaboomConstants.BANDERITA:
+				l.setText(l.getText() + " " + AlKaboomConstants.GALDERA);
+				TableroModeloa.getTableroModeloa().getPos(errenkada, zutabea).markaIpini(AlKaboomConstants.GALDERA);
+				break;
+			default:
+				l.setText(l.getText());
+				TableroModeloa.getTableroModeloa().getPos(errenkada, zutabea).markaIpini(AlKaboomConstants.MARKARIK_EZ);
+				break;
+			}
 		}
-		if (TableroModeloa.getTableroModeloa().partidaGaldutaDago())
-			this.partidaGaldu();
-		this.tableroaEguneratu();
+
 	}
 
 	@Override
@@ -142,17 +188,6 @@ public class TableroPanela extends JPanel implements MouseListener {
 
 	}
 
-	public void tableroaEguneratu() {
-		for (int i = 0; i < laukiak.length; i++) {
-			for (int j = 0; j < laukiak[0].length; j++) {
-				if (TableroModeloa.getTableroModeloa().getPos(i, j).irekitaDago())
-					laukiak[i][j].setEnabled(false);
-				this.motaIpini(i, j, TableroModeloa.getTableroModeloa().getPos(i, j));
-				this.markaErabili(i, j, TableroModeloa.getTableroModeloa().getPos(i, j));
-			}
-		}
-	}
-
 	private void partidaGaldu() {
 		for (int i = 0; i < laukiak.length; i++)
 			for (int j = 0; j < laukiak[0].length; j++)
@@ -161,25 +196,15 @@ public class TableroPanela extends JPanel implements MouseListener {
 				JOptionPane.ERROR_MESSAGE);
 	}
 
-	public void listaHasieratu(int errenkadak, int zutabeak) {
-		this.hasiera = false;
+	public void tableroaEguneratu() {
 		for (int i = 0; i < laukiak.length; i++) {
 			for (int j = 0; j < laukiak[0].length; j++) {
-				this.remove(laukiak[i][j]);
+				if (TableroModeloa.getTableroModeloa().getPos(i, j).irekitaDago())
+					laukiak[i][j].setEnabled(false);
+				this.motaIpini(i, j, false);
+				// this.markaErabili(i, j);
 			}
 		}
-		this.setLayout(new GridLayout(errenkadak, zutabeak));
-		laukiak = new AKLaukia[errenkadak][zutabeak];
-		for (int i = 0; i < laukiak.length; i++) {
-			for (int j = 0; j < laukiak[0].length; j++) {
-				laukiak[i][j] = new AKLaukia();
-				laukiak[i][j].addMouseListener(this);
-				laukiak[i][j].setName(i + "," + j);
-				this.add(laukiak[i][j]);
-			}
-		}
-		this.repaint();
-
 	}
 
 }

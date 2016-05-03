@@ -119,7 +119,6 @@ public class DBOperazioak {
 			throw new AlKaboomSalbuespena("Ezin da ID-a lortu!", e);
 		}
 		rs = DBKS.getDBKS().kontsultaExekutatu("SELECT * from Partida Where ErabiltzaileID = " + id);
-
 		try {
 			rs.next();
 			return new String[] { rs.getString(2), rs.getString(3), rs.getString(4) };

@@ -127,14 +127,17 @@ public class TableroModeloa {
 		String[] datuak = dbo.partidaKargatu();
 		String partida = datuak[0];
 		int errenkadak = Integer.parseInt(datuak[1]);
+		System.out.println(errenkadak);
 		int zutabeak = Integer.parseInt(datuak[2]);
 		String[] partidaLista = partida.split("-");
 		tableroa = new ILaukia[errenkadak][zutabeak];
+		int k = 0;
 		for (int i = 0; i < tableroa.length; i++) {
 			for (int j = 0; j < tableroa[0].length; j++) {
-				String oraingoa = partidaLista[i + i * j];
+				String oraingoa = partidaLista[k];
 				tableroa[i][j] = LaukiFaktoria.getLaukiFaktoria().laukiaEgindaLortu(oraingoa.substring(0, 10),
 						Integer.parseInt(oraingoa.substring(10, 11)), oraingoa.substring(11, 12));
+				k++;
 			}
 		}
 	}

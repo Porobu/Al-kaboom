@@ -44,6 +44,8 @@ public class UI extends JFrame {
 		this.revalidate();
 		this.setMinimumSize(new Dimension(AlKaboomConstants.TABLERO_TAMAINA_HORIZONTALA,
 				AlKaboomConstants.TABLERO_TAMAINA_BERTIKALA));
+		this.pack();
+		this.setLocationRelativeTo(null);
 		this.repaint();
 	}
 

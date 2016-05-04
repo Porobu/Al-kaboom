@@ -1,5 +1,10 @@
 package si.alkaboom.frontend.tableroa;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -8,6 +13,7 @@ import javax.swing.JOptionPane;
 import si.alkaboom.backend.AlKaboom;
 import si.alkaboom.backend.AlKaboomConstants;
 import si.alkaboom.frontend.PartidaMezuGrafikoak;
+import si.alkaboom.salbuespenak.AlKaboomSalbuespena;
 
 public class PartidaMenuBarra extends JMenuBar {
 	private static final long serialVersionUID = 6278678590130942938L;
@@ -42,7 +48,9 @@ public class PartidaMenuBarra extends JMenuBar {
 		gehiago = new JMenu("Gehiago");
 		laguntza = new JMenuItem("Laguntza");
 		alKaboomBuruz = new JMenuItem("AlKaboom-eri buruz");
+		alKaboomBuruz.addActionListener(gureAE -> this.alKaboomBuruz());
 		alKaboomWeb = new JMenuItem("AlKaboom-eri buruz interneten");
+		alKaboomWeb.addActionListener(gureAE -> this.alKaboomWeb());
 		gehiago.add(laguntza);
 		gehiago.add(alKaboomBuruz);
 		gehiago.add(alKaboomWeb);
@@ -80,10 +88,23 @@ public class PartidaMenuBarra extends JMenuBar {
 	}
 
 	private void programaItxi() {
-		int aukera = JOptionPane.showConfirmDialog(AlKaboom.getAlKaboom().getUI(), "Al-Kaboom itxi nahi duzu?\nGorde ez den partida galduko da",
-				AlKaboomConstants.IZENBURUA, JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-		if(aukera == JOptionPane.YES_OPTION)
+		int aukera = JOptionPane.showConfirmDialog(AlKaboom.getAlKaboom().getUI(),
+				"Al-Kaboom itxi nahi duzu?\nGorde ez den partida galduko da", AlKaboomConstants.IZENBURUA,
+				JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+		if (aukera == JOptionPane.YES_OPTION)
 			System.exit(0);
+	}
+
+	private void alKaboomWeb() {
+		try {
+			Desktop.getDesktop().browse(new URI("https://github.com/Porobu/Al-kaboom"));
+		} catch (IOException | URISyntaxException e) {
+			throw new AlKaboomSalbuespena("Ezin da nabigatzailea ireki!", e);
+		}
+	}
+
+	private void alKaboomBuruz() {
+
 	}
 
 }

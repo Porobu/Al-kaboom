@@ -128,6 +128,7 @@ public class TableroModeloa {
 	}
 
 	public void partidaKargatu() {
+		this.partidaGalduta=false;
 		String[] datuak = dbo.partidaKargatu();
 		String partida = datuak[0];
 		int errenkadak = Integer.parseInt(datuak[1]);

@@ -9,6 +9,7 @@ import si.alkaboom.backend.laukia.LaukiaZenb;
 
 public class TableroModeloa {
 	private static TableroModeloa gureTableroModeloa;
+	private int minaKop;
 
 	public static TableroModeloa getTableroModeloa() {
 		return gureTableroModeloa != null ? gureTableroModeloa : (gureTableroModeloa = new TableroModeloa());
@@ -19,9 +20,17 @@ public class TableroModeloa {
 	private boolean partidaGalduta;
 
 	private ILaukia[][] tableroa;
+	private int irekitakoLaukiak;
+	private boolean partidaIrabazita;
+
+	public boolean isPartidaIrabazita() {
+		return partidaIrabazita;
+	}
 
 	private TableroModeloa() {
+		this.partidaIrabazita=false;
 		this.partidaGalduta = false;
+		this.irekitakoLaukiak=0;
 		this.dbo = new DBOperazioak();
 	}
 
@@ -34,6 +43,7 @@ public class TableroModeloa {
 	}
 
 	public void hasieratu(int errenkadak, int zutabeak, int minak, int klikErrenkada, int klikZutabea) {
+		this.minaKop = minak;
 		tableroa = new ILaukia[errenkadak][zutabeak];
 		tableroa[klikErrenkada][klikZutabea] = new LaukiaHuts();
 		Random r = new Random();
@@ -76,6 +86,10 @@ public class TableroModeloa {
 			return;
 		}
 		this.laukiakIrekiErrekurtsiboa(errenkada, zutabea);
+		if(this.irekitakoLaukiak==(tableroa.length*tableroa[0].length)-(this.minaKop)){
+			this.partidaIrabazita=true;
+			
+		}
 	}
 
 	private void laukiakIrekiErrekurtsiboa(int errenkada, int zutabea) {
@@ -90,9 +104,11 @@ public class TableroModeloa {
 						;
 					else if (l.getClass().getSimpleName().equalsIgnoreCase("LaukiaZenb")) {
 						l.laukiaIreki();
+						this.irekitakoLaukiak++;
 
 					} else {
 						l.laukiaIreki();
+						this.irekitakoLaukiak++;
 						if (!tableroa[errenkada + i][zutabea + j].irekitaDago())
 							laukiakIrekiErrekurtsiboa(errenkada + i, zutabea + j);
 					}
@@ -111,6 +127,7 @@ public class TableroModeloa {
 		return this.partidaGalduta;
 	}
 
+	
 	public void partidaGorde() {
 		StringBuilder gordetzeko = new StringBuilder("");
 		int errenkadak = tableroa.length;
@@ -128,7 +145,7 @@ public class TableroModeloa {
 	}
 
 	public void partidaKargatu() {
-		this.partidaGalduta=false;
+		this.partidaGalduta = false;
 		String[] datuak = dbo.partidaKargatu();
 		String partida = datuak[0];
 		int errenkadak = Integer.parseInt(datuak[1]);

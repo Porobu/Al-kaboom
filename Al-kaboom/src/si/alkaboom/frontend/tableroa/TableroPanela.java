@@ -147,6 +147,9 @@ public class TableroPanela extends JPanel implements MouseListener {
 				TableroModeloa.getTableroModeloa().laukiakIreki(errenkada, zutabea);
 			if (TableroModeloa.getTableroModeloa().partidaGaldutaDago())
 				this.partidaGaldu();
+			else if(TableroModeloa.getTableroModeloa().isPartidaIrabazita()){
+				this.partidaIrabazi();
+			}
 			this.tableroaEguneratu();
 		} else {
 			this.motaIpini(errenkada, zutabea, true);
@@ -166,6 +169,15 @@ public class TableroPanela extends JPanel implements MouseListener {
 			}
 		}
 
+	}
+
+	private void partidaIrabazi() {
+		for (int i = 0; i < laukiak.length; i++)
+			for (int j = 0; j < laukiak[0].length; j++)
+				laukiak[i][j].setEnabled(false);
+		JOptionPane.showMessageDialog(this, "Zorionak! Partida irabazi duzu!", AlKaboomConstants.IZENBURUA,
+				JOptionPane.INFORMATION_MESSAGE);
+		
 	}
 
 	@Override

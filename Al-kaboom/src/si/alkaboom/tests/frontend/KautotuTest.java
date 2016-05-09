@@ -68,7 +68,7 @@ public class KautotuTest {
 	public void setUp() throws Exception {
 		DBKS.getDBKS().konektatu(DBKS.getDBKS().getDefaultPath());
 		DBKS.getDBKS().aginduaExekutatu(
-				"INSERT OR REPLACE INTO Jokalaria(Izena, PartidaGordeta, AzkenData, IrabaziKop, GalduKop) VALUES ('Test', 'Bai', '01-01-2010', 10,20 )");
+				"INSERT OR REPLACE INTO Jokalaria(Izena, AzkenData, IrabaziKop, GalduKop) VALUES ('Test', '01-01-2010', 10,20 )");
 		AlKaboom.getAlKaboom().setDatubasePath(DBKS.getDBKS().getDefaultPath());
 		UI frame = GuiActionRunner.execute(new GuiQuery<UI>() {
 			@Override

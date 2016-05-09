@@ -54,7 +54,7 @@ public class DBKSTest {
 			e.printStackTrace();
 		}
 		DBKS.getDBKS().aginduaExekutatu(
-				"INSERT INTO Jokalaria(Izena, PartidaGordeta, AzkenData, IrabaziKop, GalduKop) VALUES ('Test', 'Bai', '01-01-2010', 10,20 )");
+				"INSERT INTO Jokalaria(Izena, AzkenData, IrabaziKop, GalduKop) VALUES ('Test', '01-01-2010', 10, 20)");
 		rs = DBKS.getDBKS().kontsultaExekutatu("Select count(*) from Jokalaria");
 		try {
 			rs.next();
@@ -104,14 +104,14 @@ public class DBKSTest {
 	@Test
 	public void testEguneraketaExekutatu() {
 		DBKS.getDBKS().aginduaExekutatu(
-				"INSERT OR REPLACE INTO Jokalaria(Izena, PartidaGordeta, AzkenData, IrabaziKop, GalduKop) VALUES ('Test', 'Bai', '01-01-2010', 10,20 )");
+				"INSERT OR REPLACE INTO Jokalaria(Izena, AzkenData, IrabaziKop, GalduKop) VALUES ('Test', '01-01-2010', 10,20 )");
 		DBKS.getDBKS().aginduaExekutatu(
-				"UPDATE Jokalaria SET PartidaGordeta='Ez', AzkenData='10-10-2010', IrabaziKop=5, GalduKop=5 WHERE Izena='Test'");
-		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu("Select PartidaGordeta from Jokalaria where Izena = 'Test'");
+				"UPDATE Jokalaria SET AzkenData='10-10-2010', IrabaziKop=5, GalduKop=5 WHERE Izena='Test'");
+		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu("Select IrabaziKop from Jokalaria where Izena = 'Test'");
 		try {
 			rs.next();
-			String emaitza = rs.getString(1);
-			if (!emaitza.equalsIgnoreCase("ez"))
+			int emaitza = rs.getInt(1);
+			if (emaitza != 5)
 				fail();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -131,7 +131,7 @@ public class DBKSTest {
 	@Test
 	public void testKontsultaExekutatu() throws SQLException {
 		DBKS.getDBKS().aginduaExekutatu(
-				"INSERT OR REPLACE INTO Jokalaria(Izena, PartidaGordeta, AzkenData, IrabaziKop, GalduKop) VALUES ('Test', 'Bai', '01-01-2010', 10,20 )");
+				"INSERT OR REPLACE INTO Jokalaria(Izena, AzkenData, IrabaziKop, GalduKop) VALUES ('Test', '01-01-2010', 10,20 )");
 		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu("Select * from Jokalaria");
 		if (!rs.next())
 			fail();

@@ -160,6 +160,7 @@ public class TableroModeloa {
 		String partida = datuak[0];
 		int errenkadak = Integer.parseInt(datuak[1]);
 		int zutabeak = Integer.parseInt(datuak[2]);
+		minaKop = 0;
 		String[] partidaLista = partida.split("-");
 		tableroa = new ILaukia[errenkadak][zutabeak];
 		int k = 0;
@@ -168,6 +169,8 @@ public class TableroModeloa {
 				String oraingoa = partidaLista[k];
 				tableroa[i][j] = LaukiFaktoria.getLaukiFaktoria().laukiaEgindaLortu(oraingoa.substring(0, 10),
 						Integer.parseInt(oraingoa.substring(10, 11)), oraingoa.substring(11, 12));
+				if(tableroa[i][j].getClass().getSimpleName().equalsIgnoreCase("LaukiaMina"))
+					minaKop++;
 				k++;
 			}
 		}

@@ -14,10 +14,6 @@ import si.alkaboom.backend.TableroModeloa;
 import si.alkaboom.backend.laukia.LaukiaZenb;
 
 public class TableroPanela extends JPanel implements MouseListener {
-	public boolean isHasiera() {
-		return hasiera;
-	}
-
 	private static final long serialVersionUID = -6744712728807455322L;
 
 	private static int[] zailtasunaAukeratu(String zailtasuna) {
@@ -38,8 +34,8 @@ public class TableroPanela extends JPanel implements MouseListener {
 	private boolean hasiera;
 
 	private TableroModeloa tm;
-	private int minaKop;
 
+	private int minaKop;
 	private AKLaukia[][] laukiak;
 
 	public TableroPanela(int errenkadak, int zutabeak, int minak) {
@@ -62,6 +58,10 @@ public class TableroPanela extends JPanel implements MouseListener {
 
 	public TableroPanela(String mota) {
 		this(zailtasunaAukeratu(mota)[0], zailtasunaAukeratu(mota)[1], zailtasunaAukeratu(mota)[2]);
+	}
+
+	public boolean isHasiera() {
+		return hasiera;
 	}
 
 	public boolean isPausa() {
@@ -99,6 +99,43 @@ public class TableroPanela extends JPanel implements MouseListener {
 		this.markaIrakurri();
 		this.revalidate();
 		this.repaint();
+	}
+
+	private void markaErabili(int errenkada, int zutabea, AKLaukia l) {
+		l.setText("");
+		switch (TableroModeloa.getTableroModeloa().getPos(errenkada, zutabea).daukanMarka()) {
+		case AlKaboomConstants.MARKARIK_EZ:
+			l.setText(l.getText() + " " + AlKaboomConstants.BANDERITA);
+			TableroModeloa.getTableroModeloa().getPos(errenkada, zutabea).markaIpini(AlKaboomConstants.BANDERITA);
+			break;
+		case AlKaboomConstants.BANDERITA:
+			l.setText(l.getText() + " " + AlKaboomConstants.GALDERA);
+			TableroModeloa.getTableroModeloa().getPos(errenkada, zutabea).markaIpini(AlKaboomConstants.GALDERA);
+			break;
+		default:
+			l.setText(l.getText());
+			TableroModeloa.getTableroModeloa().getPos(errenkada, zutabea).markaIpini(AlKaboomConstants.MARKARIK_EZ);
+			break;
+		}
+	}
+
+	private void markaIrakurri() {
+		for (int i = 0; i < laukiak.length; i++) {
+			for (int j = 0; j < laukiak[0].length; j++) {
+				if (!TableroModeloa.getTableroModeloa().getPos(i, j).irekitaDago())
+					switch (TableroModeloa.getTableroModeloa().getPos(i, j).daukanMarka()) {
+					case AlKaboomConstants.GALDERA:
+						laukiak[i][j].setText(laukiak[i][j].getText() + " " + AlKaboomConstants.GALDERA);
+						break;
+					case AlKaboomConstants.BANDERITA:
+						laukiak[i][j].setText(laukiak[i][j].getText() + " " + AlKaboomConstants.BANDERITA);
+						break;
+					default:
+						break;
+					}
+			}
+		}
+
 	}
 
 	private void motaIpini(int i, int j, boolean ezer) {
@@ -154,24 +191,6 @@ public class TableroPanela extends JPanel implements MouseListener {
 			this.markaErabili(errenkada, zutabea, l);
 		}
 
-	}
-
-	private void markaErabili(int errenkada, int zutabea, AKLaukia l) {
-		l.setText("");
-		switch (TableroModeloa.getTableroModeloa().getPos(errenkada, zutabea).daukanMarka()) {
-		case AlKaboomConstants.MARKARIK_EZ:
-			l.setText(l.getText() + " " + AlKaboomConstants.BANDERITA);
-			TableroModeloa.getTableroModeloa().getPos(errenkada, zutabea).markaIpini(AlKaboomConstants.BANDERITA);
-			break;
-		case AlKaboomConstants.BANDERITA:
-			l.setText(l.getText() + " " + AlKaboomConstants.GALDERA);
-			TableroModeloa.getTableroModeloa().getPos(errenkada, zutabea).markaIpini(AlKaboomConstants.GALDERA);
-			break;
-		default:
-			l.setText(l.getText());
-			TableroModeloa.getTableroModeloa().getPos(errenkada, zutabea).markaIpini(AlKaboomConstants.MARKARIK_EZ);
-			break;
-		}
 	}
 
 	@Override
@@ -231,25 +250,6 @@ public class TableroPanela extends JPanel implements MouseListener {
 				this.motaIpini(i, j, false);
 			}
 		}
-	}
-
-	private void markaIrakurri() {
-		for (int i = 0; i < laukiak.length; i++) {
-			for (int j = 0; j < laukiak[0].length; j++) {
-				if (!TableroModeloa.getTableroModeloa().getPos(i, j).irekitaDago())
-					switch (TableroModeloa.getTableroModeloa().getPos(i, j).daukanMarka()) {
-					case AlKaboomConstants.GALDERA:
-						laukiak[i][j].setText(laukiak[i][j].getText() + " " + AlKaboomConstants.GALDERA);
-						break;
-					case AlKaboomConstants.BANDERITA:
-						laukiak[i][j].setText(laukiak[i][j].getText() + " " + AlKaboomConstants.BANDERITA);
-						break;
-					default:
-						break;
-					}
-			}
-		}
-
 	}
 
 }

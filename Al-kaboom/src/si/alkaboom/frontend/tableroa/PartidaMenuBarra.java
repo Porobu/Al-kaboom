@@ -19,7 +19,7 @@ public class PartidaMenuBarra extends JMenuBar {
 
 	private JMenu fitxategia, partida, gehiago, ranking;
 	private JMenuItem partidaBerria, partidaKargatu, partidaGorde, itxi, pausa, laguntza, alKaboomBuruz, alKaboomWeb,
-			rankingBistaratu, rankingEguneratu;
+			rankingBistaratu, rankingEguneratu, partidaEzabatu;
 	private PartidaMezuGrafikoak pmg;
 
 	public PartidaMenuBarra() {
@@ -86,8 +86,11 @@ public class PartidaMenuBarra extends JMenuBar {
 		partidaGorde.addActionListener(gureAE -> pmg.patidaGorde());
 		pausa = new JMenuItem("Pausa");
 		pausa.addActionListener(gureAE -> this.pausa());
-		partida.add(partidaKargatu);
+		partidaEzabatu = new JMenuItem("Gordetako partida ezabatu");
+		partidaEzabatu.addActionListener(gureAE -> pmg.partidaEzabatu());
 		partida.add(partidaGorde);
+		partida.add(partidaKargatu);
+		partida.add(partidaEzabatu);
 		partida.add(pausa);
 	}
 

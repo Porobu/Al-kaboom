@@ -107,6 +107,11 @@ public class DBOperazioak {
 				+ errenkadak + ", " + zutabeak + ")");
 	}
 
+	public void partidaEzabatu() {
+		int id = this.getID();
+		DBKS.getDBKS().aginduaExekutatu("DELETE FROM Partida where ErabiltzaileID = " + id);
+	}
+
 	public boolean partidaGordetaDago(String erabiltzailea) {
 		String agindua = "Select * from Partida where ErabiltzaileID = (Select Id from Jokalaria where Izena = '"
 				+ erabiltzailea + "')";

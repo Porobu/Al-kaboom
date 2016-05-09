@@ -19,8 +19,8 @@ public class PartidaMenuBarra extends JMenuBar {
 	private static final long serialVersionUID = 6278678590130942938L;
 
 	private JMenu fitxategia, partida, gehiago, ranking;
-	private JMenuItem partidaBerria, partidaKargatu, partidaGorde, itxi, pausa, partidaBertanBehera, laguntza,
-			alKaboomBuruz, alKaboomWeb, rankingBistaratu;
+	private JMenuItem partidaBerria, partidaKargatu, partidaGorde, itxi, pausa, laguntza, alKaboomBuruz, alKaboomWeb,
+			rankingBistaratu;
 	private PartidaMezuGrafikoak pmg;
 
 	public PartidaMenuBarra() {
@@ -33,6 +33,18 @@ public class PartidaMenuBarra extends JMenuBar {
 		this.add(partida);
 		this.add(ranking);
 		this.add(gehiago);
+	}
+
+	private void alKaboomBuruz() {
+
+	}
+
+	private void alKaboomWeb() {
+		try {
+			Desktop.getDesktop().browse(new URI("https://github.com/Porobu/Al-kaboom"));
+		} catch (IOException | URISyntaxException e) {
+			throw new AlKaboomSalbuespena("Ezin da nabigatzailea ireki!", e);
+		}
 	}
 
 	private void fitxategiMenuaEraiki() {
@@ -73,18 +85,22 @@ public class PartidaMenuBarra extends JMenuBar {
 		partidaGorde = new JMenuItem("Partida gorde");
 		partidaGorde.addActionListener(gureAE -> pmg.patidaGorde());
 		pausa = new JMenuItem("Pausa");
-		partidaBertanBehera = new JMenuItem("Partida bertan ehera utzi");
+		pausa.addActionListener(gureAE -> this.pausa());
 		partida.add(partidaKargatu);
 		partida.add(partidaGorde);
 		partida.add(pausa);
-		partida.add(partidaBertanBehera);
 	}
 
-	private void rankingMenuaEraiki() {
-		this.ranking = new JMenu("Ranking");
-		rankingBistaratu = new JMenuItem("Ranking Bistaratu");
-		rankingBistaratu.addActionListener(gureAE -> this.menuaAldatu());
-		ranking.add(rankingBistaratu);
+	private void pausa() {
+		TableroPanela tp = AlKaboom.getAlKaboom().getUI().getTp();
+		if (!tp.isPausa()) {
+			tp.setPausa(true);
+			this.pausa.setText("Jarraitu");
+		} else {
+			tp.setPausa(false);
+			this.pausa.setText("Pausa");
+		}
+
 	}
 
 	private void programaItxi() {
@@ -95,16 +111,11 @@ public class PartidaMenuBarra extends JMenuBar {
 			System.exit(0);
 	}
 
-	private void alKaboomWeb() {
-		try {
-			Desktop.getDesktop().browse(new URI("https://github.com/Porobu/Al-kaboom"));
-		} catch (IOException | URISyntaxException e) {
-			throw new AlKaboomSalbuespena("Ezin da nabigatzailea ireki!", e);
-		}
-	}
-
-	private void alKaboomBuruz() {
-
+	private void rankingMenuaEraiki() {
+		this.ranking = new JMenu("Ranking");
+		rankingBistaratu = new JMenuItem("Ranking Bistaratu");
+		rankingBistaratu.addActionListener(gureAE -> this.menuaAldatu());
+		ranking.add(rankingBistaratu);
 	}
 
 }

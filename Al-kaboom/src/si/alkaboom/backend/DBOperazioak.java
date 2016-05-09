@@ -52,11 +52,14 @@ public class DBOperazioak {
 		try {
 			for (int i = 0; i < izenak.size(); i++) {
 				rs = DBKS.getDBKS().kontsultaExekutatu(
-						"Select Izena, AzkenData from Jokalaria where Izena = '" + izenak.get(i) + "'");
-				String[] datuak = new String[3];
+						"Select Izena, AzkenData, IrabaziKop, GalduKop from Jokalaria where Izena = '" + izenak.get(i)
+								+ "'");
+				String[] datuak = new String[5];
 				rs.next();
 				datuak[0] = rs.getString(1);
 				datuak[2] = rs.getString(2);
+				datuak[3] = rs.getString(3);
+				datuak[4] = rs.getString(4);
 				rs = DBKS.getDBKS().kontsultaExekutatu(
 						"Select * from Partida where ErabiltzaileID = (Select Id from Jokalaria where Izena = '"
 								+ izenak.get(i) + "')");
@@ -81,16 +84,25 @@ public class DBOperazioak {
 		}
 	}
 
-	public void partidaGorde(String partida, int errenkadak, int zutabeak) {
+	private int getID() {
 		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu("Select Id from Jokalaria where Izena = '"
 				+ AlKaboom.getAlKaboom().getErabiltzailea().getIzena() + "'");
-		int id;
 		try {
 			rs.next();
-			id = rs.getInt(1);
+			return rs.getInt(1);
 		} catch (SQLException e) {
-			throw new AlKaboomSalbuespena("Ezin da ID-a lortu", e);
+			throw new AlKaboomSalbuespena("Ezin da ID-a lortu!", e);
 		}
+	}
+
+	public void partidaGaldu() {
+		String erabiltzaileIzena = AlKaboom.getAlKaboom().getErabiltzailea().getIzena();
+		DBKS.getDBKS().eguneraketaExekutatu(
+				"UPDATE Jokalaria SET GalduKop = GalduKop + 1 where Izena = '" + erabiltzaileIzena + "'");
+	}
+
+	public void partidaGorde(String partida, int errenkadak, int zutabeak) {
+		int id = this.getID();
 		DBKS.getDBKS().aginduaExekutatu("INSERT OR REPLACE INTO Partida VALUES (" + id + ", '" + partida + "', "
 				+ errenkadak + ", " + zutabeak + ")");
 	}
@@ -106,19 +118,17 @@ public class DBOperazioak {
 		}
 	}
 
+	public void partidaIrabazi() {
+		String erabiltzaileIzena = AlKaboom.getAlKaboom().getErabiltzailea().getIzena();
+		DBKS.getDBKS().eguneraketaExekutatu(
+				"UPDATE Jokalaria SET IrabaziKop = IrabaziKop + 1 where Izena = '" + erabiltzaileIzena + "'");
+	}
+
 	public String[] partidaKargatu() {
 		if (!this.partidaGordetaDago(AlKaboom.getAlKaboom().getErabiltzailea().getIzena()))
 			return new String[1];
-		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu("Select Id from Jokalaria where Izena = '"
-				+ AlKaboom.getAlKaboom().getErabiltzailea().getIzena() + "'");
-		int id;
-		try {
-			rs.next();
-			id = rs.getInt(1);
-		} catch (SQLException e) {
-			throw new AlKaboomSalbuespena("Ezin da ID-a lortu!", e);
-		}
-		rs = DBKS.getDBKS().kontsultaExekutatu("SELECT * from Partida Where ErabiltzaileID = " + id);
+		int id = this.getID();
+		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu("SELECT * from Partida Where ErabiltzaileID = " + id);
 		try {
 			rs.next();
 			return new String[] { rs.getString(2), rs.getString(3), rs.getString(4) };

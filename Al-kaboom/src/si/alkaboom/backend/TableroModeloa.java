@@ -9,11 +9,12 @@ import si.alkaboom.backend.laukia.LaukiaZenb;
 
 public class TableroModeloa {
 	private static TableroModeloa gureTableroModeloa;
-	private int minaKop;
 
 	public static TableroModeloa getTableroModeloa() {
 		return gureTableroModeloa != null ? gureTableroModeloa : (gureTableroModeloa = new TableroModeloa());
 	}
+
+	private int minaKop;
 
 	private DBOperazioak dbo;
 
@@ -23,14 +24,10 @@ public class TableroModeloa {
 	private int irekitakoLaukiak;
 	private boolean partidaIrabazita;
 
-	public boolean isPartidaIrabazita() {
-		return partidaIrabazita;
-	}
-
 	private TableroModeloa() {
-		this.partidaIrabazita=false;
+		this.partidaIrabazita = false;
 		this.partidaGalduta = false;
-		this.irekitakoLaukiak=0;
+		this.irekitakoLaukiak = 0;
 		this.dbo = new DBOperazioak();
 	}
 
@@ -74,6 +71,22 @@ public class TableroModeloa {
 		this.laukiakIreki(klikErrenkada, klikZutabea);
 	}
 
+	private void irekitakoLaukiakKontatu() {
+		irekitakoLaukiak = 0;
+		for (int i = 0; i < tableroa.length; i++) {
+			for (int j = 0; j < tableroa[0].length; j++) {
+				if (tableroa[i][j].irekitaDago()) {
+					irekitakoLaukiak++;
+				}
+			}
+		}
+
+	}
+
+	public boolean isPartidaIrabazita() {
+		return partidaIrabazita;
+	}
+
 	public void laukiakIreki(int errenkada, int zutabea) {
 		if (tableroa[errenkada][zutabea].getClass().getSimpleName().toLowerCase().contains("mina")) {
 			partidaGalduta = true;
@@ -86,9 +99,11 @@ public class TableroModeloa {
 			return;
 		}
 		this.laukiakIrekiErrekurtsiboa(errenkada, zutabea);
-		if(this.irekitakoLaukiak==(tableroa.length*tableroa[0].length)-(this.minaKop)){
-			this.partidaIrabazita=true;
-			
+		this.irekitakoLaukiakKontatu();
+		if (this.irekitakoLaukiak == (tableroa.length * tableroa[0].length) - (this.minaKop)) {
+			this.partidaIrabazita = true;
+			DBOperazioak dbo = new DBOperazioak();
+			dbo.partidaIrabazi();
 		}
 	}
 
@@ -104,11 +119,8 @@ public class TableroModeloa {
 						;
 					else if (l.getClass().getSimpleName().equalsIgnoreCase("LaukiaZenb")) {
 						l.laukiaIreki();
-						this.irekitakoLaukiak++;
-
 					} else {
 						l.laukiaIreki();
-						this.irekitakoLaukiak++;
 						if (!tableroa[errenkada + i][zutabea + j].irekitaDago())
 							laukiakIrekiErrekurtsiboa(errenkada + i, zutabea + j);
 					}
@@ -127,7 +139,6 @@ public class TableroModeloa {
 		return this.partidaGalduta;
 	}
 
-	
 	public void partidaGorde() {
 		StringBuilder gordetzeko = new StringBuilder("");
 		int errenkadak = tableroa.length;
@@ -149,7 +160,7 @@ public class TableroModeloa {
 		String[] datuak = dbo.partidaKargatu();
 		String partida = datuak[0];
 		int errenkadak = Integer.parseInt(datuak[1]);
-		System.out.println(errenkadak);
+		this.partidaGalduta = false;
 		int zutabeak = Integer.parseInt(datuak[2]);
 		String[] partidaLista = partida.split("-");
 		tableroa = new ILaukia[errenkadak][zutabeak];

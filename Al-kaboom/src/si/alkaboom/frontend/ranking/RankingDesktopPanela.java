@@ -30,4 +30,12 @@ public class RankingDesktopPanela extends JDesktopPane {
 		this.setBackground(new Color(230, 230, 230));
 		this.setOpaque(true);
 	}
+
+	public void taulakEguneratu() {
+		this.removeAll();
+		this.irekitakoLeihoKop = 4;
+		this.hasieratu();
+		this.revalidate();
+		this.repaint();
+	}
 }

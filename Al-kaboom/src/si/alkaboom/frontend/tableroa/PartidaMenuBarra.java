@@ -20,7 +20,7 @@ public class PartidaMenuBarra extends JMenuBar {
 
 	private JMenu fitxategia, partida, gehiago, ranking;
 	private JMenuItem partidaBerria, partidaKargatu, partidaGorde, itxi, pausa, laguntza, alKaboomBuruz, alKaboomWeb,
-			rankingBistaratu;
+			rankingBistaratu, rankingEguneratu;
 	private PartidaMezuGrafikoak pmg;
 
 	public PartidaMenuBarra() {
@@ -50,6 +50,7 @@ public class PartidaMenuBarra extends JMenuBar {
 	private void fitxategiMenuaEraiki() {
 		fitxategia = new JMenu("Fitxategia");
 		partidaBerria = new JMenuItem("Partida berria");
+		partidaBerria.addActionListener(gureAE -> AlKaboom.getAlKaboom().getUI().partidaBerria());
 		itxi = new JMenuItem("Programa itxi");
 		itxi.addActionListener(gureAE -> this.programaItxi());
 		fitxategia.add(partidaBerria);
@@ -114,8 +115,11 @@ public class PartidaMenuBarra extends JMenuBar {
 	private void rankingMenuaEraiki() {
 		this.ranking = new JMenu("Ranking");
 		rankingBistaratu = new JMenuItem("Ranking Bistaratu");
+		this.rankingEguneratu = new JMenuItem("Rankinga eguneratu");
+		this.rankingEguneratu.addActionListener(gureAE -> AlKaboom.getAlKaboom().getUI().rankingEguneratu());
 		rankingBistaratu.addActionListener(gureAE -> this.menuaAldatu());
 		ranking.add(rankingBistaratu);
+		ranking.add(rankingEguneratu);
 	}
 
 }

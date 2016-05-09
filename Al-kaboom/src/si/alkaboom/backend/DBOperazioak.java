@@ -122,6 +122,9 @@ public class DBOperazioak {
 		String erabiltzaileIzena = AlKaboom.getAlKaboom().getErabiltzailea().getIzena();
 		DBKS.getDBKS().eguneraketaExekutatu(
 				"UPDATE Jokalaria SET IrabaziKop = IrabaziKop + 1 where Izena = '" + erabiltzaileIzena + "'");
+		int id = this.getID();
+		DBKS.getDBKS().aginduaExekutatu("INSERT INTO Puntuazioa VALUES(" + id + ", 0,0,'"
+				+ AlKaboom.getAlKaboom().getErabiltzailea().getZailtasuna() + "')");
 	}
 
 	public String[] partidaKargatu() {

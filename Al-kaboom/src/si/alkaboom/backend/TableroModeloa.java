@@ -41,6 +41,7 @@ public class TableroModeloa {
 
 	public void hasieratu(int errenkadak, int zutabeak, int minak, int klikErrenkada, int klikZutabea) {
 		this.minaKop = minak;
+		this.partidaGalduta = false;
 		tableroa = new ILaukia[errenkadak][zutabeak];
 		tableroa[klikErrenkada][klikZutabea] = new LaukiaHuts();
 		Random r = new Random();

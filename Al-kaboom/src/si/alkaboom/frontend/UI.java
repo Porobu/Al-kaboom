@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 import si.alkaboom.backend.AlKaboom;
@@ -49,6 +50,22 @@ public class UI extends JFrame {
 		this.repaint();
 	}
 
+	public void partidaBerria() {
+		int aukera = JOptionPane.showConfirmDialog(this, "Partida berria hasi nahi duzu?\nOraingoa galduko da",
+				AlKaboomConstants.IZENBURUA, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+		if (aukera == JOptionPane.NO_OPTION)
+			return;
+		this.remove(tp);
+		Erabiltzailea e = AlKaboom.getAlKaboom().getErabiltzailea();
+		if (e.getZailtasuna().equalsIgnoreCase("Custom"))
+			this.tp = new TableroPanela(e.getErrenkadak(), e.getZutabeak(), e.getMinak());
+		else
+			this.tp = new TableroPanela(e.getZailtasuna());
+		this.add(tp);
+		this.revalidate();
+		this.repaint();
+	}
+
 	public void dekorazioGabeHasieratu() {
 		this.setUndecorated(true);
 		this.setLocationRelativeTo(null);
@@ -88,6 +105,10 @@ public class UI extends JFrame {
 				AlKaboomConstants.TABLERO_TAMAINA_BERTIKALA));
 		this.revalidate();
 		this.repaint();
+	}
+
+	public void rankingEguneratu() {
+		this.ranking.taulakEguneratu();
 	}
 
 	public void rankingItxi() {

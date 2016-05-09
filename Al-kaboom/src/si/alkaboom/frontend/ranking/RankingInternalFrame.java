@@ -9,7 +9,7 @@ import si.alkaboom.frontend.TaulaPanela;
 
 public class RankingInternalFrame extends JInternalFrame {
 	private static final long serialVersionUID = 6481265986429597754L;
-	private final int xOffset = 40, yOffset = 40;
+	private final int offset = 40;
 
 	public RankingInternalFrame(String izenburua) {
 		super(izenburua, true, false, true, true);
@@ -17,8 +17,8 @@ public class RankingInternalFrame extends JInternalFrame {
 		TaulaPanela taula = new TaulaPanela(izenburua, "");
 		this.add(taula, BorderLayout.CENTER);
 		this.pack();
-		setLocation(xOffset * AlKaboom.getAlKaboom().getUI().getRanking().getIrekitakoLeihoKop(),
-				yOffset * AlKaboom.getAlKaboom().getUI().getRanking().getIrekitakoLeihoKop());
+		setLocation(offset * AlKaboom.getAlKaboom().getUI().getRanking().getIrekitakoLeihoKop(),
+				offset * AlKaboom.getAlKaboom().getUI().getRanking().getIrekitakoLeihoKop());
 		this.setVisible(true);
 	}
 }

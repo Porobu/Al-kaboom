@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 
 import si.alkaboom.backend.AlKaboom;
 import si.alkaboom.backend.AlKaboomConstants;
-import si.alkaboom.frontend.PartidaMezuGrafikoak;
 import si.alkaboom.salbuespenak.AlKaboomSalbuespena;
 
 public class PartidaMenuBarra extends JMenuBar {

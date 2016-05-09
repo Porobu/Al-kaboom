@@ -1,7 +1,7 @@
 package si.alkaboom.backend;
 
 public interface AlKaboomConstants {
-	public static final String BERTSIOA = "0.6.0-Alpha2";
+	public static final String BERTSIOA = "0.6.0-Beta1";
 	public static final String IZENBURUA = "Al-Kaboom " + BERTSIOA;
 	public static final int ERRENKADA_KOPURUA_ERREZA = 10;
 	public static final int ZUTABE_KOPURUA_ERREZA = 10;
@@ -22,4 +22,5 @@ public interface AlKaboomConstants {
 	public static final String MARKARIK_EZ = "E";
 	public static final String BANDERITA = "B";
 	public static final String GALDERA = "G";
+	public static final String IREKITA = "I";
 }

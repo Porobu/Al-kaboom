@@ -15,7 +15,7 @@ import si.alkaboom.backend.AlKaboom;
 import si.alkaboom.backend.Erabiltzailea;
 import si.alkaboom.backend.TableroModeloa;
 import si.alkaboom.externals.SpringUtilities;
-import si.alkaboom.frontend.PartidaMezuGrafikoak;
+import si.alkaboom.frontend.tableroa.PartidaMezuGrafikoak;
 
 public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 	private static final long serialVersionUID = 3676006022124213986L;

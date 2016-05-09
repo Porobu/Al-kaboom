@@ -19,7 +19,10 @@ public final class LaukiFaktoria {
 	public ILaukia laukiaEgindaLortu(String izena, int zenb, String marka) {
 		ILaukia l = this.laukiaLortu(izena);
 		l.setZenbakia(zenb);
-		l.markaIpini(marka);
+		if (marka.equalsIgnoreCase("I"))
+			l.laukiaIreki();
+		else
+			l.markaIpini(marka);
 		return l;
 	}
 

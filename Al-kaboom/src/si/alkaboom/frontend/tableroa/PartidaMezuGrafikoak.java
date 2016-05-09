@@ -1,4 +1,4 @@
-package si.alkaboom.frontend;
+package si.alkaboom.frontend.tableroa;
 
 import javax.swing.JOptionPane;
 
@@ -6,12 +6,13 @@ import si.alkaboom.backend.AlKaboom;
 import si.alkaboom.backend.AlKaboomConstants;
 import si.alkaboom.backend.DBOperazioak;
 import si.alkaboom.backend.TableroModeloa;
+import si.alkaboom.frontend.UI;
 
 public class PartidaMezuGrafikoak {
 	public void partidaKargatu() {
 		DBOperazioak o = new DBOperazioak();
 		if (!o.partidaGordetaDago(AlKaboom.getAlKaboom().getErabiltzailea().getIzena())) {
-			JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(), "Ez da aurkitu gordetako partidarik",
+			JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(), "Ez da aurkitu gordetako partidarik!",
 					AlKaboomConstants.IZENBURUA, JOptionPane.WARNING_MESSAGE);
 			return;
 		}
@@ -34,6 +35,17 @@ public class PartidaMezuGrafikoak {
 	}
 
 	public void patidaGorde() {
+		if (AlKaboom.getAlKaboom().getUI().getTp().isHasiera()) {
+			JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(), "Ezin da partida gorde hasi ez delako!",
+					AlKaboomConstants.IZENBURUA, JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		if (TableroModeloa.getTableroModeloa().partidaGaldutaDago()
+				|| TableroModeloa.getTableroModeloa().isPartidaIrabazita()) {
+			JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(), "Ezin da bukatutako partida bat gorde!",
+					AlKaboomConstants.IZENBURUA, JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 		int aukera = JOptionPane.showConfirmDialog(AlKaboom.getAlKaboom().getUI(),
 				"Partida gorde nahi duzu?\nGordetako beste partidaren bat ezabatu daiteke", AlKaboomConstants.IZENBURUA,
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);

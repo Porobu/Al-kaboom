@@ -16,7 +16,7 @@ public class LaukiaZenb implements ILaukia {
 
 	@Override
 	public String daukanMarka() {
-		return irekita ? AlKaboomConstants.MARKARIK_EZ : this.marka;
+		return irekita ? AlKaboomConstants.IREKITA : this.marka;
 	}
 
 	@Override

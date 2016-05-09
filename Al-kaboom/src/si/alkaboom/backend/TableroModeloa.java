@@ -47,26 +47,23 @@ public class TableroModeloa {
 		Random r = new Random();
 		for (int i = 0; i < minak; i++) {
 			int a = r.nextInt(errenkadak), b = r.nextInt(zutabeak);
-			if (tableroa[a][b] == null) {
+			if (tableroa[a][b] == null)
 				tableroa[a][b] = new LaukiaMina();
-			} else {
+			else
 				i--;
-			}
+
 		}
 		for (int i = 0; i < errenkadak; i++) {
 			for (int j = 0; j < zutabeak; j++) {
 				if (tableroa[i][j] != null)
-					if (tableroa[i][j].getClass().getName().contains("Mina")) {
+					if (tableroa[i][j].getClass().getName().contains("Mina"))
 						this.zenbakiagehitu(i, j);
-					}
-
 			}
 		}
 		for (int i = 0; i < errenkadak; i++) {
 			for (int j = 0; j < zutabeak; j++) {
-				if (tableroa[i][j] == null) {
+				if (tableroa[i][j] == null)
 					tableroa[i][j] = new LaukiaHuts();
-				}
 			}
 		}
 		this.laukiakIreki(klikErrenkada, klikZutabea);
@@ -158,10 +155,10 @@ public class TableroModeloa {
 
 	public void partidaKargatu() {
 		this.partidaGalduta = false;
+		this.partidaIrabazita = false;
 		String[] datuak = dbo.partidaKargatu();
 		String partida = datuak[0];
 		int errenkadak = Integer.parseInt(datuak[1]);
-		this.partidaGalduta = false;
 		int zutabeak = Integer.parseInt(datuak[2]);
 		String[] partidaLista = partida.split("-");
 		tableroa = new ILaukia[errenkadak][zutabeak];

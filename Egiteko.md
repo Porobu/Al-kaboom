@@ -31,7 +31,9 @@
 
 # 3 Sprint :
 
-- Jokoa bukatu
-- Dokumentazio teknikoa idatzi
-- Erabiltzailearen dokumentazioa idatzi
-- Txostena egin
+- Jokoa bukatu: Sergio Santana
+- Dokumentazio teknikoa idatzi: Goizane, Iker era Edu
+- Erabiltzailearen dokumentazioa idatzi: Aitor Ortuondo
+- Txostena egin: Iker eta Edu
+- Sekuentzia diagrma bukatu: Aitor Ortuondo
+- Klase diagrama bukatu: Iker eta Edu

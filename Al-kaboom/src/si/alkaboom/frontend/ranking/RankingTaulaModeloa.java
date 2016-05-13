@@ -13,7 +13,7 @@ public class RankingTaulaModeloa extends AbstractTableModel {
 	private ArrayList<String[]> datuak;
 
 	public RankingTaulaModeloa(String zailtasuna) {
-		izenak = new String[] { "Erabiltzailearen izena", "Puntuak", "Denbora" };
+		izenak = new String[] { "Erabiltzailearen izena", "Denbora" };
 		datuak = new DBOperazioak().erabiltzaileenPuntuazioakLortu(zailtasuna);
 	}
 

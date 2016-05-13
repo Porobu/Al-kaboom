@@ -75,7 +75,7 @@ public class DBOperazioak {
 
 	public ArrayList<String[]> erabiltzaileenPuntuazioakLortu(String mota) {
 		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu(
-				"Select Izena, Puntuak, Denbora from Jokalaria, Puntuazioa where Puntuazioa.Zailtasuna like '%" + mota
+				"Select Izena, Denbora from Jokalaria, Puntuazioa where Puntuazioa.Zailtasuna like '%" + mota
 						+ "%' and Jokalaria.ID = Puntuazioa.ID");
 		try {
 			return this.rsKopiatu(rs, rs.getMetaData().getColumnCount());
@@ -95,6 +95,11 @@ public class DBOperazioak {
 		}
 	}
 
+	public void partidaEzabatu() {
+		int id = this.getID();
+		DBKS.getDBKS().aginduaExekutatu("DELETE FROM Partida where ErabiltzaileID = " + id);
+	}
+
 	public void partidaGaldu() {
 		String erabiltzaileIzena = AlKaboom.getAlKaboom().getErabiltzailea().getIzena();
 		DBKS.getDBKS().eguneraketaExekutatu(
@@ -105,11 +110,6 @@ public class DBOperazioak {
 		int id = this.getID();
 		DBKS.getDBKS().aginduaExekutatu("INSERT OR REPLACE INTO Partida VALUES (" + id + ", '" + partida + "', "
 				+ errenkadak + ", " + zutabeak + ")");
-	}
-
-	public void partidaEzabatu() {
-		int id = this.getID();
-		DBKS.getDBKS().aginduaExekutatu("DELETE FROM Partida where ErabiltzaileID = " + id);
 	}
 
 	public boolean partidaGordetaDago(String erabiltzailea) {
@@ -124,12 +124,13 @@ public class DBOperazioak {
 	}
 
 	public void partidaIrabazi() {
-		String erabiltzaileIzena = AlKaboom.getAlKaboom().getErabiltzailea().getIzena();
+		Erabiltzailea e = AlKaboom.getAlKaboom().getErabiltzailea();
+		String erabiltzaileIzena = e.getIzena();
 		DBKS.getDBKS().eguneraketaExekutatu(
 				"UPDATE Jokalaria SET IrabaziKop = IrabaziKop + 1 where Izena = '" + erabiltzaileIzena + "'");
 		int id = this.getID();
-		DBKS.getDBKS().aginduaExekutatu("INSERT INTO Puntuazioa VALUES(" + id + ", 0,0,'"
-				+ AlKaboom.getAlKaboom().getErabiltzailea().getZailtasuna() + "')");
+		DBKS.getDBKS().aginduaExekutatu("INSERT INTO Puntuazioa VALUES(" + id + "," + e.getErlojua().getDenbora() / 1000
+				+ ",'" + e.getZailtasuna() + "')");
 	}
 
 	public String[] partidaKargatu() {
@@ -150,9 +151,8 @@ public class DBOperazioak {
 		try {
 			while (rs.next()) {
 				String[] oraingoa = new String[kop];
-				for (int i = 0; i < kop; i++) {
+				for (int i = 0; i < kop; i++)
 					oraingoa[i] = rs.getString(i + 1);
-				}
 				emaitza.add(oraingoa);
 			}
 		} catch (SQLException e) {

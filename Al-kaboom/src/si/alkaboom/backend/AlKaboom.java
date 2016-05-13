@@ -17,6 +17,7 @@ public final class AlKaboom implements AlKaboomConstants {
 	private int[] balioakCustom;
 
 	private UI ui;
+	
 
 	private AlKaboom() {
 

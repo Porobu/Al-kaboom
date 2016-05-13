@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import si.alkaboom.backend.AlKaboom;
 import si.alkaboom.backend.AlKaboomConstants;
 import si.alkaboom.backend.DBOperazioak;
 import si.alkaboom.backend.TableroModeloa;
@@ -172,25 +173,31 @@ public class TableroPanela extends JPanel implements MouseListener {
 		int errenkada = Integer.parseInt(pos[0]);
 		int zutabea = Integer.parseInt(pos[1]);
 		if (SwingUtilities.isLeftMouseButton(e)) {
-			if (!hasiera && !TableroModeloa.getTableroModeloa().getPos(errenkada, zutabea).daukanMarka()
-					.equals(AlKaboomConstants.MARKARIK_EZ))
-				return;
-			if (hasiera) {
-				hasiera = false;
-				this.laukiakIpini(l.getName());
-			} else
-				TableroModeloa.getTableroModeloa().laukiakIreki(errenkada, zutabea);
-			if (TableroModeloa.getTableroModeloa().partidaGaldutaDago())
-				this.partidaGaldu();
-			else if (TableroModeloa.getTableroModeloa().isPartidaIrabazita()) {
-				this.partidaIrabazi();
-			}
-			this.tableroaEguneratu();
+			this.ezkerrekoKlik(errenkada, zutabea, l);
 		} else {
 			this.motaIpini(errenkada, zutabea, true);
 			this.markaErabili(errenkada, zutabea, l);
 		}
 
+	}
+
+	private void ezkerrekoKlik(int errenkada, int zutabea, AKLaukia l) {
+		if (!hasiera && !TableroModeloa.getTableroModeloa().getPos(errenkada, zutabea).daukanMarka()
+				.equals(AlKaboomConstants.MARKARIK_EZ))
+			return;
+		if (hasiera) {
+			hasiera = false;
+			this.laukiakIpini(l.getName());
+			AlKaboom.getAlKaboom().getErabiltzailea().getErlojua().erlojuaGarbitu();
+			AlKaboom.getAlKaboom().getErabiltzailea().getErlojua().erlojuaHasi();
+		} else
+			TableroModeloa.getTableroModeloa().laukiakIreki(errenkada, zutabea);
+		if (TableroModeloa.getTableroModeloa().partidaGaldutaDago())
+			this.partidaGaldu();
+		else if (TableroModeloa.getTableroModeloa().isPartidaIrabazita()) {
+			this.partidaIrabazi();
+		}
+		this.tableroaEguneratu();
 	}
 
 	@Override
@@ -219,6 +226,7 @@ public class TableroPanela extends JPanel implements MouseListener {
 				laukiak[i][j].setEnabled(false);
 		DBOperazioak dbo = new DBOperazioak();
 		dbo.partidaGaldu();
+		AlKaboom.getAlKaboom().getErabiltzailea().getErlojua().erlojuaGelditu();
 		JOptionPane.showMessageDialog(this, "Partida galdu duzu!", AlKaboomConstants.IZENBURUA,
 				JOptionPane.ERROR_MESSAGE);
 	}
@@ -227,6 +235,7 @@ public class TableroPanela extends JPanel implements MouseListener {
 		for (int i = 0; i < laukiak.length; i++)
 			for (int j = 0; j < laukiak[0].length; j++)
 				laukiak[i][j].setEnabled(false);
+		AlKaboom.getAlKaboom().getErabiltzailea().getErlojua().erlojuaGelditu();
 		JOptionPane.showMessageDialog(this, "Zorionak! Partida irabazi duzu!", AlKaboomConstants.IZENBURUA,
 				JOptionPane.INFORMATION_MESSAGE);
 

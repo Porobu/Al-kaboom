@@ -71,7 +71,7 @@ public class KautotuSartzekoPanela extends JPanel implements KeyListener {
 		else
 			ak.setErabiltzailea(
 					new Erabiltzailea(this.erabiltzaileaField.getText(), (String) this.aukerak.getSelectedItem()));
-		ak.getErabiltzailea().datubaseaEguneratu();
+		ak.getErabiltzailea().erabiltzaileaEguneratu();
 		PartidaMezuGrafikoak pmg = new PartidaMezuGrafikoak();
 		ak.getUI().alKaboomHasieratu();
 		if (ak.getErabiltzailea().partidaDauka())

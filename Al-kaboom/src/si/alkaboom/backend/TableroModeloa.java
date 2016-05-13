@@ -52,51 +52,6 @@ public class TableroModeloa {
 		this.laukiakIreki(klikErrenkada, klikZutabea);
 	}
 
-	private void laukiHutsakIpini(int errenkadak, int zutabeak) {
-		for (int i = 0; i < errenkadak; i++) {
-			for (int j = 0; j < zutabeak; j++) {
-				if (tableroa[i][j] == null)
-					tableroa[i][j] = new LaukiaHuts();
-			}
-		}
-	}
-
-	private void zenbakiakIpini(int errenkadak, int zutabeak) {
-		for (int i = 0; i < errenkadak; i++) {
-			for (int j = 0; j < zutabeak; j++) {
-				if (tableroa[i][j] != null)
-					if (tableroa[i][j].getClass().getName().contains("Mina"))
-						this.zenbakiagehitu(i, j);
-			}
-		}
-	}
-
-	private void minakIpini(int minak, int errenkadak, int zutabeak, Random r) {
-		for (int i = 0; i < minak; i++) {
-			int a = r.nextInt(errenkadak), b = r.nextInt(zutabeak);
-			if (tableroa[a][b] == null)
-				tableroa[a][b] = new LaukiaMina();
-			else
-				i--;
-
-		}
-	}
-
-	private void lehenengoLaukiaKonpondu(int klikErrenkada, int klikZutabea) {
-		for (int i = -1; i <= 1; i++) {
-			for (int j = -1; j <= 1; j++) {
-				ILaukia l = tableroa[klikErrenkada + i][klikZutabea + j];
-				if (klikErrenkada + i >= tableroa.length || klikZutabea + j >= tableroa[0].length
-						|| klikErrenkada + i < 0 || klikZutabea + j < 0)
-					;
-				else {
-					if (l != null && l.getClass().getSimpleName().toLowerCase().contains("laukiamina"))
-						tableroa[klikErrenkada][klikZutabea] = new LaukiaZenb();
-				}
-			}
-		}
-	}
-
 	private void irekitakoLaukiakKontatu() {
 		irekitakoLaukiak = 0;
 		for (int i = 0; i < tableroa.length; i++) {
@@ -155,6 +110,41 @@ public class TableroModeloa {
 
 		}
 
+	}
+
+	private void laukiHutsakIpini(int errenkadak, int zutabeak) {
+		for (int i = 0; i < errenkadak; i++) {
+			for (int j = 0; j < zutabeak; j++) {
+				if (tableroa[i][j] == null)
+					tableroa[i][j] = new LaukiaHuts();
+			}
+		}
+	}
+
+	private void lehenengoLaukiaKonpondu(int klikErrenkada, int klikZutabea) {
+		for (int i = -1; i <= 1; i++) {
+			for (int j = -1; j <= 1; j++) {
+				ILaukia l = tableroa[klikErrenkada + i][klikZutabea + j];
+				if (klikErrenkada + i >= tableroa.length || klikZutabea + j >= tableroa[0].length
+						|| klikErrenkada + i < 0 || klikZutabea + j < 0)
+					;
+				else {
+					if (l != null && l.getClass().getSimpleName().toLowerCase().contains("laukiamina"))
+						tableroa[klikErrenkada][klikZutabea] = new LaukiaZenb();
+				}
+			}
+		}
+	}
+
+	private void minakIpini(int minak, int errenkadak, int zutabeak, Random r) {
+		for (int i = 0; i < minak; i++) {
+			int a = r.nextInt(errenkadak), b = r.nextInt(zutabeak);
+			if (tableroa[a][b] == null)
+				tableroa[a][b] = new LaukiaMina();
+			else
+				i--;
+
+		}
 	}
 
 	public void partidaGaldu() {
@@ -218,6 +208,16 @@ public class TableroModeloa {
 						lz.zenbPlus();
 					}
 				}
+			}
+		}
+	}
+
+	private void zenbakiakIpini(int errenkadak, int zutabeak) {
+		for (int i = 0; i < errenkadak; i++) {
+			for (int j = 0; j < zutabeak; j++) {
+				if (tableroa[i][j] != null)
+					if (tableroa[i][j].getClass().getName().contains("Mina"))
+						this.zenbakiagehitu(i, j);
 			}
 		}
 	}

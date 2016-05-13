@@ -9,6 +9,23 @@ import si.alkaboom.backend.TableroModeloa;
 import si.alkaboom.frontend.UI;
 
 public class PartidaMezuGrafikoak {
+	public void partidaEzabatu() {
+		DBOperazioak o = new DBOperazioak();
+		if (!o.partidaGordetaDago(AlKaboom.getAlKaboom().getErabiltzailea().getIzena())) {
+			JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(), "Ez da aurkitu gordetako partidarik!",
+					AlKaboomConstants.IZENBURUA, JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		int aukera = JOptionPane.showConfirmDialog(AlKaboom.getAlKaboom().getUI(),
+				"Gordetako partida ezabatu nahi duzu?\nBetiko galduko da!", AlKaboomConstants.IZENBURUA,
+				JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+		if (aukera == JOptionPane.NO_OPTION)
+			return;
+		o.partidaEzabatu();
+		JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(), "Partida ezabatu da.",
+				AlKaboomConstants.IZENBURUA, JOptionPane.INFORMATION_MESSAGE);
+	}
+
 	public void partidaKargatu() {
 		DBOperazioak o = new DBOperazioak();
 		if (!o.partidaGordetaDago(AlKaboom.getAlKaboom().getErabiltzailea().getIzena())) {
@@ -55,23 +72,6 @@ public class PartidaMezuGrafikoak {
 		JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(), "Partida gorde da", AlKaboomConstants.IZENBURUA,
 				JOptionPane.INFORMATION_MESSAGE);
 
-	}
-
-	public void partidaEzabatu() {
-		DBOperazioak o = new DBOperazioak();
-		if (!o.partidaGordetaDago(AlKaboom.getAlKaboom().getErabiltzailea().getIzena())) {
-			JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(), "Ez da aurkitu gordetako partidarik!",
-					AlKaboomConstants.IZENBURUA, JOptionPane.ERROR_MESSAGE);
-			return;
-		}
-		int aukera = JOptionPane.showConfirmDialog(AlKaboom.getAlKaboom().getUI(),
-				"Gordetako partida ezabatu nahi duzu?\nBetiko galduko da!", AlKaboomConstants.IZENBURUA,
-				JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-		if (aukera == JOptionPane.NO_OPTION)
-			return;
-		o.partidaEzabatu();
-		JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(), "Partida ezabatu da.",
-				AlKaboomConstants.IZENBURUA, JOptionPane.INFORMATION_MESSAGE);
 	}
 
 }

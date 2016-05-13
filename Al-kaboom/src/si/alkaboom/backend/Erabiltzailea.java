@@ -3,6 +3,7 @@ package si.alkaboom.backend;
 public class Erabiltzailea {
 	private String izena, zailtasuna;
 	private int errenkadak, zutabeak, minak;
+	private Erlojua e;
 
 	public Erabiltzailea(String izena, int errenkadak, int zutabeak, int minak) {
 		this.izena = izena;
@@ -10,14 +11,20 @@ public class Erabiltzailea {
 		this.errenkadak = errenkadak;
 		this.zutabeak = zutabeak;
 		this.minak = minak;
+		this.e = new Erlojua();
+	}
+
+	public Erlojua getErlojua() {
+		return e;
 	}
 
 	public Erabiltzailea(String izena, String zailtasuna) {
 		this.izena = izena;
 		this.zailtasuna = zailtasuna;
+		this.e = new Erlojua();
 	}
 
-	public void datubaseaEguneratu() {
+	public void erabiltzaileaEguneratu() {
 		DBOperazioak o = new DBOperazioak();
 		if (!o.erabiltzaileaDago(this.izena))
 			o.erabiltzaileaErregistratu(this.izena);
@@ -49,5 +56,4 @@ public class Erabiltzailea {
 		DBOperazioak o = new DBOperazioak();
 		return o.partidaGordetaDago(izena);
 	}
-
 }

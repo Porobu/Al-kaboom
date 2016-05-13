@@ -7,11 +7,11 @@ public interface AlKaboomConstants {
 	public static final int ZUTABE_KOPURUA_ERREZA = 10;
 	public static final int MINA_KOPURUA_ERREZA = 10;
 	public static final int ERRENKADA_KOPURUA_NORMALA = 15;
-	public static final int ZUTABE_KOPURUA_NORMALA = 15;
-	public static final int MINA_KOPURUA_NORMALA = 60;
-	public static final int ERRENKADA_KOPURUA_ZAILA = 30;
-	public static final int ZUTABE_KOPURUA_ZAILA = 20;
-	public static final int MINA_KOPURUA_ZAILA = 200;
+	public static final int ZUTABE_KOPURUA_NORMALA = 12;
+	public static final int MINA_KOPURUA_NORMALA = 50;
+	public static final int ERRENKADA_KOPURUA_ZAILA = 25;
+	public static final int ZUTABE_KOPURUA_ZAILA = 15;
+	public static final int MINA_KOPURUA_ZAILA = 100;
 	public static final int[] ERREZA = new int[] { ERRENKADA_KOPURUA_ERREZA, ZUTABE_KOPURUA_ERREZA,
 			MINA_KOPURUA_ERREZA };
 	public static final int[] NORMALA = new int[] { ERRENKADA_KOPURUA_NORMALA, ZUTABE_KOPURUA_NORMALA,

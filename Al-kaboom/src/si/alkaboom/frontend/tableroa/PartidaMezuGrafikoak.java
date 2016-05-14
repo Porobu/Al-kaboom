@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import si.alkaboom.backend.AlKaboom;
 import si.alkaboom.backend.AlKaboomConstants;
 import si.alkaboom.backend.DBOperazioak;
+import si.alkaboom.backend.Erlojua;
 import si.alkaboom.backend.TableroModeloa;
 import si.alkaboom.frontend.UI;
 
@@ -42,6 +43,8 @@ public class PartidaMezuGrafikoak {
 		AlKaboom.getAlKaboom().getUI().getTp().listaHasieratu(TableroModeloa.getTableroModeloa().getTamaina()[0],
 				TableroModeloa.getTableroModeloa().getTamaina()[1]);
 		AlKaboom.getAlKaboom().getUI().getTp().tableroaEguneratu();
+		AlKaboom.getAlKaboom().getErabiltzailea().getErlojua().erlojuaGarbitu();
+		AlKaboom.getAlKaboom().getErabiltzailea().getErlojua().erlojuaHasi();
 	}
 
 	public boolean partidaKargatuGaldetu() {
@@ -72,6 +75,17 @@ public class PartidaMezuGrafikoak {
 		JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(), "Partida gorde da", AlKaboomConstants.IZENBURUA,
 				JOptionPane.INFORMATION_MESSAGE);
 
+	}
+
+	public void informazioaPantailaratu() {
+		Erlojua e = AlKaboom.getAlKaboom().getErabiltzailea().getErlojua();
+		e.erlojuaPausatu();
+		long denbora = e.getDenbora();
+		JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(), "Igarotako denbora: " + denbora / 1000F + "s",
+				AlKaboomConstants.IZENBURUA, JOptionPane.INFORMATION_MESSAGE);
+		System.out.println(AlKaboom.getAlKaboom().getUI().getTp().isPausa());
+		if (!AlKaboom.getAlKaboom().getUI().getTp().isPausa())
+			e.erlojuaMartxanIpini();
 	}
 
 }

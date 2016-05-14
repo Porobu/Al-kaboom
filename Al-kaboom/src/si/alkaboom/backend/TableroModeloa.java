@@ -178,6 +178,8 @@ public class TableroModeloa {
 		String partida = datuak[0];
 		int errenkadak = Integer.parseInt(datuak[1]);
 		int zutabeak = Integer.parseInt(datuak[2]);
+		AlKaboom.getAlKaboom().getErabiltzailea().getErlojua().setDenboraPartGordeta(0);
+		AlKaboom.getAlKaboom().getErabiltzailea().getErlojua().setDenboraPartGordeta(Integer.parseInt(datuak[3]));
 		minaKop = 0;
 		String[] partidaLista = partida.split("-");
 		tableroa = new ILaukia[errenkadak][zutabeak];

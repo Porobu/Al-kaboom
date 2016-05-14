@@ -4,9 +4,11 @@ import org.apache.commons.lang3.time.StopWatch;
 
 public class Erlojua {
 	private StopWatch s;
+	private long denboraPartGordeta;
 
 	public Erlojua() {
 		this.s = new StopWatch();
+
 	}
 
 	public void erlojuaHasi() {
@@ -14,7 +16,7 @@ public class Erlojua {
 	}
 
 	public long getDenbora() {
-		return s.getTime();
+		return s.getTime() + this.denboraPartGordeta;
 	}
 
 	public void erlojuaGarbitu() {
@@ -22,15 +24,19 @@ public class Erlojua {
 	}
 
 	public void erlojuaPausatu() {
-		s.split();
+		s.suspend();
 	}
 
 	public void erlojuaMartxanIpini() {
-		s.unsplit();
+		s.resume();
 	}
 
 	public void erlojuaGelditu() {
 		s.stop();
+	}
+
+	public void setDenboraPartGordeta(long denobraPartGordeta) {
+		this.denboraPartGordeta = denobraPartGordeta;
 	}
 
 }

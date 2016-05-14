@@ -19,7 +19,7 @@ public class PartidaMenuBarra extends JMenuBar {
 
 	private JMenu fitxategia, partida, gehiago, ranking;
 	private JMenuItem partidaBerria, partidaKargatu, partidaGorde, itxi, pausa, laguntza, alKaboomBuruz, alKaboomWeb,
-			rankingBistaratu, rankingEguneratu, partidaEzabatu;
+			rankingBistaratu, rankingEguneratu, partidaEzabatu, informazioa;
 	private PartidaMezuGrafikoak pmg;
 
 	public PartidaMenuBarra() {
@@ -88,6 +88,9 @@ public class PartidaMenuBarra extends JMenuBar {
 		pausa.addActionListener(gureAE -> this.pausa());
 		partidaEzabatu = new JMenuItem("Gordetako partida ezabatu");
 		partidaEzabatu.addActionListener(gureAE -> pmg.partidaEzabatu());
+		informazioa = new JMenuItem("Partidaren Informazioa");
+		informazioa.addActionListener(gureAE -> pmg.informazioaPantailaratu());
+		partida.add(informazioa);
 		partida.add(partidaGorde);
 		partida.add(partidaKargatu);
 		partida.add(partidaEzabatu);
@@ -99,9 +102,11 @@ public class PartidaMenuBarra extends JMenuBar {
 		if (!tp.isPausa()) {
 			tp.setPausa(true);
 			this.pausa.setText("Jarraitu");
+			AlKaboom.getAlKaboom().getErabiltzailea().getErlojua().erlojuaPausatu();
 		} else {
 			tp.setPausa(false);
 			this.pausa.setText("Pausa");
+			AlKaboom.getAlKaboom().getErabiltzailea().getErlojua().erlojuaMartxanIpini();
 		}
 
 	}

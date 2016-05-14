@@ -96,6 +96,7 @@ public class UI extends JFrame {
 		this.add(tp);
 		this.revalidate();
 		this.repaint();
+		AlKaboom.getAlKaboom().getErabiltzailea().getErlojua().erlojuaGarbitu();
 	}
 
 	public void rankingEguneratu() {

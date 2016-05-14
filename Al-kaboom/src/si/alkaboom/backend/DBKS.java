@@ -43,7 +43,7 @@ public final class DBKS {
 	private boolean datubaseaKonprobatu() {
 		try {
 			st.executeQuery("SELECT Id, Izena, AzkenData, IrabaziKop, GalduKop from Jokalaria");
-			st.executeQuery("Select ErabiltzaileID, Tableroa, ErrenkadaKop, ZutabeKop from Partida");
+			st.executeQuery("Select ErabiltzaileID, Tableroa, ErrenkadaKop, ZutabeKop, Denbora from Partida");
 			st.executeQuery("Select Id, Denbora, Zailtasuna from Puntuazioa");
 		} catch (SQLException e) {
 			return false;

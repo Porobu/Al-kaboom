@@ -108,8 +108,10 @@ public class DBOperazioak {
 
 	public void partidaGorde(String partida, int errenkadak, int zutabeak) {
 		int id = this.getID();
-		DBKS.getDBKS().aginduaExekutatu("INSERT OR REPLACE INTO Partida VALUES (" + id + ", '" + partida + "', "
-				+ errenkadak + ", " + zutabeak + ")");
+		DBKS.getDBKS()
+				.aginduaExekutatu("INSERT OR REPLACE INTO Partida VALUES (" + id + ", '" + partida + "', " + errenkadak
+						+ ", " + zutabeak + ", " + AlKaboom.getAlKaboom().getErabiltzailea().getErlojua().getDenbora()
+						+ ")");
 	}
 
 	public boolean partidaGordetaDago(String erabiltzailea) {
@@ -140,7 +142,7 @@ public class DBOperazioak {
 		ResultSet rs = DBKS.getDBKS().kontsultaExekutatu("SELECT * from Partida Where ErabiltzaileID = " + id);
 		try {
 			rs.next();
-			return new String[] { rs.getString(2), rs.getString(3), rs.getString(4) };
+			return new String[] { rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5) };
 		} catch (SQLException e) {
 			throw new AlKaboomSalbuespena("Ezin da partida kargatu!", e);
 		}

@@ -1,8 +1,6 @@
 package si.alkaboom.tests.backend;
 
 import static org.junit.Assert.fail;
-
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.ResultSet;
@@ -20,25 +18,17 @@ import si.alkaboom.backend.DBKS;
 import si.alkaboom.backend.DBOperazioak;
 
 public class DBOperazioakTest {
-	private DBKS singletonDBKS;
-	private Method deskonektatuMetodoa;
 
 	@Before
 	public void setUp() throws Exception {
 		DBKS.getDBKS().konektatu(DBKS.getDBKS().getDefaultPath());
 		if (!DBKS.getDBKS().konekatutaDago())
 			fail();
-		Class<DBKS> dbks = DBKS.class;
-		Field singleton = dbks.getDeclaredField("gureDBKS");
-		singleton.setAccessible(true);
-		singletonDBKS = (DBKS) singleton.get(dbks);
-		deskonektatuMetodoa = dbks.getDeclaredMethod("deskonektatu");
-		deskonektatuMetodoa.setAccessible(true);
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		deskonektatuMetodoa.invoke(singletonDBKS);
+		DBKS.getDBKS().deskonektatu();
 	}
 
 	@Test

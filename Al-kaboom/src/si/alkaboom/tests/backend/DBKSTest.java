@@ -19,7 +19,6 @@ import si.alkaboom.backend.FitxategiOperazioak;
 
 public class DBKSTest {
 	private DBKS singletonDBKS;
-	private Method deskonektatuMetodoa;
 	private Class<DBKS> dbks;
 
 	@Before
@@ -33,13 +32,11 @@ public class DBKSTest {
 		Field singleton = dbks.getDeclaredField("gureDBKS");
 		singleton.setAccessible(true);
 		singletonDBKS = (DBKS) singleton.get(dbks);
-		deskonektatuMetodoa = dbks.getDeclaredMethod("deskonektatu");
-		deskonektatuMetodoa.setAccessible(true);
 	}
 
 	@After
 	public void tearDown() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		deskonektatuMetodoa.invoke(singletonDBKS);
+		DBKS.getDBKS().deskonektatu();
 	}
 
 	@Test
@@ -74,7 +71,7 @@ public class DBKSTest {
 		boolean b = (boolean) dbKonprobatu.invoke(singletonDBKS);
 		if (!b)
 			fail();
-		deskonektatuMetodoa.invoke(singletonDBKS);
+		DBKS.getDBKS().deskonektatu();
 		String path = System.getProperty("user.home") + "/AlKaboomTest.db";
 		File f = new File(path);
 		if (f.exists())
@@ -84,7 +81,7 @@ public class DBKSTest {
 		f = new File(path);
 		if (!f.exists())
 			fail();
-		deskonektatuMetodoa.invoke(singletonDBKS);
+		DBKS.getDBKS().deskonektatu();
 		DBKS.getDBKS().konektatu(f.getAbsolutePath());
 		DBKS.getDBKS().aginduaExekutatu("drop table if exists Jokalaria");
 		b = (boolean) dbKonprobatu.invoke(singletonDBKS);
@@ -94,9 +91,8 @@ public class DBKSTest {
 	}
 
 	@Test
-	public void testDeskonektatu()
-			throws SQLException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		deskonektatuMetodoa.invoke(singletonDBKS);
+	public void testDeskonektatu() throws SQLException {
+		DBKS.getDBKS().deskonektatu();
 		if (DBKS.getDBKS().konekatutaDago())
 			fail();
 	}
@@ -123,7 +119,7 @@ public class DBKSTest {
 			throws SQLException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		if (!DBKS.getDBKS().konekatutaDago())
 			fail();
-		deskonektatuMetodoa.invoke(singletonDBKS);
+		DBKS.getDBKS().deskonektatu();
 		if (DBKS.getDBKS().konekatutaDago())
 			fail();
 	}

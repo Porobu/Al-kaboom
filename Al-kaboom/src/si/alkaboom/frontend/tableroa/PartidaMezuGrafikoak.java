@@ -79,12 +79,14 @@ public class PartidaMezuGrafikoak {
 
 	public void informazioaPantailaratu() {
 		Erlojua e = AlKaboom.getAlKaboom().getErabiltzailea().getErlojua();
-		e.erlojuaPausatu();
+		if (e.martxanDago())
+			e.erlojuaPausatu();
 		long denbora = e.getDenbora();
 		JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(), "Igarotako denbora: " + denbora / 1000F + "s",
 				AlKaboomConstants.IZENBURUA, JOptionPane.INFORMATION_MESSAGE);
-		System.out.println(AlKaboom.getAlKaboom().getUI().getTp().isPausa());
-		if (!AlKaboom.getAlKaboom().getUI().getTp().isPausa())
+		if (!AlKaboom.getAlKaboom().getUI().getTp().isPausa()
+				&& !TableroModeloa.getTableroModeloa().partidaGaldutaDago()
+				&& !TableroModeloa.getTableroModeloa().isPartidaIrabazita())
 			e.erlojuaMartxanIpini();
 	}
 

@@ -39,4 +39,8 @@ public class Erlojua {
 		this.denboraPartGordeta = denobraPartGordeta;
 	}
 
+	public boolean martxanDago() {
+		return this.s.isStarted();
+	}
+
 }

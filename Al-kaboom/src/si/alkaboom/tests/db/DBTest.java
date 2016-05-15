@@ -16,8 +16,8 @@ public class DBTest {
 	@Test
 	public void dbTest() {
 		assertThat(jokalaria).hasNumberOfColumns(5);
-		assertThat(partida).hasNumberOfColumns(4);
-		assertThat(puntuazioa).hasNumberOfColumns(4);
+		assertThat(partida).hasNumberOfColumns(5);
+		assertThat(puntuazioa).hasNumberOfColumns(3);
 	}
 
 	@Before

@@ -29,7 +29,7 @@ public class FitxategiOperazioakUI {
 			System.exit(1);
 		fitxategia.delete();
 		FitxategiOperazioak nireFO = new FitxategiOperazioak();
-		nireFO.dbEsportatu("/si/alkaboom/Al-Kaboom.db", path);
+		nireFO.dbEsportatu("/Al-Kaboom.db", path);
 		JOptionPane.showMessageDialog(AlKaboom.getAlKaboom().getUI(),
 				"Partiden fitxategia " + path + " karpetan gorde da.", AlKaboomConstants.IZENBURUA,
 				JOptionPane.INFORMATION_MESSAGE);

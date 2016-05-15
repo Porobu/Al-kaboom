@@ -124,11 +124,11 @@ public class TableroModeloa {
 	private void lehenengoLaukiaKonpondu(int klikErrenkada, int klikZutabea) {
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
-				ILaukia l = tableroa[klikErrenkada + i][klikZutabea + j];
 				if (klikErrenkada + i >= tableroa.length || klikZutabea + j >= tableroa[0].length
 						|| klikErrenkada + i < 0 || klikZutabea + j < 0)
 					;
 				else {
+					ILaukia l = tableroa[klikErrenkada + i][klikZutabea + j];
 					if (l != null && l.getClass().getSimpleName().toLowerCase().contains("laukiamina"))
 						tableroa[klikErrenkada][klikZutabea] = new LaukiaZenb();
 				}

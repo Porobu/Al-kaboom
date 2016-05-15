@@ -18,8 +18,8 @@ public class PartidaMenuBarra extends JMenuBar {
 	private static final long serialVersionUID = 6278678590130942938L;
 
 	private JMenu fitxategia, partida, gehiago, ranking;
-	private JMenuItem partidaBerria, partidaKargatu, partidaGorde, itxi, pausa, laguntza, alKaboomBuruz, alKaboomWeb,
-			rankingBistaratu, rankingEguneratu, partidaEzabatu, informazioa;
+	private JMenuItem partidaBerria, partidaKargatu, partidaGorde, itxi, pausa, laguntza, alKaboomWeb, rankingBistaratu,
+			rankingEguneratu, partidaEzabatu, informazioa;
 	private PartidaMezuGrafikoak pmg;
 
 	public PartidaMenuBarra() {
@@ -32,10 +32,6 @@ public class PartidaMenuBarra extends JMenuBar {
 		this.add(partida);
 		this.add(ranking);
 		this.add(gehiago);
-	}
-
-	private void alKaboomBuruz() {
-
 	}
 
 	private void alKaboomWeb() {
@@ -59,12 +55,10 @@ public class PartidaMenuBarra extends JMenuBar {
 	private void gehiagoMenuaEraiki() {
 		gehiago = new JMenu("Gehiago");
 		laguntza = new JMenuItem("Laguntza");
-		alKaboomBuruz = new JMenuItem("AlKaboom-eri buruz");
-		alKaboomBuruz.addActionListener(gureAE -> this.alKaboomBuruz());
+		laguntza.addActionListener(gureAE -> this.laguntza());
 		alKaboomWeb = new JMenuItem("AlKaboom-eri buruz interneten");
 		alKaboomWeb.addActionListener(gureAE -> this.alKaboomWeb());
 		gehiago.add(laguntza);
-		gehiago.add(alKaboomBuruz);
 		gehiago.add(alKaboomWeb);
 	}
 
@@ -127,6 +121,16 @@ public class PartidaMenuBarra extends JMenuBar {
 		rankingBistaratu.addActionListener(gureAE -> this.menuaAldatu());
 		ranking.add(rankingBistaratu);
 		ranking.add(rankingEguneratu);
+	}
+
+	private void laguntza() {
+		if (laguntza.getText().equals("Laguntza")) {
+			AlKaboom.getAlKaboom().getUI().laguntzaIpini();
+			laguntza.setText("Laguntza itxi");
+		} else {
+			AlKaboom.getAlKaboom().getUI().laguntzaKendu();
+			laguntza.setText("Laguntza");
+		}
 	}
 
 }

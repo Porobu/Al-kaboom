@@ -22,6 +22,7 @@ public class UI extends JFrame {
 	private PartidaMenuBarra menuBarraAK;
 	private TableroPanela tp;
 	private RankingDesktopPanela ranking;
+	private Laguntza laguntza;
 
 	public UI() {
 		this.setLayout(new BorderLayout());
@@ -42,6 +43,7 @@ public class UI extends JFrame {
 		this.add(tp);
 		this.ranking = new RankingDesktopPanela();
 		this.ranking.hasieratu();
+		this.laguntza = new Laguntza();
 		this.revalidate();
 		this.setMinimumSize(new Dimension(AlKaboomConstants.TABLERO_TAMAINA_HORIZONTALA,
 				AlKaboomConstants.TABLERO_TAMAINA_BERTIKALA));
@@ -121,6 +123,22 @@ public class UI extends JFrame {
 
 	public void tamainaAldatu() {
 		this.pack();
+	}
+
+	public void laguntzaIpini() {
+		this.remove(tp);
+		this.add(laguntza);
+		this.setMinimumSize(new Dimension(AlKaboomConstants.TABLERO_TAMAINA_HORIZONTALA,
+				AlKaboomConstants.TABLERO_TAMAINA_BERTIKALA));
+		this.revalidate();
+		this.repaint();
+	}
+
+	public void laguntzaKendu() {
+		this.remove(laguntza);
+		this.add(tp);
+		this.revalidate();
+		this.repaint();
 	}
 
 }
